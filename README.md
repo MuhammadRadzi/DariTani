@@ -1,3 +1,3 @@
 <p>﻿DARITANI merupakan sebuah inisiatif proyek kewirausahaan berbasis teknologi yang dirancang sebagai bagian dari tugas akhir mata pelajaran Produk Kreatif dan Kewirausahaan (PKK). Proyek ini dikembangkan oleh tim dengan pembagian peran yang terstruktur, mencakup perencanaan bisnis, perancangan sistem, desain produk digital, hingga strategi pemasaran. Melalui proyek ini, tim berfokus pada penerapan konsep kewirausahaan, kolaborasi tim, serta pemanfaatan teknologi digital sebagai sarana pengembangan produk yang relevan dengan kebutuhan masyarakat.</p>
 
-
+<img width="1080" height="1350" alt="image" src="https://github.com/user-attachments/assets/e637e899-a6d4-452c-8251-2029eec70b86" />
