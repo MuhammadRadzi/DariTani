@@ -11,11 +11,12 @@ return new class extends Migration
         Schema::create('user', function (Blueprint $table) {
             $table->id('id_user');
             $table->string('name_user', 100);
-            $table->string('email_user', 100)->unique();
-            $table->enum('role', ['Petani', 'Customer', 'Admin']);
-            $table->boolean('is_active')->default(true);
-            $table->enum('logindengan', ['Google', 'Email', 'Phone'])->default('Email');
-            $table->timestamp('created_at')->useCurrent();
+            $table->string('email_user', 150)->unique();
+            $table->enum('role', ['farmer', 'customer', 'admin']);
+            $table->boolean('is_active')->nullable()->default(true);
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->enum('login_with', ['email', 'google', 'facebook']);
+            $table->string('password_hash', 255);
         });
     }
 

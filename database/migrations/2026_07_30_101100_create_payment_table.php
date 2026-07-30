@@ -8,20 +8,20 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('pembayaran', function (Blueprint $table) {
+        Schema::create('payment', function (Blueprint $table) {
             $table->id('id_payment');
             $table->foreignId('id_order')
-                ->unique()
-                ->constrained('Order', 'id_order')
+                ->constrained('order', 'id_order')
                 ->onDelete('cascade');
             $table->string('payment_proof')->nullable();
-            $table->enum('status', ['Pending', 'Verified', 'Rejected'])->default('Pending');
-            $table->timestamp('created_at')->useCurrent();
+            $table->enum('status', ['pending', 'verified', 'rejected'])
+                ->nullable()
+                ->default('pending');
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('pembayaran');
+        Schema::dropIfExists('payment');
     }
 };

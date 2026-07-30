@@ -8,19 +8,21 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('Petani', function (Blueprint $table) {
-            $table->id('id_farmer');
+        Schema::create('customer', function (Blueprint $table) {
+            $table->id('id_customer');
+            // FIX: FK diarahkan customer -> user (bukan sebaliknya seperti di SQL asli).
             $table->foreignId('id_user')
+                ->unique()
                 ->constrained('user', 'id_user')
                 ->onDelete('cascade');
-            $table->string('farm_name', 100);
-            $table->string('location')->nullable();
             $table->string('address')->nullable();
+            $table->string('phone', 20)->nullable();
+            $table->string('profile_photo')->nullable();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('Petani');
+        Schema::dropIfExists('customer');
     }
 };
