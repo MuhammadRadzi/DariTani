@@ -35,7 +35,7 @@
 
     <div class="flex flex-col gap-4 pb-4">
         @forelse ($farms as $farm)
-            <a href="#" class="relative block h-[220px] rounded-lg overflow-hidden shadow-md">
+            <a href="{{ route('kebun.show', $farm) }}" class="relative block h-[220px] rounded-lg overflow-hidden shadow-md">
                 {{-- Placeholder gambar kebun --}}
                 @if ($farm->photo_farm)
                     <img src="{{ asset('storage/' . $farm->photo_farm) }}" alt="{{ $farm->name_farm }}"
