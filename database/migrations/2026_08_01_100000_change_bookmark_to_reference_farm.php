@@ -15,6 +15,7 @@ return new class extends Migration
             // Pakai hasColumn() check supaya migration ini aman dijalankan
             // di environment mana pun, meski kondisi tabel sebelumnya beda.
             if (Schema::hasColumn('bookmark', 'id_product')) {
+                $table->dropForeign(['id_product']);
                 $table->dropColumn('id_product');
             }
 

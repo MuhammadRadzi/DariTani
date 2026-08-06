@@ -47,7 +47,16 @@
         <div class="flex flex-col gap-4 pb-4">
             @foreach ($bookmarks as $bookmark)
                 @php $farm = $bookmark->farm; @endphp
-                <div class="relative h-[220px] rounded-lg overflow-hidden shadow-md">
+                @continue (! $farm)
+                <div
+                    x-data="{ removing: false, removed: false }"
+                    x-show="! removed"
+                    x-transition:leave="transition ease-in duration-300"
+                    x-transition:leave-start="opacity-100 scale-100"
+                    x-transition:leave-end="opacity-0 scale-95"
+                    class="relative h-[220px] rounded-lg overflow-hidden shadow-md"
+                    :class="removing ? 'opacity-60' : ''"
+                >
                     <a href="{{ route('kebun.show', $farm) }}" class="absolute inset-0">
                         @if ($farm->photo_farm)
                             <img src="{{ asset('storage/' . $farm->photo_farm) }}" alt="{{ $farm->name_farm }}"
@@ -58,16 +67,28 @@
                         <div class="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-black/80 to-transparent"></div>
                     </a>
 
-                    {{-- Tombol hapus markah --}}
-                    <form method="POST" action="{{ route('markah.destroy', $farm) }}" class="absolute top-3 right-3">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="bg-[#56ec4b] rounded-full p-2" aria-label="Hapus dari markah">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-                            </svg>
-                        </button>
-                    </form>
+                    {{-- Tombol hapus markah, animasi fade-out sebelum card hilang --}}
+                    <button
+                        type="button"
+                        @click="
+                            if (removing) return;
+                            removing = true;
+                            fetch('{{ route('markah.destroy', $farm) }}', {
+                                method: 'DELETE',
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                },
+                            }).then(() => { removed = true; });
+                        "
+                        :class="removing ? 'scale-90' : 'scale-100'"
+                        class="absolute top-3 right-3 bg-[#56ec4b] rounded-full p-2 transition-transform duration-200"
+                        aria-label="Hapus dari markah"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                        </svg>
+                    </button>
 
                     {{-- Info kebun --}}
                     <a href="{{ route('kebun.show', $farm) }}" class="absolute bottom-4 left-4 right-4 text-white pointer-events-none">

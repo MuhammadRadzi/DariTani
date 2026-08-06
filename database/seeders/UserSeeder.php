@@ -37,10 +37,10 @@ class UserSeeder extends Seeder
             'password_hash' => Hash::make('password'),
         ]);
 
-        // --- Farmer: Puang Kirk ---
-        $userPuangKirk = User::create([
-            'name_user' => 'Puang Kirk',
-            'email_user' => 'puangkirk@daritani.co.id',
+        // --- Farmer: Rudy ---
+        $userRudy = User::create([
+            'name_user' => 'Rudy',
+            'email_user' => 'rudy@daritani.co.id',
             'role' => 'farmer',
             'is_active' => true,
             'login_with' => 'email',

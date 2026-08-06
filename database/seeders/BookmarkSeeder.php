@@ -14,7 +14,7 @@ class BookmarkSeeder extends Seeder
         $customer = Customer::firstOrFail();
 
         $farmDaengBaso1 = Farm::where('name_farm', 'Kebun Sayur Malino 1')->firstOrFail();
-        $farmPuangKirk1 = Farm::where('name_farm', 'Kebun Sayur Puang Kirk')->firstOrFail();
+        $farmRudy1 = Farm::where('name_farm', 'Kebun Sayur Rudy')->firstOrFail();
 
         Bookmark::create([
             'id_customer' => $customer->id_customer,
@@ -23,7 +23,7 @@ class BookmarkSeeder extends Seeder
 
         Bookmark::create([
             'id_customer' => $customer->id_customer,
-            'id_farm' => $farmPuangKirk1->id_farm,
+            'id_farm' => $farmRudy1->id_farm,
         ]);
     }
 }
