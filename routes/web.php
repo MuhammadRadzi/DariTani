@@ -52,10 +52,11 @@ Route::middleware('auth')->group(function () {
     // Checkout -- validasi "1 kebun per transaksi" ditangani di controller
     Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
 
-    // Halaman Markah Petani (bookmark)
+    // Halaman Markah Petani (bookmark) -- untuk kebun (farm), bukan produk
     Route::get('/markah', [BookmarkController::class, 'index'])->name('markah.index');
-    Route::post('/markah/{product}', [BookmarkController::class, 'store'])->name('markah.store');
-    Route::delete('/markah/{product}', [BookmarkController::class, 'destroy'])->name('markah.destroy');
+    Route::post('/markah/{farm}', [BookmarkController::class, 'store'])->name('markah.store');
+    Route::delete('/markah/{farm}', [BookmarkController::class, 'destroy'])->name('markah.destroy');
+    Route::delete('/markah', [BookmarkController::class, 'destroyAll'])->name('markah.destroyAll');
 });
 
 /*

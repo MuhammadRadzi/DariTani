@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Bookmark;
 use App\Models\Customer;
-use App\Models\Product;
+use App\Models\Farm;
 use Illuminate\Database\Seeder;
 
 class BookmarkSeeder extends Seeder
@@ -12,17 +12,18 @@ class BookmarkSeeder extends Seeder
     public function run(): void
     {
         $customer = Customer::firstOrFail();
-        $tomat = Product::where('product_name', 'Tomat Malino')->firstOrFail();
-        $daunBawang = Product::where('product_name', 'Daun Bawang')->firstOrFail();
+
+        $farmDaengBaso1 = Farm::where('name_farm', 'Kebun Sayur Malino 1')->firstOrFail();
+        $farmPuangKirk1 = Farm::where('name_farm', 'Kebun Sayur Puang Kirk')->firstOrFail();
 
         Bookmark::create([
             'id_customer' => $customer->id_customer,
-            'id_product' => $tomat->id_product,
+            'id_farm' => $farmDaengBaso1->id_farm,
         ]);
 
         Bookmark::create([
             'id_customer' => $customer->id_customer,
-            'id_product' => $daunBawang->id_product,
+            'id_farm' => $farmPuangKirk1->id_farm,
         ]);
     }
 }

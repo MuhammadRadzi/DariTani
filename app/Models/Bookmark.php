@@ -13,7 +13,7 @@ class Bookmark extends Model
 
     protected $fillable = [
         'id_customer',
-        'id_product',
+        'id_farm',
     ];
 
     public function customer(): BelongsTo
@@ -21,8 +21,8 @@ class Bookmark extends Model
         return $this->belongsTo(Customer::class, 'id_customer', 'id_customer');
     }
 
-    public function product(): BelongsTo
+    public function farm(): BelongsTo
     {
-        return $this->belongsTo(Product::class, 'id_product', 'id_product');
+        return $this->belongsTo(Farm::class, 'id_farm', 'id_farm');
     }
 }

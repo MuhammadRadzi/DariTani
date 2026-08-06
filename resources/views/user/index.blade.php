@@ -35,34 +35,70 @@
 
     <div class="flex flex-col gap-4 pb-4">
         @forelse ($farms as $farm)
-            <a href="{{ route('kebun.show', $farm) }}" class="relative block h-[220px] rounded-lg overflow-hidden shadow-md">
-                {{-- Placeholder gambar kebun --}}
-                @if ($farm->photo_farm)
-                    <img src="{{ asset('storage/' . $farm->photo_farm) }}" alt="{{ $farm->name_farm }}"
-                         class="absolute inset-0 w-full h-full object-cover">
-                @else
-                    <div class="absolute inset-0 bg-gradient-to-br from-green-200 to-green-400"></div>
-                @endif
+            @php $isBookmarked = in_array($farm->id_farm, $bookmarkedFarmIds); @endphp
+            <div class="relative block h-[220px] rounded-lg overflow-hidden shadow-md">
+                <a href="{{ route('kebun.show', $farm) }}" class="absolute inset-0">
+                    {{-- Placeholder gambar kebun --}}
+                    @if ($farm->photo_farm)
+                        <img src="{{ asset('storage/' . $farm->photo_farm) }}" alt="{{ $farm->name_farm }}"
+                             class="absolute inset-0 w-full h-full object-cover">
+                    @else
+                        <div class="absolute inset-0 bg-gradient-to-br from-green-200 to-green-400"></div>
+                    @endif
 
-                {{-- Overlay gradasi gelap di bawah --}}
-                <div class="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    {{-- Overlay gradasi gelap di bawah --}}
+                    <div class="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-black/80 to-transparent"></div>
+                </a>
 
-                {{-- Tombol bookmark --}}
-                <div class="absolute top-3 right-3 bg-[#56ec4b] rounded-full p-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-                    </svg>
+                {{-- Tombol bookmark, toggle tanpa reload --}}
+                <div
+                    x-data="{
+                        bookmarked: {{ $isBookmarked ? 'true' : 'false' }},
+                        loading: false,
+                        async toggle() {
+                            if (this.loading) return;
+                            this.loading = true;
+                            const url = this.bookmarked
+                                ? '{{ route('markah.destroy', $farm) }}'
+                                : '{{ route('markah.store', $farm) }}';
+                            try {
+                                await fetch(url, {
+                                    method: this.bookmarked ? 'DELETE' : 'POST',
+                                    headers: {
+                                        'Accept': 'application/json',
+                                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                    },
+                                });
+                                this.bookmarked = !this.bookmarked;
+                            } finally {
+                                this.loading = false;
+                            }
+                        },
+                    }"
+                    class="absolute top-3 right-3"
+                >
+                    <button
+                        type="button"
+                        @click="toggle()"
+                        :class="loading ? 'opacity-50' : ''"
+                        class="bg-[#56ec4b] rounded-full p-2 transition-opacity"
+                        aria-label="Toggle markah"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" :fill="bookmarked ? 'currentColor' : 'none'" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                        </svg>
+                    </button>
                 </div>
 
                 {{-- Info kebun --}}
-                <div class="absolute bottom-4 left-4 right-4 text-white">
+                <a href="{{ route('kebun.show', $farm) }}" class="absolute bottom-4 left-4 right-4 text-white">
                     <p class="font-medium text-lg mb-1">{{ $farm->name_farm }}</p>
                     <p class="text-xs leading-snug line-clamp-3">
                         {{ $farm->location ?? 'Lokasi belum diisi' }} —
                         dikelola oleh {{ $farm->farmer->farm_name ?? $farm->farmer->user->name_user ?? 'Petani' }}.
                     </p>
-                </div>
-            </a>
+                </a>
+            </div>
         @empty
             <p class="text-sm text-gray-500 text-center py-10">Belum ada kebun yang terdaftar.</p>
         @endforelse
