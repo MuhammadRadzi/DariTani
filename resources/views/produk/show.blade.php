@@ -47,12 +47,67 @@
                         <div class="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200"></div>
                     @endif
 
-                    {{-- Tombol tambah ke keranjang --}}
-                    <button type="button" class="absolute top-2 right-2 bg-[#3ba133] rounded-full p-2 shadow" aria-label="Tambah ke keranjang">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                    </button>
+                    {{-- Tombol tambah ke keranjang, dengan animasi feedback --}}
+                    <div
+                        x-data="{
+                            loading: false,
+                            added: false,
+                            async tambah() {
+                                if (this.loading) return;
+                                this.loading = true;
+                                try {
+                                    await fetch('{{ route('keranjang.store') }}', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'Accept': 'application/json',
+                                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                        },
+                                        body: JSON.stringify({ id_product: {{ $product->id_product }} }),
+                                    });
+                                    this.added = true;
+                                    setTimeout(() => this.added = false, 1200);
+                                } finally {
+                                    this.loading = false;
+                                }
+                            },
+                        }"
+                        class="absolute top-2 right-2"
+                    >
+                        <button
+                            type="button"
+                            @click="tambah()"
+                            :class="added ? 'bg-[#26e118] scale-125' : 'bg-[#3ba133] scale-100'"
+                            class="rounded-full p-2 shadow transition-all duration-300 ease-out"
+                            aria-label="Tambah ke keranjang"
+                        >
+                            <template x-if="!added">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                            </template>
+                            <template x-if="added">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </template>
+                        </button>
+
+                        {{-- Toast kecil "Ditambahkan" --}}
+                        <div
+                            x-show="added"
+                            x-transition:enter="transition ease-out duration-200"
+                            x-transition:enter-start="opacity-0 -translate-y-1"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            x-transition:leave="transition ease-in duration-150"
+                            x-transition:leave-start="opacity-100"
+                            x-transition:leave-end="opacity-0"
+                            class="absolute top-full mt-1 right-0 bg-black/80 text-white text-[10px] px-2 py-1 rounded whitespace-nowrap"
+                            style="display: none;"
+                        >
+                            Ditambahkan
+                        </div>
+                    </div>
                 </div>
 
                 {{-- Info produk --}}
