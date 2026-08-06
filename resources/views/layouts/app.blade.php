@@ -11,7 +11,7 @@
     <div class="max-w-md mx-auto min-h-screen relative pb-20">
 
         {{-- Navbar --}}
-        <div class="flex items-center gap-4 px-4 py-3">
+        <div class="sticky top-0 z-10 bg-white flex items-center gap-4 px-4 py-3">
             <img src="{{ asset('images/logo-daritani-green.png') }}" alt="DariTani" class="w-10 h-auto shrink-0">
 
             <div class="flex-1 flex items-center border border-[#1d1b20] rounded-lg px-3 py-2">
