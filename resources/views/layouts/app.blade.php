@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -6,13 +6,54 @@
     <title>@yield('title', 'DariTani.co.id')</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-sans antialiased bg-white">
+<body class="font-sans antialiased bg-white"
+      x-data="{
+          toasts: [],
+          showToast(message, type = 'success') {
+              const id = Date.now() + Math.random();
+              this.toasts.push({ id, message, type, visible: false });
+              // beri jeda 1 tick supaya Alpine sempat render state awal
+              // (visible: false) sebelum di-set true, sehingga transisi
+              // enter benar-benar terpicu.
+              this.$nextTick(() => {
+                  const t = this.toasts.find(t => t.id === id);
+                  if (t) t.visible = true;
+              });
+              setTimeout(() => {
+                  const t = this.toasts.find(t => t.id === id);
+                  if (t) t.visible = false;
+                  setTimeout(() => {
+                      this.toasts = this.toasts.filter(t => t.id !== id);
+                  }, 200);
+              }, 2500);
+          },
+      }"
+      @toast.window="showToast($event.detail.message, $event.detail.type)"
+>
+
+    {{-- Toast notification, global untuk semua halaman --}}
+    <div class="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 flex flex-col-reverse gap-2 w-full max-w-xs px-4 pointer-events-none">
+        <template x-for="toast in toasts" :key="toast.id">
+            <div
+                x-show="toast.visible"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4 scale-95"
+                x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+                x-transition:leave="transition ease-in duration-200"
+                x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+                x-transition:leave-end="opacity-0 translate-y-2 scale-95"
+                :class="toast.type === 'error' ? 'bg-red-500' : 'bg-[#26e118]'"
+                class="text-white text-sm text-center rounded-lg px-4 py-2 shadow-lg"
+                x-text="toast.message"
+            ></div>
+        </template>
+    </div>
 
     <div class="max-w-md mx-auto min-h-screen relative pb-20">
 
         {{-- Navbar --}}
         <div class="sticky top-0 z-10 bg-white flex items-center gap-4 px-4 py-3">
-            <img src="{{ asset('images/logo-daritani-green.png') }}" alt="DariTani" class="w-10 h-auto shrink-0">
+            <img src="{{ asset('images/logo-daritani.png') }}" alt="DariTani" class="w-10 h-auto shrink-0">
 
             <div class="flex-1 flex items-center border border-[#1d1b20] rounded-lg px-3 py-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[#1d1b20]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

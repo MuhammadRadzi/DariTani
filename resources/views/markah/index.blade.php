@@ -79,7 +79,10 @@
                                     'Accept': 'application/json',
                                     'X-CSRF-TOKEN': '{{ csrf_token() }}',
                                 },
-                            }).then(() => { removed = true; });
+                            }).then(() => {
+                                removed = true;
+                                $dispatch('toast', { message: '{{ $farm->name_farm }} dihapus dari markah' });
+                            });
                         "
                         :class="removing ? 'scale-90' : 'scale-100'"
                         class="absolute top-3 right-3 bg-[#56ec4b] rounded-full p-2 transition-transform duration-200"

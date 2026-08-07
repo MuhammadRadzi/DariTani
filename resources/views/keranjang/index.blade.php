@@ -32,15 +32,33 @@
         </div>
     @else
         {{-- Setiap grup = 1 kebun. Checkout hanya diperbolehkan untuk 1 kebun
-             per transaksi, jadi tiap grup punya form checkout sendiri-sendiri. --}}
+             per transaksi, jadi tiap grup punya form checkout sendiri-sendiri.
+             State qty semua item disimpan di sini supaya subtotal bisa
+             dihitung ulang secara reaktif tanpa reload. --}}
         @foreach ($groupedByFarm as $idFarm => $items)
             @php
                 $farm = $items->first()->product->farm;
                 $farmer = $farm->farmer;
-                $subtotal = $items->sum(fn ($item) => $item->qty * $item->product->price_per_kg);
+                $itemsData = $items->map(fn ($item) => [
+                    'id' => $item->id_cart_item,
+                    'qty' => (int) $item->qty,
+                    'price' => (float) $item->product->price_per_kg,
+                ]);
             @endphp
 
-            <div class="mb-6 border border-gray-100 rounded-xl shadow-sm overflow-hidden">
+            <div
+                class="mb-6 border border-gray-100 rounded-xl shadow-sm overflow-hidden"
+                x-data="{
+                    items: {{ $itemsData->toJson() }},
+                    get subtotal() {
+                        return this.items.reduce((sum, i) => sum + (i.qty * i.price), 0);
+                    },
+                    setQty(id, qty) {
+                        const item = this.items.find(i => i.id === id);
+                        if (item) item.qty = qty;
+                    },
+                }"
+            >
 
                 {{-- Header kebun --}}
                 <div class="bg-gray-50 px-4 py-3">
@@ -53,7 +71,7 @@
                 {{-- Item produk dalam kebun ini --}}
                 <div class="divide-y divide-gray-100">
                     @foreach ($items as $item)
-                        <div class="flex items-center gap-3 px-4 py-3">
+                        <div class="flex items-center gap-3 px-4 py-3" data-cart-item>
                             {{-- Foto --}}
                             <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-gray-100">
                                 @if ($item->product->product_image)
@@ -71,7 +89,7 @@
                                 </p>
                             </div>
 
-                            {{-- Qty selector, update tanpa reload pakai Alpine.js --}}
+                            {{-- Qty selector, update tanpa reload + subtotal reaktif --}}
                             <div
                                 x-data="{
                                     qty: {{ (int) $item->qty }},
@@ -80,6 +98,7 @@
                                         const baru = Math.max(1, this.qty + delta);
                                         if (baru === this.qty) return;
                                         this.qty = baru;
+                                        setQty({{ $item->id_cart_item }}, baru);
                                         this.loading = true;
                                         try {
                                             await fetch('{{ route('keranjang.update', $item) }}', {
@@ -107,27 +126,44 @@
                                         class="w-7 h-7 flex items-center justify-center text-gray-500">+</button>
                             </div>
 
-                            {{-- Hapus --}}
-                            <form method="POST" action="{{ route('keranjang.destroy', $item) }}">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" aria-label="Hapus" class="text-red-400 ml-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                </button>
-                            </form>
+                            {{-- Hapus, tanpa reload + toast + subtotal reaktif --}}
+                            <button
+                                type="button"
+                                @click="
+                                    if ($el.dataset.removing) return;
+                                    $el.dataset.removing = '1';
+                                    const card = $el.closest('[data-cart-item]');
+                                    fetch('{{ route('keranjang.destroy', $item) }}', {
+                                        method: 'DELETE',
+                                        headers: {
+                                            'Accept': 'application/json',
+                                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                        },
+                                    }).then(() => {
+                                        $dispatch('toast', { message: '{{ $item->product->product_name }} dihapus dari keranjang' });
+                                        items = items.filter(i => i.id !== {{ $item->id_cart_item }});
+                                        card.style.transition = 'opacity 250ms, transform 250ms';
+                                        card.style.opacity = '0';
+                                        card.style.transform = 'scale(0.97)';
+                                        setTimeout(() => card.remove(), 250);
+                                    });
+                                "
+                                aria-label="Hapus"
+                                class="text-red-400 ml-1"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
                         </div>
                     @endforeach
                 </div>
 
-                {{-- Subtotal + checkout, khusus kebun ini saja --}}
+                {{-- Subtotal (reaktif) + checkout, khusus kebun ini saja --}}
                 <div class="px-4 py-3 bg-gray-50 flex items-center justify-between">
                     <div>
                         <p class="text-xs text-gray-500">Subtotal</p>
-                        <p class="text-sm font-medium text-black">
-                            Rp{{ number_format($subtotal, 0, ',', '.') }}
-                        </p>
+                        <p class="text-sm font-medium text-black" x-text="'Rp' + subtotal.toLocaleString('id-ID')"></p>
                     </div>
                     <form method="POST" action="{{ route('checkout') }}">
                         @csrf
