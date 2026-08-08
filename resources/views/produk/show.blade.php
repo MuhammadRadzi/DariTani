@@ -66,10 +66,14 @@
                                         body: JSON.stringify({ id_product: {{ $product->id_product }} }),
                                     });
                                     this.added = true;
-                                    $dispatch('toast', { message: '{{ $product->product_name }} ditambahkan ke keranjang' });
+                                    $dispatch('toast', {
+                                        message: 'Telah ditambahkan di keranjang.',
+                                        link: '{{ route('keranjang.index') }}',
+                                        linkText: 'Lihat',
+                                    });
                                     setTimeout(() => this.added = false, 1200);
                                 } catch (e) {
-                                    $dispatch('toast', { message: 'Gagal menambahkan produk', type: 'error' });
+                                    $dispatch('toast', { message: 'Gagal menambahkan produk' });
                                 } finally {
                                     this.loading = false;
                                 }

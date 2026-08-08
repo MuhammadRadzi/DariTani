@@ -81,7 +81,7 @@
                                 },
                             }).then(() => {
                                 removed = true;
-                                $dispatch('toast', { message: '{{ $farm->name_farm }} dihapus dari markah' });
+                                $dispatch('toast', { message: 'Dihapus dari markah.' });
                             });
                         "
                         :class="removing ? 'scale-90' : 'scale-100'"

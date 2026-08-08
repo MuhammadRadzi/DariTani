@@ -140,7 +140,7 @@
                                             'X-CSRF-TOKEN': '{{ csrf_token() }}',
                                         },
                                     }).then(() => {
-                                        $dispatch('toast', { message: '{{ $item->product->product_name }} dihapus dari keranjang' });
+                                        $dispatch('toast', { message: 'Produk dihapus dari keranjang.' });
                                         items = items.filter(i => i.id !== {{ $item->id_cart_item }});
                                         card.style.transition = 'opacity 250ms, transform 250ms';
                                         card.style.opacity = '0';

@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -9,9 +9,9 @@
 <body class="font-sans antialiased bg-white"
       x-data="{
           toasts: [],
-          showToast(message, type = 'success') {
+          showToast(message, link = null, linkText = 'Lihat') {
               const id = Date.now() + Math.random();
-              this.toasts.push({ id, message, type, visible: false });
+              this.toasts.push({ id, message, link, linkText, visible: false });
               // beri jeda 1 tick supaya Alpine sempat render state awal
               // (visible: false) sebelum di-set true, sehingga transisi
               // enter benar-benar terpicu.
@@ -28,11 +28,11 @@
               }, 2500);
           },
       }"
-      @toast.window="showToast($event.detail.message, $event.detail.type)"
+      @toast.window="showToast($event.detail.message, $event.detail.link, $event.detail.linkText)"
 >
 
-    {{-- Toast notification, global untuk semua halaman --}}
-    <div class="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 flex flex-col-reverse gap-2 w-full max-w-xs px-4 pointer-events-none">
+    {{-- Toast notification, global untuk semua halaman -- card putih + link "Lihat", sesuai desain Figma --}}
+    <div class="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 flex flex-col-reverse gap-2 w-full max-w-sm px-4 pointer-events-none">
         <template x-for="toast in toasts" :key="toast.id">
             <div
                 x-show="toast.visible"
@@ -42,10 +42,16 @@
                 x-transition:leave="transition ease-in duration-200"
                 x-transition:leave-start="opacity-100 translate-y-0 scale-100"
                 x-transition:leave-end="opacity-0 translate-y-2 scale-95"
-                :class="toast.type === 'error' ? 'bg-red-500' : 'bg-[#26e118]'"
-                class="text-white text-sm text-center rounded-lg px-4 py-2 shadow-lg"
-                x-text="toast.message"
-            ></div>
+                class="bg-white text-black text-sm rounded-xl shadow-lg px-4 py-3 flex items-center justify-between gap-3 pointer-events-auto"
+            >
+                <span x-text="toast.message"></span>
+                <a
+                    x-show="toast.link"
+                    :href="toast.link"
+                    x-text="toast.linkText"
+                    class="text-[#26e118] font-medium underline shrink-0"
+                ></a>
+            </div>
         </template>
     </div>
 

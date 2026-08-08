@@ -77,13 +77,17 @@
                                     },
                                 });
                                 this.bookmarked = !this.bookmarked;
-                                $dispatch('toast', {
-                                    message: this.bookmarked
-                                        ? '{{ $farm->name_farm }} ditambahkan ke markah'
-                                        : '{{ $farm->name_farm }} dihapus dari markah',
-                                });
+                                if (this.bookmarked) {
+                                    $dispatch('toast', {
+                                        message: 'Telah ditambahkan di markah.',
+                                        link: '{{ route('markah.index') }}',
+                                        linkText: 'Lihat',
+                                    });
+                                } else {
+                                    $dispatch('toast', { message: 'Dihapus dari markah.' });
+                                }
                             } catch (e) {
-                                $dispatch('toast', { message: 'Gagal memperbarui markah', type: 'error' });
+                                $dispatch('toast', { message: 'Gagal memperbarui markah' });
                             } finally {
                                 this.loading = false;
                             }
