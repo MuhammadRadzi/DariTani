@@ -68,11 +68,30 @@
                 <input type="text" placeholder="Cari produk atau kebun..." class="flex-1 ml-2 text-sm outline-none">
             </div>
 
-            <button type="button" class="shrink-0" aria-label="Menu">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
+            <div class="relative shrink-0" x-data="{ open: false }">
+                <button type="button" @click.stop="open = !open" aria-label="Menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+
+                <div
+                    x-show="open"
+                    @click.outside="open = false"
+                    x-transition:enter="transition ease-out duration-150"
+                    x-transition:enter-start="opacity-0 scale-95"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    x-transition:leave="transition ease-in duration-100"
+                    x-transition:leave-start="opacity-100 scale-100"
+                    x-transition:leave-end="opacity-0 scale-95"
+                    class="absolute right-0 top-full mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-100 py-1"
+                    style="display: none; z-index: 9999;"
+                >
+                    <a href="{{ route('user.edit') }}" class="block px-4 py-2 text-sm text-black hover:bg-gray-50">
+                        Edit Profil
+                    </a>
+                </div>
+            </div>
         </div>
 
         {{-- Konten halaman --}}

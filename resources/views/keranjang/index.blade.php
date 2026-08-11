@@ -19,6 +19,12 @@
         </div>
     @endif
 
+    @if (session('error'))
+        <div class="mb-4 rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-600">
+            {{ session('error') }}
+        </div>
+    @endif
+
     @if ($groupedByFarm->isEmpty())
         {{-- Keranjang kosong --}}
         <div class="flex flex-col items-center justify-center py-20 text-center">
@@ -165,17 +171,95 @@
                         <p class="text-xs text-gray-500">Subtotal</p>
                         <p class="text-sm font-medium text-black" x-text="'Rp' + subtotal.toLocaleString('id-ID')"></p>
                     </div>
-                    <form method="POST" action="{{ route('checkout') }}">
+                    <button type="button" @click="$dispatch('open-checkout-modal', {
+                                idFarm: {{ $idFarm }},
+                                farmName: '{{ addslashes($farm->name_farm) }}',
+                                itemCount: items.length,
+                                subtotal: subtotal,
+                            })"
+                            class="bg-[#26e118] hover:bg-[#1fc713] transition-colors text-white text-sm font-medium px-5 py-2 rounded-full">
+                        Checkout kebun ini
+                    </button>
+                </div>
+            </div>
+        @endforeach
+
+        {{-- Modal konfirmasi checkout, satu komponen dipakai untuk semua grup kebun --}}
+        <div
+            x-data="{
+                open: false,
+                idFarm: null,
+                farmName: '',
+                itemCount: 0,
+                subtotal: 0,
+            }"
+            @open-checkout-modal.window="
+                open = true;
+                idFarm = $event.detail.idFarm;
+                farmName = $event.detail.farmName;
+                itemCount = $event.detail.itemCount;
+                subtotal = $event.detail.subtotal;
+            "
+        >
+            {{-- Overlay --}}
+            <div
+                x-show="open"
+                x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="transition ease-in duration-150"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                @click="open = false"
+                class="fixed inset-0 bg-black/50 z-40"
+                style="display: none;"
+            ></div>
+
+            {{-- Modal box --}}
+            <div
+                x-show="open"
+                x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0 scale-95 translate-y-4"
+                x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+                x-transition:leave="transition ease-in duration-150"
+                x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+                x-transition:leave-end="opacity-0 scale-95 translate-y-4"
+                class="fixed inset-x-4 bottom-24 max-w-sm mx-auto bg-white rounded-2xl shadow-xl p-5 z-50"
+                style="display: none;"
+            >
+                <h2 class="text-lg font-medium text-black mb-1">Konfirmasi Checkout</h2>
+                <p class="text-sm text-gray-500 mb-4">
+                    Kamu akan checkout <span x-text="itemCount"></span> produk dari
+                    <span class="font-medium text-black" x-text="farmName"></span>.
+                </p>
+
+                <div class="bg-gray-50 rounded-lg px-4 py-3 mb-4 flex items-center justify-between">
+                    <span class="text-sm text-gray-600">Total</span>
+                    <span class="text-base font-medium text-black" x-text="'Rp' + subtotal.toLocaleString('id-ID')"></span>
+                </div>
+
+                <p class="text-xs text-gray-400 mb-5">
+                    Kamu akan diarahkan ke WhatsApp petani untuk konfirmasi pesanan.
+                    Pembayaran diatur langsung antara kamu dan petani.
+                </p>
+
+                <div class="flex gap-3">
+                    <button type="button" @click="open = false"
+                            class="flex-1 border border-gray-200 text-gray-600 text-sm font-medium py-2.5 rounded-full">
+                        Batal
+                    </button>
+
+                    <form method="POST" action="{{ route('checkout') }}" class="flex-1">
                         @csrf
-                        <input type="hidden" name="id_farm" value="{{ $idFarm }}">
+                        <input type="hidden" name="id_farm" :value="idFarm">
                         <button type="submit"
-                                class="bg-[#26e118] hover:bg-[#1fc713] transition-colors text-white text-sm font-medium px-5 py-2 rounded-full">
-                            Checkout kebun ini
+                                class="w-full bg-[#26e118] hover:bg-[#1fc713] transition-colors text-white text-sm font-medium py-2.5 rounded-full">
+                            Lanjut ke WhatsApp
                         </button>
                     </form>
                 </div>
             </div>
-        @endforeach
+        </div>
 
         <p class="text-xs text-gray-400 text-center mb-6">
             Checkout hanya bisa dilakukan untuk 1 kebun per transaksi.
