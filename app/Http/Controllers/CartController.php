@@ -122,9 +122,20 @@ class CartController extends Controller
 
         $totalAmount = $items->sum(fn ($item) => $item->qty * $item->product->price_per_kg);
 
-        $order = DB::transaction(function () use ($items, $customer, $totalAmount) {
+        $order = DB::transaction(function () use ($items, $customer, $totalAmount, $farmer) {
+            // Hitung nomor pesanan berikutnya khusus untuk farmer ini,
+            // supaya urutannya tidak lompat-lompat akibat checkout dari
+            // farmer lain. lockForUpdate() mencegah dua checkout
+            // bersamaan pada farmer yang sama mendapat nomor sama.
+            $lastOrderNumber = Order::whereHas('items.product.farm', function ($q) use ($farmer) {
+                    $q->where('id_farmer', $farmer->id_farmer);
+                })
+                ->lockForUpdate()
+                ->max('order_number');
+
             $order = Order::create([
                 'id_customer' => $customer->id_customer,
+                'order_number' => ($lastOrderNumber ?? 0) + 1,
                 'order_date' => now()->toDateString(),
                 'total_amount' => $totalAmount,
                 'status' => 'pending',
@@ -163,7 +174,7 @@ class CartController extends Controller
         $baris = [];
         $baris[] = '*STRUK PESANAN - DariTani.co.id*';
         $baris[] = '';
-        $baris[] = 'No. Pesanan: #' . $order->id_order;
+        $baris[] = 'No. Pesanan: #' . $order->order_number;
         $baris[] = 'Tanggal: ' . now()->translatedFormat('d F Y, H:i');
         $baris[] = 'Kebun: ' . $farm->name_farm;
         $baris[] = str_repeat('-', 28);
