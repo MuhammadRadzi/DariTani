@@ -100,7 +100,6 @@ CREATE TABLE `cart` (
     `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP()
 );
 ALTER TABLE `cart` ADD UNIQUE `cart_id_customer_unique` (`id_customer`);
--- FIX: arah FK dibalik, cart -> customer (bukan customer -> cart)
 ALTER TABLE `cart` ADD CONSTRAINT `cart_id_customer_foreign`
     FOREIGN KEY (`id_customer`) REFERENCES `customer`(`id_customer`) ON DELETE CASCADE;
 
@@ -121,6 +120,7 @@ ALTER TABLE `cart_item` ADD CONSTRAINT `cart_item_id_product_foreign`
 CREATE TABLE `order` (
     `id_order` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `id_customer` INT NOT NULL,
+    `order_number` INT UNSIGNED NULL,
     `order_date` DATE NOT NULL,
     `total_amount` DECIMAL(12, 2) NOT NULL,
     `status` ENUM('pending', 'paid', 'shipped', 'completed', 'cancelled') NULL DEFAULT 'pending',
