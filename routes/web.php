@@ -28,6 +28,16 @@ Route::middleware('guest')->group(function () {
 
 /*
 |--------------------------------------------------------------------------
+| Verifikasi email (belum login, tapi bukan "guest" murni -- user sudah
+| terdaftar, hanya menunggu verifikasi kode OTP)
+|--------------------------------------------------------------------------
+*/
+Route::get('/verify', [AuthController::class, 'showVerify'])->name('verify');
+Route::post('/verify', [AuthController::class, 'verify'])->name('verify.submit');
+Route::post('/verify/resend', [AuthController::class, 'resend'])->name('verify.resend');
+
+/*
+|--------------------------------------------------------------------------
 | Customer routes (butuh login)
 |--------------------------------------------------------------------------
 | Prioritas SA: Halaman Login & Halaman User jadi dulu sebelum halaman lain.
