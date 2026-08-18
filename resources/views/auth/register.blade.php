@@ -3,7 +3,7 @@
 @section('title', 'Daftar - DariTani.co.id')
 
 @section('content')
-<div class="min-h-screen bg-[#56ec4b] flex flex-col items-center justify-center px-4 py-10">
+<div class="min-h-screen bg-[#8AC936] flex flex-col items-center justify-center px-4 py-10">
 
     {{-- Logo --}}
     <div class="mb-7">
@@ -37,7 +37,7 @@
                     placeholder="Masukkan nama lengkap"
                     required
                     autofocus
-                    class="w-full border border-[#878787] rounded-lg px-3 py-3 text-sm text-black placeholder-[#969696] focus:outline-none focus:ring-2 focus:ring-[#26e118] focus:border-transparent"
+                    class="w-full border border-[#878787] rounded-lg px-3 py-3 text-sm text-black placeholder-[#969696] focus:outline-none focus:ring-2 focus:ring-[#6EA12B] focus:border-transparent"
                 >
             </div>
 
@@ -51,7 +51,7 @@
                     value="{{ old('email_user') }}"
                     placeholder="Masukkan email"
                     required
-                    class="w-full border border-[#878787] rounded-lg px-3 py-3 text-sm text-black placeholder-[#969696] focus:outline-none focus:ring-2 focus:ring-[#26e118] focus:border-transparent"
+                    class="w-full border border-[#878787] rounded-lg px-3 py-3 text-sm text-black placeholder-[#969696] focus:outline-none focus:ring-2 focus:ring-[#6EA12B] focus:border-transparent"
                 >
             </div>
 
@@ -64,7 +64,7 @@
                     id="password"
                     placeholder="Minimal 8 karakter"
                     required
-                    class="w-full border border-[#878787] rounded-lg px-3 py-3 text-sm text-black placeholder-[#969696] focus:outline-none focus:ring-2 focus:ring-[#26e118] focus:border-transparent"
+                    class="w-full border border-[#878787] rounded-lg px-3 py-3 text-sm text-black placeholder-[#969696] focus:outline-none focus:ring-2 focus:ring-[#6EA12B] focus:border-transparent"
                 >
             </div>
 
@@ -77,14 +77,14 @@
                     id="password_confirmation"
                     placeholder="Ulangi password"
                     required
-                    class="w-full border border-[#878787] rounded-lg px-3 py-3 text-sm text-black placeholder-[#969696] focus:outline-none focus:ring-2 focus:ring-[#26e118] focus:border-transparent"
+                    class="w-full border border-[#878787] rounded-lg px-3 py-3 text-sm text-black placeholder-[#969696] focus:outline-none focus:ring-2 focus:ring-[#6EA12B] focus:border-transparent"
                 >
             </div>
 
             {{-- Submit --}}
             <button
                 type="submit"
-                class="bg-[#26e118] hover:bg-[#1fc713] transition-colors w-full max-w-[302px] h-[47px] rounded-lg text-white text-lg font-medium"
+                class="bg-[#6EA12B] hover:bg-[#527820] transition-colors w-full max-w-[302px] h-[47px] rounded-lg text-white text-lg font-medium"
             >
                 Daftar
             </button>
@@ -92,7 +92,7 @@
             {{-- Link ke login --}}
             <p class="text-sm text-[#5d5d5d]">
                 Sudah punya akun?
-                <a href="{{ route('login') }}" class="text-[#26e118] font-medium underline">Login</a>
+                <a href="{{ route('login') }}" class="text-[#6EA12B] font-medium underline">Login</a>
             </p>
         </form>
     </div>

@@ -84,7 +84,7 @@
                         <button
                             type="button"
                             @click="tambah()"
-                            :class="added ? 'bg-[#26e118] scale-125' : 'bg-[#3ba133] scale-100'"
+                            :class="added ? 'bg-[#6EA12B] scale-125' : 'bg-[#527820] scale-100'"
                             class="rounded-full p-2 shadow transition-all duration-300 ease-out"
                             aria-label="Tambah ke keranjang"
                         >
