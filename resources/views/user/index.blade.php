@@ -4,6 +4,9 @@
 
 @section('content')
 
+<link href="{{ asset('output.css') }}" rel="stylesheet" />
+<link href="{{ asset('main.css') }}" rel="stylesheet" />
+
     {{-- Banner Selamat Datang --}}
     <div class="relative h-[171px] rounded-lg overflow-hidden mb-4"
          style="background: radial-gradient(circle at 50% 50%, #56ec4b, #3ad62f, #1ec112);">
@@ -67,5 +70,57 @@
             <p class="text-sm text-gray-500 text-center py-10">Belum ada kebun yang terdaftar.</p>
         @endforelse
     </div>
+
+    <nav id="Category" class="max-w-[1130px] mx-auto flex justify-center items-center gap-4 mt-[30px]">
+
+    @foreach($categories as $category)
+        <a href="categoryPage.html"
+           class="rounded-full p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#FF6B18]">
+
+            <div class="w-6 h-6 flex shrink-0">
+                <img src="{{ Storage::url($category->icon) }}" alt="icon">
+            </div>
+
+            <span>{{ $category->name }}</span>
+        </a>
+    @endforeach
+
+</nav>
+
+<nav id="Category" class="max-w-[1130px] mx-auto flex justify-center items-center gap-4 mt-[30px]">
+
+    @foreach($categories as $category)
+        <a href="{{ route('front.category', $category->slug) }}"
+            class="rounded-full p-[12px_22px] flex gap-[10px] font-semibold transition-all duration-300 border border-[#EEF0F7] hover:ring-2 hover:ring-[#FF6B18]">
+
+            <div class="w-6 h-6 flex shrink-0">
+                <img src="{{ Storage::url($category->icon) }}" alt="icon">
+            </div>
+
+            <span>{{ $category->name }}</span>
+        </a>
+    @endforeach
+
+</nav>
+
+<script src="{{ asset('customjs/two-lines-text.js') }}"></script>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"></script>
+
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+<script src="{{ asset('customjs/carousel.js') }}"></script>
+
+<script src="{{ asset('customjs/two-lines-text.js') }}"></script>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"></script>
+
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+<script src="{{ asset('customjs/carousel.js') }}"></script>
 
 @endsection
