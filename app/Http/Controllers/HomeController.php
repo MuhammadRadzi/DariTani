@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class HomeController extends Controller
 {
-    public function index(): View
+    public function index(): RedirectResponse|View
     {
-        return view('home');
+        if (Auth::check()) {
+            return redirect('/user');
+        }
+        return view('landing');
     }
 }
