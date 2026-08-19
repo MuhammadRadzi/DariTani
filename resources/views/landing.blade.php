@@ -7,47 +7,10 @@
     <meta name="description" content="DariTani me-revolusi rantai pasok pertanian Indonesia. Menghubungkan petani lokal langsung dengan konsumen, didukung teknologi Smart Farming IoT dan jaminan 100% segar.">
     <meta name="keywords" content="DariTani, pertanian digital, smart farming indonesia, sayur organik, buah segar, hasil panen langsung petani, marketplace pertanian">
     
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- Tailwind CSS (via CDN) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            200: '#bbf7d0',
-                            300: '#86efac',
-                            400: '#4ade80',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            700: '#15803d',
-                            800: '#166534',
-                            900: '#14532d',
-                            dark: '#0B2B18',
-                        },
-                        amber: {
-                            500: '#f59e0b',
-                            600: '#d97706',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        heading: ['Outfit', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     
     <style>
         .glass-nav {
@@ -62,18 +25,18 @@
             border: 1px solid rgba(255, 255, 255, 0.4);
         }
         .glass-dark {
-            background: rgba(11, 43, 24, 0.75);
+            background: rgba(35, 51, 14, 0.75);
             backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         .gradient-text {
-            background: linear-gradient(135deg, #15803d 0%, #22c55e 50%, #16a34a 100%);
+            background: linear-gradient(135deg, #527820 0%, #6EA12B 50%, #8AC936 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         .hero-gradient {
-            background: radial-gradient(circle at 80% 20%, rgba(34, 197, 94, 0.15) 0%, rgba(255, 255, 255, 0) 60%),
-                        linear-gradient(180deg, #F4FBF7 0%, #FFFFFF 100%);
+            background: radial-gradient(circle at 80% 20%, rgba(110, 161, 43, 0.15) 0%, rgba(255, 255, 255, 0) 60%),
+                        linear-gradient(180deg, #F5FAEE 0%, #FFFFFF 100%);
         }
         .floating-anim {
             animation: float 6s ease-in-out infinite;
@@ -89,7 +52,7 @@
             background: #f1f1f1;
         }
         ::-webkit-scrollbar-thumb {
-            background: #22c55e;
+            background: #6EA12B;
             border-radius: 4px;
         }
     </style>
