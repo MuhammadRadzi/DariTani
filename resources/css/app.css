@@ -9,15 +9,9 @@
     --font-heading: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
 
     /* Brand palette (Adobe Color, Aug 2026) */
-    --color-brand-50: #f2fce0;
-    --color-brand-100: #e2f7bd;
-    --color-brand-200: #c9ef8a;
-    --color-brand-300: #A2ED40;
-    --color-brand-400: #8AC936;
-    --color-brand-500: #6EA12B;
-    --color-brand-600: #5c8a24;
-    --color-brand-700: #527820;
-    --color-brand-800: #3d5a18;
-    --color-brand-900: #23330E;
-    --color-brand-dark: #1a260b;
+    --color-brand-100: #A2ED40;
+    --color-brand-200: #8AC936;
+    --color-brand-300: #6EA12B;
+    --color-brand-400: #527820;
+    --color-brand-500: #23330E;
 }

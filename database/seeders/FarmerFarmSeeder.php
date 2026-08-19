@@ -12,7 +12,7 @@ class FarmerFarmSeeder extends Seeder
     public function run(): void
     {
         $userDaengBaso = User::where('email_user', 'daengbaso@daritani.co.id')->firstOrFail();
-        $userPuangKirk = User::where('email_user', 'puangkirk@daritani.co.id')->firstOrFail();
+        $userRudy = User::where('email_user', 'rudy@daritani.co.id')->firstOrFail();
 
         // --- Farmer: Daeng Baso' (sengaja punya 2 kebun, buat test checkout per-kebun) ---
         $farmerDaengBaso = Farmer::create([
@@ -37,18 +37,18 @@ class FarmerFarmSeeder extends Seeder
             'photo_farm' => null,
         ]);
 
-        // --- Farmer: Puang Kirk (1 kebun saja) ---
-        $farmerPuangKirk = Farmer::create([
-            'id_user' => $userPuangKirk->id_user,
-            'farm_name' => 'Kebun Puang Kirk',
+        // --- Farmer: Rudy (1 kebun saja) ---
+        $farmerRudy = Farmer::create([
+            'id_user' => $userRudy->id_user,
+            'farm_name' => 'Kebun Rudy',
             'location' => 'Malino, Gowa',
             'address' => 'Jl. Malino Raya No. 27',
             'whatsapp_number' => '6282222222222',
         ]);
 
         Farm::create([
-            'id_farmer' => $farmerPuangKirk->id_farmer,
-            'name_farm' => 'Kebun Sayur Puang Kirk',
+            'id_farmer' => $farmerRudy->id_farmer,
+            'name_farm' => 'Kebun Sayur Rudy',
             'location' => 'Malino, Gowa',
             'photo_farm' => null,
         ]);

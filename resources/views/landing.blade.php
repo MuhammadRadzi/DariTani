@@ -60,8 +60,8 @@
 <body class="font-sans text-slate-800 bg-white antialiased selection:bg-brand-500 selection:text-white">
 
     <!-- Top Announcement Bar -->
-    <div class="bg-brand-900 text-white text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
-        <span class="bg-brand-500 text-brand-900 font-bold px-2 py-0.5 rounded-full text-[10px] uppercase tracking-wider">Promo Hari Ini</span>
+    <div class="bg-brand-500 text-white text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
+        <span class="bg-brand-500 text-brand-500 font-bold px-2 py-0.5 rounded-full text-[10px] uppercase tracking-wider">Promo Hari Ini</span>
         <span>Gunakan kode voucher <strong class="text-amber-400">DARITANISEGAR</strong> untuk Gratis Ongkir Panen Pertama!</span>
         <button onclick="copyPromo()" class="underline hover:text-brand-300 ml-2 transition-colors cursor-pointer"><i class="fa-regular fa-copy mr-1"></i>Salin Kode</button>
     </div>
@@ -71,12 +71,12 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <!-- Brand Logo -->
             <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-brand-700 via-brand-600 to-brand-400 flex items-center justify-center text-white shadow-lg shadow-brand-600/30 group-hover:scale-105 transition-transform">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-brand-400 via-brand-300 to-brand-400 flex items-center justify-center text-white shadow-lg shadow-brand-300/30 group-hover:scale-105 transition-transform">
                     <i class="fa-solid fa-leaf text-xl"></i>
                 </div>
                 <div class="flex flex-col">
                     <span class="font-heading font-extrabold text-2xl text-slate-900 tracking-tight leading-none flex items-center gap-1">
-                        Dari<span class="text-brand-600">Tani</span>
+                        Dari<span class="text-brand-300">Tani</span>
                         <span class="inline-block w-2 h-2 rounded-full bg-brand-500 animate-ping"></span>
                     </span>
                     <span class="text-[10px] font-semibold text-slate-500 tracking-wider uppercase mt-0.5">Smart Agriculture</span>
@@ -85,27 +85,27 @@
 
             <!-- Desktop Nav Links -->
             <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-600">
-                <a href="#beranda" class="text-brand-700 font-semibold hover:text-brand-600 transition-colors">Beranda</a>
-                <a href="#tentang" class="hover:text-brand-600 transition-colors">Tentang Kami</a>
-                <a href="#fitur" class="hover:text-brand-600 transition-colors">Fitur Utama</a>
-                <a href="#katalog" class="hover:text-brand-600 transition-colors">Katalog Panen</a>
-                <a href="#smart-tech" class="hover:text-brand-600 transition-colors">Smart Farming</a>
-                <a href="#kemitraan" class="hover:text-brand-600 transition-colors">Kemitraan</a>
-                <a href="#faq" class="hover:text-brand-600 transition-colors">FAQ</a>
+                <a href="#beranda" class="text-brand-400 font-semibold hover:text-brand-300 transition-colors">Beranda</a>
+                <a href="#tentang" class="hover:text-brand-300 transition-colors">Tentang Kami</a>
+                <a href="#fitur" class="hover:text-brand-300 transition-colors">Fitur Utama</a>
+                <a href="#katalog" class="hover:text-brand-300 transition-colors">Katalog Panen</a>
+                <a href="#smart-tech" class="hover:text-brand-300 transition-colors">Smart Farming</a>
+                <a href="#kemitraan" class="hover:text-brand-300 transition-colors">Kemitraan</a>
+                <a href="#faq" class="hover:text-brand-300 transition-colors">FAQ</a>
             </nav>
 
             <!-- Right Action Buttons -->
             <div class="hidden md:flex items-center gap-4">
                 @auth
-                    <a href="{{ route('user.index') }}" class="text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 px-5 py-2.5 rounded-xl shadow-md transition-all flex items-center gap-2">
+                    <a href="{{ route('user.index') }}" class="text-sm font-semibold text-white bg-brand-300 hover:bg-brand-400 px-5 py-2.5 rounded-xl shadow-md transition-all flex items-center gap-2">
                         <i class="fa-solid fa-user text-xs"></i>
                         <span>Dashboard Saya</span>
                     </a>
                 @else
-                    <a href="{{ route('login') }}" class="text-sm font-semibold text-slate-700 hover:text-brand-600 px-4 py-2 rounded-xl transition-colors">
+                    <a href="{{ route('login') }}" class="text-sm font-semibold text-slate-700 hover:text-brand-300 px-4 py-2 rounded-xl transition-colors">
                         Masuk
                     </a>
-                    <a href="{{ route('register') }}" class="text-sm font-semibold bg-gradient-to-r from-brand-600 to-brand-500 text-white px-5 py-2.5 rounded-xl shadow-lg shadow-brand-600/25 hover:shadow-brand-600/40 hover:-translate-y-0.5 transition-all flex items-center gap-2">
+                    <a href="{{ route('register') }}" class="text-sm font-semibold bg-gradient-to-r from-brand-300 to-brand-500 text-white px-5 py-2.5 rounded-xl shadow-lg shadow-brand-300/25 hover:shadow-brand-300/40 hover:-translate-y-0.5 transition-all flex items-center gap-2">
                         <i class="fa-solid fa-user-plus text-xs"></i>
                         <span>Daftar Akun</span>
                     </a>
@@ -120,7 +120,7 @@
 
         <!-- Mobile Navigation Drawer -->
         <div id="mobile-drawer" class="hidden md:hidden glass-card border-t border-emerald-100 px-6 py-6 space-y-4">
-            <a href="#beranda" class="block font-semibold text-brand-700 text-base" onclick="toggleMobileMenu()">Beranda</a>
+            <a href="#beranda" class="block font-semibold text-brand-400 text-base" onclick="toggleMobileMenu()">Beranda</a>
             <a href="#tentang" class="block text-slate-700 text-base" onclick="toggleMobileMenu()">Tentang Kami</a>
             <a href="#fitur" class="block text-slate-700 text-base" onclick="toggleMobileMenu()">Fitur Utama</a>
             <a href="#katalog" class="block text-slate-700 text-base" onclick="toggleMobileMenu()">Katalog Panen</a>
@@ -129,10 +129,10 @@
             <a href="#faq" class="block text-slate-700 text-base" onclick="toggleMobileMenu()">FAQ</a>
             <div class="pt-4 border-t border-slate-200 flex flex-col gap-3">
                 @auth
-                    <a href="{{ route('user.index') }}" class="text-center font-semibold text-white bg-brand-600 py-3 rounded-xl shadow-md">Dashboard Saya</a>
+                    <a href="{{ route('user.index') }}" class="text-center font-semibold text-white bg-brand-300 py-3 rounded-xl shadow-md">Dashboard Saya</a>
                 @else
                     <a href="{{ route('login') }}" class="text-center font-semibold text-slate-800 bg-slate-100 py-3 rounded-xl">Masuk ke Akun</a>
-                    <a href="{{ route('register') }}" class="text-center font-semibold text-white bg-brand-600 py-3 rounded-xl shadow-md">Daftar Akun Baru</a>
+                    <a href="{{ route('register') }}" class="text-center font-semibold text-white bg-brand-300 py-3 rounded-xl shadow-md">Daftar Akun Baru</a>
                 @endauth
             </div>
         </div>
@@ -144,10 +144,10 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
                 
                 <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 border border-brand-200 text-brand-800 text-xs sm:text-sm font-semibold shadow-sm">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-100 border border-brand-200 text-brand-500 text-xs sm:text-sm font-semibold shadow-sm">
                         <span class="w-2.5 h-2.5 rounded-full bg-brand-500 animate-pulse"></span>
                         <span>🌱 Revolusi Pertanian Digital #1 di Indonesia</span>
-                        <i class="fa-solid fa-arrow-right text-xs text-brand-600"></i>
+                        <i class="fa-solid fa-arrow-right text-xs text-brand-300"></i>
                     </div>
 
                     <h1 class="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl text-slate-900 leading-[1.15] tracking-tight">
@@ -159,12 +159,12 @@
                     </p>
 
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                        <a href="#katalog" class="w-full sm:w-auto text-center font-bold text-white bg-gradient-to-r from-brand-600 via-brand-500 to-emerald-600 px-8 py-4 rounded-2xl shadow-xl shadow-brand-600/30 hover:shadow-brand-600/50 hover:scale-[1.02] transition-all flex items-center justify-center gap-3 group">
+                        <a href="#katalog" class="w-full sm:w-auto text-center font-bold text-white bg-gradient-to-r from-brand-300 via-brand-500 to-emerald-600 px-8 py-4 rounded-2xl shadow-xl shadow-brand-300/30 hover:shadow-brand-300/50 hover:scale-[1.02] transition-all flex items-center justify-center gap-3 group">
                             <span>Jelajahi Hasil Panen</span>
                             <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                         </a>
-                        <button onclick="openVideoModal()" class="w-full sm:w-auto text-center font-semibold text-slate-700 bg-white border border-slate-200 hover:border-brand-300 px-7 py-4 rounded-2xl shadow-sm hover:bg-brand-50/50 transition-all flex items-center justify-center gap-3">
-                            <div class="w-8 h-8 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center text-xs">
+                        <button onclick="openVideoModal()" class="w-full sm:w-auto text-center font-semibold text-slate-700 bg-white border border-slate-200 hover:border-brand-300 px-7 py-4 rounded-2xl shadow-sm hover:bg-brand-100/50 transition-all flex items-center justify-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-brand-100 text-brand-300 flex items-center justify-center text-xs">
                                 <i class="fa-solid fa-play ml-0.5"></i>
                             </div>
                             <span>Lihat Cara Kerja</span>
@@ -233,18 +233,18 @@
     </section>
 
     <!-- STATS BAR -->
-    <section class="bg-brand-900 text-white py-10 relative overflow-hidden">
+    <section class="bg-brand-500 text-white py-10 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div class="p-4 border-r border-brand-800 last:border-0">
+                <div class="p-4 border-r border-brand-500 last:border-0">
                     <div class="text-brand-400 text-3xl font-extrabold font-heading mb-1">50.000+</div>
                     <div class="text-xs sm:text-sm text-brand-200">Ton Hasil Panen Terdistribusi</div>
                 </div>
-                <div class="p-4 border-r border-brand-800 last:border-0">
+                <div class="p-4 border-r border-brand-500 last:border-0">
                     <div class="text-amber-400 text-3xl font-extrabold font-heading mb-1">120+</div>
                     <div class="text-xs sm:text-sm text-brand-200">Desa Binaan Pertanian Digital</div>
                 </div>
-                <div class="p-4 border-r border-brand-800 last:border-0">
+                <div class="p-4 border-r border-brand-500 last:border-0">
                     <div class="text-brand-400 text-3xl font-extrabold font-heading mb-1">+45%</div>
                     <div class="text-xs sm:text-sm text-brand-200">Peningkatan Pendapatan Petani</div>
                 </div>
@@ -267,7 +267,7 @@
                 </div>
 
                 <div class="lg:col-span-6 space-y-6">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100 text-brand-800 text-xs font-bold uppercase tracking-wider">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100 text-brand-500 text-xs font-bold uppercase tracking-wider">
                         Tentang DariTani
                     </div>
                     <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 leading-tight">
@@ -278,14 +278,14 @@
                     </p>
                     <div class="grid grid-cols-2 gap-4 pt-2">
                         <div class="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-200">
-                            <i class="fa-solid fa-hand-holding-heart text-brand-600 text-xl mt-1"></i>
+                            <i class="fa-solid fa-hand-holding-heart text-brand-300 text-xl mt-1"></i>
                             <div>
                                 <h4 class="font-bold text-sm text-slate-900">Perdagangan Adil</h4>
                                 <p class="text-xs text-slate-500">Harga beli 30% di atas rata-rata tengkulak.</p>
                             </div>
                         </div>
                         <div class="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-200">
-                            <i class="fa-solid fa-qrcode text-brand-600 text-xl mt-1"></i>
+                            <i class="fa-solid fa-qrcode text-brand-300 text-xl mt-1"></i>
                             <div>
                                 <h4 class="font-bold text-sm text-slate-900">Lacak Kebun</h4>
                                 <p class="text-xs text-slate-500">Ketahui nama petani dan lokasi panen.</p>
@@ -298,11 +298,11 @@
     </section>
 
     <!-- SMART FARMING DEMO -->
-    <section id="smart-tech" class="py-20 bg-brand-dark text-white relative overflow-hidden">
+    <section id="smart-tech" class="py-20 bg-brand-500 text-white relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-5 space-y-6">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-800 text-brand-300 border border-brand-700 text-xs font-bold uppercase tracking-wider">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-500 text-brand-300 border border-brand-400 text-xs font-bold uppercase tracking-wider">
                         🛰️ Smart Agriculture IoT
                     </div>
                     <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-white leading-tight">

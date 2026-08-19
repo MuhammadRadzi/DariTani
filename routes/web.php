@@ -40,9 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/edit', [UserController::class, 'edit'])->name('user.edit');
     Route::put('/user', [UserController::class, 'update'])->name('user.update');
 
-    // Halaman Produk
-    Route::get('/produk', [ProductController::class, 'index'])->name('produk.index');
-    Route::get('/produk/{product}', [ProductController::class, 'show'])->name('produk.show');
+    // Halaman Produk -- sebenarnya halaman detail 1 kebun beserta produknya
+    Route::get('/kebun/{farm}', [ProductController::class, 'show'])->name('kebun.show');
 
     // Halaman Keranjang
     Route::get('/keranjang', [CartController::class, 'index'])->name('keranjang.index');
@@ -53,10 +52,11 @@ Route::middleware('auth')->group(function () {
     // Checkout -- validasi "1 kebun per transaksi" ditangani di controller
     Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
 
-    // Halaman Markah Petani (bookmark)
+    // Halaman Markah Petani (bookmark) -- untuk kebun (farm), bukan produk
     Route::get('/markah', [BookmarkController::class, 'index'])->name('markah.index');
-    Route::post('/markah/{product}', [BookmarkController::class, 'store'])->name('markah.store');
-    Route::delete('/markah/{product}', [BookmarkController::class, 'destroy'])->name('markah.destroy');
+    Route::post('/markah/{farm}', [BookmarkController::class, 'store'])->name('markah.store');
+    Route::delete('/markah/{farm}', [BookmarkController::class, 'destroy'])->name('markah.destroy');
+    Route::delete('/markah', [BookmarkController::class, 'destroyAll'])->name('markah.destroyAll');
 });
 
 /*

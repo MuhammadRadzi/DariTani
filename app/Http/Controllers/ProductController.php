@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Farm;
 use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    public function index(): View
+    /**
+     * Halaman detail 1 kebun beserta produk-produknya.
+     * Diakses saat customer klik card kebun di Beranda.
+     */
+    public function show(Farm $farm): View
     {
-        return view('produk.index');
-    }
+        $farm->load(['farmer.user', 'products.category']);
 
-    public function show(Product $product): View
-    {
-        return view('produk.show', compact('product'));
+        return view('produk.show', compact('farm'));
     }
 }

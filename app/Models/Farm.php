@@ -28,4 +28,9 @@ class Farm extends Model
     {
         return $this->hasMany(Product::class, 'id_farm', 'id_farm');
     }
+
+    public function bookmarks(): HasMany
+    {
+        return $this->hasMany(Bookmark::class, 'id_farm', 'id_farm');
+    }
 }

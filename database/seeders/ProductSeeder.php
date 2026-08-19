@@ -18,7 +18,7 @@ class ProductSeeder extends Seeder
 
         $farmDaengBaso1 = Farm::where('name_farm', 'Kebun Sayur Malino 1')->firstOrFail();
         $farmDaengBaso2 = Farm::where('name_farm', 'Kebun Sayur Malino 2')->firstOrFail();
-        $farmPuangKirk1 = Farm::where('name_farm', 'Kebun Sayur Puang Kirk')->firstOrFail();
+        $farmRudy1 = Farm::where('name_farm', 'Kebun Sayur Rudy')->firstOrFail();
 
         $products = [
             // Kebun 1 milik Daeng Baso'
@@ -73,21 +73,21 @@ class ProductSeeder extends Seeder
                 'rating' => 4.3,
             ],
 
-            // Kebun milik Puang Kirk
+            // Kebun milik Rudy
             [
-                'id_farm' => $farmPuangKirk1->id_farm,
+                'id_farm' => $farmRudy1->id_farm,
                 'id_category' => $buah->id_category,
                 'product_name' => 'Markisa Malino',
                 'price_per_kg' => 20000,
                 'stock_qty' => 30,
                 'harvest_date' => now()->subDays(2),
-                'description' => 'Markisa manis asam segar, langsung dari kebun Puang Kirk.',
+                'description' => 'Markisa manis asam segar, langsung dari kebun Rudy.',
                 'is_available' => true,
                 'type_product' => 'Buah segar',
                 'rating' => 4.8,
             ],
             [
-                'id_farm' => $farmPuangKirk1->id_farm,
+                'id_farm' => $farmRudy1->id_farm,
                 'id_category' => $sayuran->id_category,
                 'product_name' => 'Tomat Malino',
                 'price_per_kg' => 9000,
