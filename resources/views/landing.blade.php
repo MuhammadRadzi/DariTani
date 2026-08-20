@@ -7,48 +7,11 @@
     <meta name="description" content="DariTani me-revolusi rantai pasok pertanian Indonesia. Menghubungkan petani lokal langsung dengan konsumen, didukung teknologi Smart Farming IoT dan jaminan 100% segar.">
     <meta name="keywords" content="DariTani, pertanian digital, smart farming indonesia, sayur organik, buah segar, hasil panen langsung petani, marketplace pertanian">
     
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
     <!-- Font Awesome / CDN Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- Tailwind CSS (via CDN) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            200: '#bbf7d0',
-                            300: '#86efac',
-                            400: '#4ade80',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            700: '#15803d',
-                            800: '#166534',
-                            900: '#14532d',
-                            dark: '#0B2B18',
-                        },
-                        amber: {
-                            500: '#f59e0b',
-                            600: '#d97706',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        heading: ['Outfit', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <style>
         .glass-nav {
             background: rgba(255, 255, 255, 0.85);
@@ -62,19 +25,18 @@
             border: 1px solid rgba(255, 255, 255, 0.4);
         }
         .glass-dark {
-            background: rgba(11, 43, 24, 0.75);
+            background: rgba(35, 51, 14, 0.75);
             backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         .gradient-text {
-            background: linear-gradient(135deg, #15803d 0%, #22c55e 50%, #16a34a 100%);
+            background: linear-gradient(135deg, #527820 0%, #6EA12B 50%, #8AC936 100%);
             -webkit-background-clip: text;
-            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         .hero-gradient {
-            background: radial-gradient(circle at 80% 20%, rgba(34, 197, 94, 0.15) 0%, rgba(255, 255, 255, 0) 60%),
-                        linear-gradient(180deg, #F4FBF7 0%, #FFFFFF 100%);
+            background: radial-gradient(circle at 80% 20%, rgba(110, 161, 43, 0.15) 0%, rgba(255, 255, 255, 0) 60%),
+                        linear-gradient(180deg, #F5FAEE 0%, #FFFFFF 100%);
         }
         .floating-anim {
             animation: float 6s ease-in-out infinite;
@@ -98,32 +60,32 @@
             background: #f1f1f1;
         }
         ::-webkit-scrollbar-thumb {
-            background: #22c55e;
+            background: #6EA12B;
             border-radius: 4px;
         }
     </style>
 </head>
-<body class="font-sans text-slate-800 bg-white antialiased selection:bg-brand-500 selection:text-white">
+<body class="font-sans text-slate-800 bg-white antialiased selection:bg-brand-300 selection:text-white">
 
     <!-- Top Announcement Bar -->
-    <div class="bg-brand-900 text-white text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
-        <span class="bg-brand-500 text-brand-900 font-bold px-2 py-0.5 rounded-full text-[10px] uppercase tracking-wider">Promo Hari Ini</span>
+    <div class="bg-brand-500 text-white text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
+        <span class="bg-brand-300 text-brand-500 font-bold px-2 py-0.5 rounded-full text-[10px] uppercase tracking-wider">Promo Hari Ini</span>
         <span>Gunakan kode voucher <strong class="text-amber-400">DARITANISEGAR</strong> untuk Gratis Ongkir Panen Pertama!</span>
-        <button onclick="copyPromo()" class="underline hover:text-brand-300 ml-2 transition-colors cursor-pointer"><i class="fa-regular fa-copy mr-1"></i>Salin Kode</button>
+        <button onclick="copyPromo()" class="underline hover:text-brand-200 ml-2 transition-colors cursor-pointer"><i class="fa-regular fa-copy mr-1"></i>Salin Kode</button>
     </div>
 
     <!-- Main Navigation Bar -->
     <header class="sticky top-0 z-50 glass-nav border-b border-emerald-100 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <!-- Brand Logo -->
-            <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-brand-700 via-brand-600 to-brand-400 flex items-center justify-center text-white shadow-lg shadow-brand-600/30 group-hover:scale-105 transition-transform">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-brand-400 via-brand-300 to-brand-200 flex items-center justify-center text-white shadow-lg shadow-brand-300/30 group-hover:scale-105 transition-transform">
                     <i class="fa-solid fa-leaf text-xl"></i>
                 </div>
                 <div class="flex flex-col">
                     <span class="font-heading font-extrabold text-2xl text-slate-900 tracking-tight leading-none flex items-center gap-1">
-                        Dari<span class="text-brand-600">Tani</span>
-                        <span class="inline-block w-2 h-2 rounded-full bg-brand-500 animate-ping"></span>
+                        Dari<span class="text-brand-300">Tani</span>
+                        <span class="inline-block w-2 h-2 rounded-full bg-brand-300 animate-ping"></span>
                     </span>
                     <span class="text-[10px] font-semibold text-slate-500 tracking-wider uppercase mt-0.5">Smart Agriculture</span>
                 </div>
@@ -131,28 +93,21 @@
 
             <!-- Desktop Nav Links -->
             <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-600">
-                <a href="#beranda" class="text-brand-700 font-semibold hover:text-brand-600 transition-colors">Beranda</a>
-                <a href="#tentang" class="hover:text-brand-600 transition-colors">Tentang Kami</a>
-                <a href="#fitur" class="hover:text-brand-600 transition-colors">Fitur Utama</a>
-                <a href="#katalog" class="hover:text-brand-600 transition-colors">Katalog Panen</a>
-                <a href="#smart-tech" class="hover:text-brand-600 transition-colors">Smart Farming</a>
-                <a href="#kemitraan" class="hover:text-brand-600 transition-colors">Kemitraan</a>
-                <a href="#faq" class="hover:text-brand-600 transition-colors">FAQ</a>
+                <a href="#beranda" class="text-brand-400 font-semibold hover:text-brand-300 transition-colors">Beranda</a>
+                <a href="#tentang" class="hover:text-brand-300 transition-colors">Tentang Kami</a>
+                <a href="#fitur" class="hover:text-brand-300 transition-colors">Fitur Utama</a>
+                <a href="#katalog" class="hover:text-brand-300 transition-colors">Katalog Panen</a>
+                <a href="#smart-tech" class="hover:text-brand-300 transition-colors">Smart Farming</a>
+                <a href="#kemitraan" class="hover:text-brand-300 transition-colors">Kemitraan</a>
+                <a href="#faq" class="hover:text-brand-300 transition-colors">FAQ</a>
             </nav>
 
             <!-- Right Action Buttons -->
             <div class="hidden md:flex items-center gap-4">
-                @auth
-                    <a href="{{ route('user.index') }}" class="text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 px-5 py-2.5 rounded-xl shadow-md transition-all flex items-center gap-2">
-                        <i class="fa-solid fa-user text-xs"></i>
-                        <span>Dashboard Saya</span>
-                    </a>
-                @else
-                    <a href="{{ route('login') }}" class="text-sm font-semibold text-slate-700 hover:text-brand-600 px-4 py-2 rounded-xl transition-colors">
-                        Masuk
-                    </a>
-                @endauth
-                <a href="#katalog" class="text-sm font-semibold bg-gradient-to-r from-brand-600 to-brand-500 text-white px-5 py-2.5 rounded-xl shadow-lg shadow-brand-600/25 hover:shadow-brand-600/40 hover:-translate-y-0.5 transition-all flex items-center gap-2">
+                <a href="{{ route('login') }}" class="text-sm font-semibold text-slate-700 hover:text-brand-300 px-4 py-2 rounded-xl transition-colors">
+                    Masuk
+                </a>
+                <a href="#katalog" class="text-sm font-semibold bg-gradient-to-r from-brand-300 to-brand-300 text-white px-5 py-2.5 rounded-xl shadow-lg shadow-brand-300/25 hover:shadow-brand-300/40 hover:-translate-y-0.5 transition-all flex items-center gap-2">
                     <i class="fa-solid fa-basket-shopping text-xs"></i>
                     <span>Belanja Panen</span>
                 </a>
@@ -166,7 +121,7 @@
 
         <!-- Mobile Navigation Drawer -->
         <div id="mobile-drawer" class="hidden md:hidden glass-card border-t border-emerald-100 px-6 py-6 space-y-4">
-            <a href="#beranda" class="block font-semibold text-brand-700 text-base" onclick="toggleMobileMenu()">Beranda</a>
+            <a href="#beranda" class="block font-semibold text-brand-400 text-base" onclick="toggleMobileMenu()">Beranda</a>
             <a href="#tentang" class="block text-slate-700 text-base" onclick="toggleMobileMenu()">Tentang Kami</a>
             <a href="#fitur" class="block text-slate-700 text-base" onclick="toggleMobileMenu()">Fitur Utama</a>
             <a href="#katalog" class="block text-slate-700 text-base" onclick="toggleMobileMenu()">Katalog Panen</a>
@@ -174,12 +129,8 @@
             <a href="#kemitraan" class="block text-slate-700 text-base" onclick="toggleMobileMenu()">Kemitraan Petani</a>
             <a href="#faq" class="block text-slate-700 text-base" onclick="toggleMobileMenu()">FAQ</a>
             <div class="pt-4 border-t border-slate-200 flex flex-col gap-3">
-                @auth
-                    <a href="{{ route('user.index') }}" class="text-center font-semibold text-white bg-brand-600 py-3 rounded-xl shadow-md">Dashboard Saya</a>
-                @else
-                    <a href="{{ route('login') }}" class="text-center font-semibold text-slate-800 bg-slate-100 py-3 rounded-xl">Masuk ke Akun</a>
-                @endauth
-                <a href="#katalog" class="text-center font-semibold text-white bg-brand-600 py-3 rounded-xl shadow-md">Belanja Panen Sekarang</a>
+                <a href="{{ route('login') }}" class="text-center font-semibold text-slate-800 bg-slate-100 py-3 rounded-xl">Masuk ke Akun</a>
+                <a href="#katalog" class="text-center font-semibold text-white bg-brand-300 py-3 rounded-xl shadow-md">Belanja Panen Sekarang</a>
             </div>
         </div>
     </header>
@@ -187,7 +138,7 @@
     <!-- HERO SECTION -->
     <section id="beranda" class="hero-gradient relative pt-12 pb-20 lg:pt-20 lg:pb-32 overflow-hidden">
         <!-- Abstract Background Glows -->
-        <div class="absolute top-1/4 left-10 w-96 h-96 bg-brand-200/40 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/4 left-10 w-96 h-96 bg-brand-100/40 rounded-full blur-3xl pointer-events-none"></div>
         <div class="absolute bottom-10 right-10 w-80 h-80 bg-amber-200/30 rounded-full blur-3xl pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -196,10 +147,10 @@
                 <!-- Left Hero Content -->
                 <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
                     <!-- Badge -->
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 border border-brand-200 text-brand-800 text-xs sm:text-sm font-semibold shadow-sm">
-                        <span class="w-2.5 h-2.5 rounded-full bg-brand-500 animate-pulse"></span>
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-100 border border-brand-100 text-brand-400 text-xs sm:text-sm font-semibold shadow-sm">
+                        <span class="w-2.5 h-2.5 rounded-full bg-brand-300 animate-pulse"></span>
                         <span>🌱 Revolusi Pertanian Digital #1 di Indonesia</span>
-                        <i class="fa-solid fa-arrow-right text-xs text-brand-600"></i>
+                        <i class="fa-solid fa-arrow-right text-xs text-brand-300"></i>
                     </div>
 
                     <!-- Headline -->
@@ -214,12 +165,12 @@
 
                     <!-- CTAs -->
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                        <a href="#katalog" class="w-full sm:w-auto text-center font-bold text-white bg-gradient-to-r from-brand-600 via-brand-500 to-emerald-600 px-8 py-4 rounded-2xl shadow-xl shadow-brand-600/30 hover:shadow-brand-600/50 hover:scale-[1.02] transition-all flex items-center justify-center gap-3 group">
+                        <a href="#katalog" class="w-full sm:w-auto text-center font-bold text-white bg-gradient-to-r from-brand-300 via-brand-300 to-emerald-600 px-8 py-4 rounded-2xl shadow-xl shadow-brand-300/30 hover:shadow-brand-300/50 hover:scale-[1.02] transition-all flex items-center justify-center gap-3 group">
                             <span>Jelajahi Hasil Panen</span>
                             <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                         </a>
-                        <button onclick="openVideoModal()" class="w-full sm:w-auto text-center font-semibold text-slate-700 bg-white border border-slate-200 hover:border-brand-300 px-7 py-4 rounded-2xl shadow-sm hover:bg-brand-50/50 transition-all flex items-center justify-center gap-3">
-                            <div class="w-8 h-8 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center text-xs">
+                        <button onclick="openVideoModal()" class="w-full sm:w-auto text-center font-semibold text-slate-700 bg-white border border-slate-200 hover:border-brand-200 px-7 py-4 rounded-2xl shadow-sm hover:bg-brand-100/50 transition-all flex items-center justify-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-brand-100 text-brand-300 flex items-center justify-center text-xs">
                                 <i class="fa-solid fa-play ml-0.5"></i>
                             </div>
                             <span>Lihat Cara Kerja</span>
@@ -247,7 +198,7 @@
                 <div class="lg:col-span-5 relative">
                     <!-- Main Hero Image Container -->
                     <div class="relative z-10 rounded-3xl overflow-hidden shadow-2xl shadow-slate-900/15 border-4 border-white bg-slate-100 group">
-                        <img src="{{ asset('images/hero_farmer_field.png') }}" alt="Sawah Pertanian Smart Farming DariTani" class="w-full h-[420px] sm:h-[500px] object-cover group-hover:scale-105 transition-transform duration-700">
+                        <img src="images/hero_farmer_field.png" alt="Sawah Pertanian Smart Farming DariTani" class="w-full h-[420px] sm:h-[500px] object-cover group-hover:scale-105 transition-transform duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent"></div>
                         
                         <!-- Overlay Farm Badge -->
@@ -289,10 +240,10 @@
 
                     <!-- Floating Badge Bottom Right -->
                     <div class="absolute -bottom-6 -right-6 z-20 glass-card p-4 rounded-2xl shadow-xl hidden sm:flex items-center gap-3 max-w-[230px]">
-                        <img src="{{ asset('images/happy_indonesian_farmer.png') }}" alt="Petani DariTani" class="w-12 h-12 rounded-xl object-cover border border-brand-300">
+                        <img src="images/happy_indonesian_farmer.png" alt="Petani DariTani" class="w-12 h-12 rounded-xl object-cover border border-brand-200">
                         <div>
                             <p class="font-bold text-xs text-slate-900">Pak Suwandi</p>
-                            <p class="text-[10px] text-brand-700 font-semibold">Mitra Kebun Bandung</p>
+                            <p class="text-[10px] text-brand-400 font-semibold">Mitra Kebun Bandung</p>
                         </div>
                     </div>
                 </div>
@@ -302,24 +253,24 @@
     </section>
 
     <!-- STATS COUNTER BAR -->
-    <section class="bg-brand-900 text-white py-10 relative overflow-hidden">
+    <section class="bg-brand-500 text-white py-10 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div class="p-4 border-r border-brand-800 last:border-0">
-                    <div class="text-brand-400 text-3xl font-extrabold font-heading mb-1" id="count1">50.000+</div>
-                    <div class="text-xs sm:text-sm text-brand-200">Ton Hasil Panen Terdistribusi</div>
+                <div class="p-4 border-r border-brand-400 last:border-0">
+                    <div class="text-brand-200 text-3xl font-extrabold font-heading mb-1" id="count1">50.000+</div>
+                    <div class="text-xs sm:text-sm text-brand-100">Ton Hasil Panen Terdistribusi</div>
                 </div>
-                <div class="p-4 border-r border-brand-800 last:border-0">
+                <div class="p-4 border-r border-brand-400 last:border-0">
                     <div class="text-amber-400 text-3xl font-extrabold font-heading mb-1" id="count2">120+</div>
-                    <div class="text-xs sm:text-sm text-brand-200">Desa Binaan Pertanian Digital</div>
+                    <div class="text-xs sm:text-sm text-brand-100">Desa Binaan Pertanian Digital</div>
                 </div>
-                <div class="p-4 border-r border-brand-800 last:border-0">
-                    <div class="text-brand-400 text-3xl font-extrabold font-heading mb-1" id="count3">+45%</div>
-                    <div class="text-xs sm:text-sm text-brand-200">Peningkatan Pendapatan Petani</div>
+                <div class="p-4 border-r border-brand-400 last:border-0">
+                    <div class="text-brand-200 text-3xl font-extrabold font-heading mb-1" id="count3">+45%</div>
+                    <div class="text-xs sm:text-sm text-brand-100">Peningkatan Pendapatan Petani</div>
                 </div>
                 <div class="p-4">
                     <div class="text-amber-400 text-3xl font-extrabold font-heading mb-1" id="count4">99.4%</div>
-                    <div class="text-xs sm:text-sm text-brand-200">Rating Kepuasan Konsumen</div>
+                    <div class="text-xs sm:text-sm text-brand-100">Rating Kepuasan Konsumen</div>
                 </div>
             </div>
         </div>
@@ -332,16 +283,16 @@
                 <!-- Left Image Collage -->
                 <div class="lg:col-span-6 relative">
                     <div class="relative z-10 rounded-3xl overflow-hidden shadow-xl border-4 border-white">
-                        <img src="{{ asset('images/fresh_produce_basket.png') }}" alt="Sayuran Organik Segar" class="w-full h-[380px] object-cover">
+                        <img src="images/fresh_produce_basket.png" alt="Sayuran Organik Segar" class="w-full h-[380px] object-cover">
                     </div>
                     <div class="absolute -bottom-8 -left-6 z-20 w-3/5 rounded-2xl overflow-hidden shadow-2xl border-4 border-white hidden sm:block">
-                        <img src="{{ asset('images/happy_indonesian_farmer.png') }}" alt="Petani Lokal Indonesia" class="w-full h-48 object-cover">
+                        <img src="images/happy_indonesian_farmer.png" alt="Petani Lokal Indonesia" class="w-full h-48 object-cover">
                     </div>
                 </div>
 
                 <!-- Right Text -->
                 <div class="lg:col-span-6 space-y-6">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100 text-brand-800 text-xs font-bold uppercase tracking-wider">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100 text-brand-400 text-xs font-bold uppercase tracking-wider">
                         Tentang DariTani
                     </div>
                     <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 leading-tight">
@@ -355,14 +306,14 @@
                     </p>
                     <div class="grid grid-cols-2 gap-4 pt-2">
                         <div class="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-200">
-                            <i class="fa-solid fa-hand-holding-heart text-brand-600 text-xl mt-1"></i>
+                            <i class="fa-solid fa-hand-holding-heart text-brand-300 text-xl mt-1"></i>
                             <div>
                                 <h4 class="font-bold text-sm text-slate-900">Perdagangan Adil</h4>
                                 <p class="text-xs text-slate-500">Harga beli 30% di atas rata-rata tengkulak.</p>
                             </div>
                         </div>
                         <div class="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-200">
-                            <i class="fa-solid fa-qrcode text-brand-600 text-xl mt-1"></i>
+                            <i class="fa-solid fa-qrcode text-brand-300 text-xl mt-1"></i>
                             <div>
                                 <h4 class="font-bold text-sm text-slate-900">Lacak Asal Kebun</h4>
                                 <p class="text-xs text-slate-500">Ketahui siapa petani dan kapan dipanen.</p>
@@ -378,7 +329,7 @@
     <section id="fitur" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100 text-brand-800 text-xs font-bold uppercase tracking-wider">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100 text-brand-400 text-xs font-bold uppercase tracking-wider">
                     Keunggulan Ekosistem
                 </div>
                 <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900">
@@ -391,8 +342,8 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Feature Card 1 -->
-                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-600/10 hover:-translate-y-1 transition-all group">
-                    <div class="w-14 h-14 rounded-2xl bg-brand-600 text-white flex items-center justify-center text-2xl mb-6 shadow-md shadow-brand-600/30 group-hover:scale-110 transition-transform">
+                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-300/10 hover:-translate-y-1 transition-all group">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-300 text-white flex items-center justify-center text-2xl mb-6 shadow-md shadow-brand-300/30 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-wheat-awn"></i>
                     </div>
                     <h3 class="font-heading font-bold text-xl text-slate-900 mb-3">Langsung dari Kebun</h3>
@@ -402,7 +353,7 @@
                 </div>
 
                 <!-- Feature Card 2 -->
-                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-600/10 hover:-translate-y-1 transition-all group">
+                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-300/10 hover:-translate-y-1 transition-all group">
                     <div class="w-14 h-14 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-2xl mb-6 shadow-md shadow-amber-500/30 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-microchip"></i>
                     </div>
@@ -413,7 +364,7 @@
                 </div>
 
                 <!-- Feature Card 3 -->
-                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-600/10 hover:-translate-y-1 transition-all group">
+                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-300/10 hover:-translate-y-1 transition-all group">
                     <div class="w-14 h-14 rounded-2xl bg-emerald-600 text-white flex items-center justify-center text-2xl mb-6 shadow-md shadow-emerald-600/30 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-shield-halved"></i>
                     </div>
@@ -424,7 +375,7 @@
                 </div>
 
                 <!-- Feature Card 4 -->
-                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-600/10 hover:-translate-y-1 transition-all group">
+                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-300/10 hover:-translate-y-1 transition-all group">
                     <div class="w-14 h-14 rounded-2xl bg-indigo-600 text-white flex items-center justify-center text-2xl mb-6 shadow-md shadow-indigo-600/30 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-truck-fast"></i>
                     </div>
@@ -435,7 +386,7 @@
                 </div>
 
                 <!-- Feature Card 5 -->
-                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-600/10 hover:-translate-y-1 transition-all group">
+                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-300/10 hover:-translate-y-1 transition-all group">
                     <div class="w-14 h-14 rounded-2xl bg-rose-600 text-white flex items-center justify-center text-2xl mb-6 shadow-md shadow-rose-600/30 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-store"></i>
                     </div>
@@ -446,7 +397,7 @@
                 </div>
 
                 <!-- Feature Card 6 -->
-                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-600/10 hover:-translate-y-1 transition-all group">
+                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-300/10 hover:-translate-y-1 transition-all group">
                     <div class="w-14 h-14 rounded-2xl bg-teal-600 text-white flex items-center justify-center text-2xl mb-6 shadow-md shadow-teal-600/30 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-users-gear"></i>
                     </div>
@@ -460,22 +411,22 @@
     </section>
 
     <!-- SMART FARMING INTERACTIVE DEMO -->
-    <section id="smart-tech" class="py-20 bg-brand-dark text-white relative overflow-hidden">
+    <section id="smart-tech" class="py-20 bg-brand-500 text-white relative overflow-hidden">
         <!-- Ambient background particles -->
-        <div class="absolute -top-32 -right-32 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -top-32 -right-32 w-96 h-96 bg-brand-300/20 rounded-full blur-3xl pointer-events-none"></div>
         <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <!-- Left Description -->
                 <div class="lg:col-span-5 space-y-6">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-800 text-brand-300 border border-brand-700 text-xs font-bold uppercase tracking-wider">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-400 text-brand-200 border border-brand-400 text-xs font-bold uppercase tracking-wider">
                         🛰️ Smart Agriculture Platform
                     </div>
                     <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-white leading-tight">
                         Dashboard Pantau Kebun Real-Time
                     </h2>
-                    <p class="text-brand-200/90 text-base leading-relaxed">
+                    <p class="text-brand-100/90 text-base leading-relaxed">
                         Setiap kebun mitra DariTani terhubung dengan sensor IoT presisi tinggi. Petani dan tim QC dapat memantau indikator vital tanaman langsung dari smartphone secara otomatis.
                     </p>
 
@@ -504,7 +455,7 @@
                                 <div class="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></div>
                                 <div>
                                     <h3 class="font-bold text-base text-white">Stasiun Kebun Hidroponik #08</h3>
-                                    <p class="text-xs text-brand-300">Lembang, Jawa Barat — Aktif Terhubung</p>
+                                    <p class="text-xs text-brand-200">Lembang, Jawa Barat — Aktif Terhubung</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-2">
@@ -545,9 +496,9 @@
 
                         <!-- Tech Image Banner -->
                         <div class="relative rounded-2xl overflow-hidden border border-white/10 h-44">
-                            <img src="{{ asset('images/smart_farming_tech.png') }}" alt="Smart Farming Greenhouse" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-r from-brand-900/90 via-brand-900/40 to-transparent p-4 flex flex-col justify-end">
-                                <span class="text-xs text-brand-300 font-mono">Prediksi AI Harvest</span>
+                            <img src="images/smart_farming_tech.png" alt="Smart Farming Greenhouse" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-r from-brand-500/90 via-brand-500/40 to-transparent p-4 flex flex-col justify-end">
+                                <span class="text-xs text-brand-200 font-mono">Prediksi AI Harvest</span>
                                 <p class="text-white font-bold text-sm sm:text-base">Tomat Cherry Organik Siap Dipetik Dalam 48 Jam</p>
                             </div>
                         </div>
@@ -561,7 +512,7 @@
     <section id="katalog" class="py-20 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12 space-y-4">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100 text-brand-800 text-xs font-bold uppercase tracking-wider">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100 text-brand-400 text-xs font-bold uppercase tracking-wider">
                     Katalog Segar Panen Hari Ini
                 </div>
                 <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900">
@@ -574,19 +525,19 @@
 
             <!-- Category Filter Tabs -->
             <div class="flex flex-wrap justify-center items-center gap-3 mb-12" id="category-tabs">
-                <button onclick="filterCatalog('all', this)" class="category-btn active px-5 py-2.5 rounded-2xl font-semibold text-sm bg-brand-600 text-white shadow-md shadow-brand-600/20 transition-all">
+                <button onclick="filterCatalog('all', this)" class="category-btn active px-5 py-2.5 rounded-2xl font-semibold text-sm bg-brand-300 text-white shadow-md shadow-brand-300/20 transition-all">
                     🌱 Semua Produk
                 </button>
-                <button onclick="filterCatalog('sayur', this)" class="category-btn px-5 py-2.5 rounded-2xl font-semibold text-sm bg-white text-slate-700 border border-slate-200 hover:bg-brand-50 transition-all">
+                <button onclick="filterCatalog('sayur', this)" class="category-btn px-5 py-2.5 rounded-2xl font-semibold text-sm bg-white text-slate-700 border border-slate-200 hover:bg-brand-100 transition-all">
                     🥬 Sayur Organik
                 </button>
-                <button onclick="filterCatalog('buah', this)" class="category-btn px-5 py-2.5 rounded-2xl font-semibold text-sm bg-white text-slate-700 border border-slate-200 hover:bg-brand-50 transition-all">
+                <button onclick="filterCatalog('buah', this)" class="category-btn px-5 py-2.5 rounded-2xl font-semibold text-sm bg-white text-slate-700 border border-slate-200 hover:bg-brand-100 transition-all">
                     🍎 Buah Segar
                 </button>
-                <button onclick="filterCatalog('beras', this)" class="category-btn px-5 py-2.5 rounded-2xl font-semibold text-sm bg-white text-slate-700 border border-slate-200 hover:bg-brand-50 transition-all">
+                <button onclick="filterCatalog('beras', this)" class="category-btn px-5 py-2.5 rounded-2xl font-semibold text-sm bg-white text-slate-700 border border-slate-200 hover:bg-brand-100 transition-all">
                     🌾 Beras & Biji-bijian
                 </button>
-                <button onclick="filterCatalog('rempah', this)" class="category-btn px-5 py-2.5 rounded-2xl font-semibold text-sm bg-white text-slate-700 border border-slate-200 hover:bg-brand-50 transition-all">
+                <button onclick="filterCatalog('rempah', this)" class="category-btn px-5 py-2.5 rounded-2xl font-semibold text-sm bg-white text-slate-700 border border-slate-200 hover:bg-brand-100 transition-all">
                     🌶️ Rempah Nusantara
                 </button>
             </div>
@@ -597,13 +548,13 @@
                 <div class="product-item sayur bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col justify-between">
                     <div>
                         <div class="relative h-52 bg-slate-100 overflow-hidden group">
-                            <img src="{{ asset('images/fresh_produce_basket.png') }}" alt="Tomat Red Ruby Organik" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <span class="absolute top-4 left-4 bg-brand-600 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow">100% Organik</span>
+                            <img src="images/fresh_produce_basket.png" alt="Tomat Red Ruby Organik" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 bg-brand-300 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow">100% Organik</span>
                             <span class="absolute top-4 right-4 bg-amber-500 text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow"><i class="fa-solid fa-star text-xs mr-1"></i>4.9</span>
                         </div>
                         <div class="p-6">
                             <div class="flex items-center gap-2 text-xs text-slate-500 mb-2">
-                                <i class="fa-solid fa-location-dot text-brand-600"></i>
+                                <i class="fa-solid fa-location-dot text-brand-300"></i>
                                 <span>Kebun Ciwidey, Bandung</span>
                                 <span class="mx-1">•</span>
                                 <span class="text-emerald-700 font-semibold">Panen Tadi Pagi</span>
@@ -617,7 +568,7 @@
                             <span class="text-xs text-slate-400 block">Harga per 1 kg</span>
                             <span class="font-heading font-extrabold text-xl text-slate-900">Rp 18.500</span>
                         </div>
-                        <button onclick="openOrderModal('Tomat Red Ruby Organik', '18500', 'Kebun Ciwidey, Bandung')" class="bg-brand-600 hover:bg-brand-700 text-white p-3 rounded-2xl shadow-md shadow-brand-600/20 transition-all">
+                        <button onclick="openOrderModal('Tomat Red Ruby Organik', '18500', 'Kebun Ciwidey, Bandung')" class="bg-brand-300 hover:bg-brand-400 text-white p-3 rounded-2xl shadow-md shadow-brand-300/20 transition-all">
                             <i class="fa-solid fa-plus"></i> Pesan
                         </button>
                     </div>
@@ -627,13 +578,13 @@
                 <div class="product-item sayur bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col justify-between">
                     <div>
                         <div class="relative h-52 bg-slate-100 overflow-hidden group">
-                            <img src="{{ asset('images/hero_farmer_field.png') }}" alt="Selada Romaine Hydroponic" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="images/hero_farmer_field.png" alt="Selada Romaine Hydroponic" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             <span class="absolute top-4 left-4 bg-emerald-600 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow">Crispy Fresh</span>
                             <span class="absolute top-4 right-4 bg-amber-500 text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow"><i class="fa-solid fa-star text-xs mr-1"></i>5.0</span>
                         </div>
                         <div class="p-6">
                             <div class="flex items-center gap-2 text-xs text-slate-500 mb-2">
-                                <i class="fa-solid fa-location-dot text-brand-600"></i>
+                                <i class="fa-solid fa-location-dot text-brand-300"></i>
                                 <span>Kebun Lembang, Barat</span>
                                 <span class="mx-1">•</span>
                                 <span class="text-emerald-700 font-semibold">Bebas Pestisida</span>
@@ -647,7 +598,7 @@
                             <span class="text-xs text-slate-400 block">Harga per 500g</span>
                             <span class="font-heading font-extrabold text-xl text-slate-900">Rp 14.000</span>
                         </div>
-                        <button onclick="openOrderModal('Selada Romaine Hydroponic', '14000', 'Kebun Lembang, Jawa Barat')" class="bg-brand-600 hover:bg-brand-700 text-white p-3 rounded-2xl shadow-md shadow-brand-600/20 transition-all">
+                        <button onclick="openOrderModal('Selada Romaine Hydroponic', '14000', 'Kebun Lembang, Jawa Barat')" class="bg-brand-300 hover:bg-brand-400 text-white p-3 rounded-2xl shadow-md shadow-brand-300/20 transition-all">
                             <i class="fa-solid fa-plus"></i> Pesan
                         </button>
                     </div>
@@ -657,13 +608,13 @@
                 <div class="product-item buah bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col justify-between">
                     <div>
                         <div class="relative h-52 bg-slate-100 overflow-hidden group">
-                            <img src="{{ asset('images/fresh_produce_basket.png') }}" alt="Melon Golden Super Sweet" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="images/fresh_produce_basket.png" alt="Melon Golden Super Sweet" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             <span class="absolute top-4 left-4 bg-amber-500 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow">Super Sweet</span>
                             <span class="absolute top-4 right-4 bg-amber-500 text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow"><i class="fa-solid fa-star text-xs mr-1"></i>4.8</span>
                         </div>
                         <div class="p-6">
                             <div class="flex items-center gap-2 text-xs text-slate-500 mb-2">
-                                <i class="fa-solid fa-location-dot text-brand-600"></i>
+                                <i class="fa-solid fa-location-dot text-brand-300"></i>
                                 <span>Kebun Malang, Jawa Timur</span>
                                 <span class="mx-1">•</span>
                                 <span class="text-emerald-700 font-semibold">Tingkat Manis 14 Brix</span>
@@ -677,7 +628,7 @@
                             <span class="text-xs text-slate-400 block">Harga per buah (1.5kg)</span>
                             <span class="font-heading font-extrabold text-xl text-slate-900">Rp 35.000</span>
                         </div>
-                        <button onclick="openOrderModal('Melon Golden Apollo', '35000', 'Kebun Malang, Jawa Timur')" class="bg-brand-600 hover:bg-brand-700 text-white p-3 rounded-2xl shadow-md shadow-brand-600/20 transition-all">
+                        <button onclick="openOrderModal('Melon Golden Apollo', '35000', 'Kebun Malang, Jawa Timur')" class="bg-brand-300 hover:bg-brand-400 text-white p-3 rounded-2xl shadow-md shadow-brand-300/20 transition-all">
                             <i class="fa-solid fa-plus"></i> Pesan
                         </button>
                     </div>
@@ -687,13 +638,13 @@
                 <div class="product-item beras bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col justify-between">
                     <div>
                         <div class="relative h-52 bg-slate-100 overflow-hidden group">
-                            <img src="{{ asset('images/smart_farming_tech.png') }}" alt="Beras Pandan Wangi Premium" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <span class="absolute top-4 left-4 bg-brand-800 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow">Beras Asli Cianjur</span>
+                            <img src="images/smart_farming_tech.png" alt="Beras Pandan Wangi Premium" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 bg-brand-400 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow">Beras Asli Cianjur</span>
                             <span class="absolute top-4 right-4 bg-amber-500 text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow"><i class="fa-solid fa-star text-xs mr-1"></i>4.9</span>
                         </div>
                         <div class="p-6">
                             <div class="flex items-center gap-2 text-xs text-slate-500 mb-2">
-                                <i class="fa-solid fa-location-dot text-brand-600"></i>
+                                <i class="fa-solid fa-location-dot text-brand-300"></i>
                                 <span>Cianjur, Jawa Barat</span>
                                 <span class="mx-1">•</span>
                                 <span class="text-emerald-700 font-semibold">Pandan Alami</span>
@@ -707,7 +658,7 @@
                             <span class="text-xs text-slate-400 block">Harga per 5 kg</span>
                             <span class="font-heading font-extrabold text-xl text-slate-900">Rp 82.000</span>
                         </div>
-                        <button onclick="openOrderModal('Beras Pandan Wangi Organik', '82000', 'Cianjur, Jawa Barat')" class="bg-brand-600 hover:bg-brand-700 text-white p-3 rounded-2xl shadow-md shadow-brand-600/20 transition-all">
+                        <button onclick="openOrderModal('Beras Pandan Wangi Organik', '82000', 'Cianjur, Jawa Barat')" class="bg-brand-300 hover:bg-brand-400 text-white p-3 rounded-2xl shadow-md shadow-brand-300/20 transition-all">
                             <i class="fa-solid fa-plus"></i> Pesan
                         </button>
                     </div>
@@ -717,13 +668,13 @@
                 <div class="product-item rempah bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col justify-between">
                     <div>
                         <div class="relative h-52 bg-slate-100 overflow-hidden group">
-                            <img src="{{ asset('images/fresh_produce_basket.png') }}" alt="Jahe Merah Super" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="images/fresh_produce_basket.png" alt="Jahe Merah Super" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             <span class="absolute top-4 left-4 bg-rose-600 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow">Rempah Herbal</span>
                             <span class="absolute top-4 right-4 bg-amber-500 text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow"><i class="fa-solid fa-star text-xs mr-1"></i>4.9</span>
                         </div>
                         <div class="p-6">
                             <div class="flex items-center gap-2 text-xs text-slate-500 mb-2">
-                                <i class="fa-solid fa-location-dot text-brand-600"></i>
+                                <i class="fa-solid fa-location-dot text-brand-300"></i>
                                 <span>Wonogiri, Jawa Tengah</span>
                                 <span class="mx-1">•</span>
                                 <span class="text-emerald-700 font-semibold">Tinggi Essential Oil</span>
@@ -737,7 +688,7 @@
                             <span class="text-xs text-slate-400 block">Harga per 1 kg</span>
                             <span class="font-heading font-extrabold text-xl text-slate-900">Rp 28.000</span>
                         </div>
-                        <button onclick="openOrderModal('Jahe Merah Super Organik', '28000', 'Wonogiri, Jawa Tengah')" class="bg-brand-600 hover:bg-brand-700 text-white p-3 rounded-2xl shadow-md shadow-brand-600/20 transition-all">
+                        <button onclick="openOrderModal('Jahe Merah Super Organik', '28000', 'Wonogiri, Jawa Tengah')" class="bg-brand-300 hover:bg-brand-400 text-white p-3 rounded-2xl shadow-md shadow-brand-300/20 transition-all">
                             <i class="fa-solid fa-plus"></i> Pesan
                         </button>
                     </div>
@@ -747,13 +698,13 @@
                 <div class="product-item buah bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col justify-between">
                     <div>
                         <div class="relative h-52 bg-slate-100 overflow-hidden group">
-                            <img src="{{ asset('images/happy_indonesian_farmer.png') }}" alt="Alpukat Mentega Super" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <span class="absolute top-4 left-4 bg-brand-600 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow">Lokal Grade A</span>
+                            <img src="images/happy_indonesian_farmer.png" alt="Alpukat Mentega Super" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 bg-brand-300 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow">Lokal Grade A</span>
                             <span class="absolute top-4 right-4 bg-amber-500 text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow"><i class="fa-solid fa-star text-xs mr-1"></i>5.0</span>
                         </div>
                         <div class="p-6">
                             <div class="flex items-center gap-2 text-xs text-slate-500 mb-2">
-                                <i class="fa-solid fa-location-dot text-brand-600"></i>
+                                <i class="fa-solid fa-location-dot text-brand-300"></i>
                                 <span>Kebun Garut, Jawa Barat</span>
                                 <span class="mx-1">•</span>
                                 <span class="text-emerald-700 font-semibold">Daging Tebal Pulen</span>
@@ -767,7 +718,7 @@
                             <span class="text-xs text-slate-400 block">Harga per 1 kg</span>
                             <span class="font-heading font-extrabold text-xl text-slate-900">Rp 32.500</span>
                         </div>
-                        <button onclick="openOrderModal('Alpukat Mentega Garut', '32500', 'Kebun Garut, Jawa Barat')" class="bg-brand-600 hover:bg-brand-700 text-white p-3 rounded-2xl shadow-md shadow-brand-600/20 transition-all">
+                        <button onclick="openOrderModal('Alpukat Mentega Garut', '32500', 'Kebun Garut, Jawa Barat')" class="bg-brand-300 hover:bg-brand-400 text-white p-3 rounded-2xl shadow-md shadow-brand-300/20 transition-all">
                             <i class="fa-solid fa-plus"></i> Pesan
                         </button>
                     </div>
@@ -775,7 +726,7 @@
             </div>
 
             <div class="text-center mt-12">
-                <a href="{{ route('user.index') }}" class="inline-flex items-center gap-2 font-bold text-brand-700 bg-white border border-brand-200 hover:bg-brand-50 px-8 py-3.5 rounded-2xl shadow-sm transition-all">
+                <a href="{{ route('user.index') }}" class="inline-flex items-center gap-2 font-bold text-brand-400 bg-white border border-brand-100 hover:bg-brand-100 px-8 py-3.5 rounded-2xl shadow-sm transition-all">
                     <span>Lihat Semua 150+ Hasil Panen</span>
                     <i class="fa-solid fa-arrow-right text-xs"></i>
                 </a>
@@ -800,16 +751,16 @@
                     </p>
 
                     <!-- Quote Box -->
-                    <div class="p-6 rounded-3xl bg-brand-50/60 border border-brand-200 relative">
-                        <i class="fa-solid fa-quote-left text-3xl text-brand-300 absolute top-4 left-4 pointer-events-none"></i>
+                    <div class="p-6 rounded-3xl bg-brand-100/60 border border-brand-100 relative">
+                        <i class="fa-solid fa-quote-left text-3xl text-brand-200 absolute top-4 left-4 pointer-events-none"></i>
                         <p class="text-sm text-slate-700 italic relative z-10 pl-6 mb-4">
                             "Sebelum bergabung dengan DariTani, hasil cabai dan selada saya sering dibeli murah oleh tengkulak. Sekarang harga transparan, ada sensor cuaca di sawah, dan pendapatan kelompok tani kami naik lebih dari 40%."
                         </p>
                         <div class="flex items-center gap-3 pl-6">
-                            <img src="{{ asset('images/happy_indonesian_farmer.png') }}" alt="Pak Suwandi" class="w-10 h-10 rounded-full object-cover border border-brand-400">
+                            <img src="images/happy_indonesian_farmer.png" alt="Pak Suwandi" class="w-10 h-10 rounded-full object-cover border border-brand-200">
                             <div>
                                 <h4 class="font-bold text-xs text-slate-900">Pak Suwandi Rahardjo</h4>
-                                <p class="text-[11px] text-brand-700">Ketua Kelompok Tani Ciwidey Sejahtera</p>
+                                <p class="text-[11px] text-brand-400">Ketua Kelompok Tani Ciwidey Sejahtera</p>
                             </div>
                         </div>
                     </div>
@@ -825,7 +776,7 @@
                 <!-- Right Visual Impact Cards -->
                 <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div class="p-6 rounded-3xl bg-slate-50 border border-slate-200">
-                        <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center text-xl mb-4">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-300 flex items-center justify-center text-xl mb-4">
                             <i class="fa-solid fa-chart-line"></i>
                         </div>
                         <h3 class="font-bold text-base text-slate-900 mb-2">Penghasilan Stabil</h3>
@@ -864,7 +815,7 @@
     <section id="faq" class="py-20 bg-slate-50">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 space-y-3">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100 text-brand-800 text-xs font-bold uppercase tracking-wider">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100 text-brand-400 text-xs font-bold uppercase tracking-wider">
                     FAQ
                 </div>
                 <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900">
@@ -876,7 +827,7 @@
             <div class="space-y-4" id="faq-accordion">
                 <!-- FAQ Item 1 -->
                 <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
-                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-slate-900 flex justify-between items-center gap-4 hover:text-brand-600 transition-colors">
+                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-slate-900 flex justify-between items-center gap-4 hover:text-brand-300 transition-colors">
                         <span>Bagaimana DariTani menjamin produk tiba dalam kondisi segar?</span>
                         <i class="fa-solid fa-chevron-down text-sm text-slate-400 transition-transform duration-300"></i>
                     </button>
@@ -887,7 +838,7 @@
 
                 <!-- FAQ Item 2 -->
                 <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
-                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-slate-900 flex justify-between items-center gap-4 hover:text-brand-600 transition-colors">
+                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-slate-900 flex justify-between items-center gap-4 hover:text-brand-300 transition-colors">
                         <span>Apakah sayur dan buah di DariTani 100% Organik?</span>
                         <i class="fa-solid fa-chevron-down text-sm text-slate-400 transition-transform duration-300"></i>
                     </button>
@@ -898,7 +849,7 @@
 
                 <!-- FAQ Item 3 -->
                 <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
-                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-slate-900 flex justify-between items-center gap-4 hover:text-brand-600 transition-colors">
+                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-slate-900 flex justify-between items-center gap-4 hover:text-brand-300 transition-colors">
                         <span>Bagaimana jika ada sayuran yang rusak saat pengiriman?</span>
                         <i class="fa-solid fa-chevron-down text-sm text-slate-400 transition-transform duration-300"></i>
                     </button>
@@ -909,7 +860,7 @@
 
                 <!-- FAQ Item 4 -->
                 <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
-                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-slate-900 flex justify-between items-center gap-4 hover:text-brand-600 transition-colors">
+                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-slate-900 flex justify-between items-center gap-4 hover:text-brand-300 transition-colors">
                         <span>Apakah bisa memesan pasokan rutin untuk Restoran atau Hotel?</span>
                         <i class="fa-solid fa-chevron-down text-sm text-slate-400 transition-transform duration-300"></i>
                     </button>
@@ -924,8 +875,8 @@
     <!-- CALL TO ACTION BANNER -->
     <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="rounded-3xl bg-gradient-to-r from-brand-900 via-brand-800 to-emerald-900 p-8 sm:p-14 text-white relative overflow-hidden shadow-2xl">
-                <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-brand-500/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="rounded-3xl bg-gradient-to-r from-brand-500 via-brand-400 to-emerald-900 p-8 sm:p-14 text-white relative overflow-hidden shadow-2xl">
+                <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-brand-300/20 rounded-full blur-3xl pointer-events-none"></div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
                     <div class="lg:col-span-8 space-y-4">
@@ -939,15 +890,15 @@
                         
                         <!-- Newsletter Form -->
                         <form onsubmit="handleSubscribe(event)" class="flex flex-col sm:flex-row gap-3 pt-2 max-w-md">
-                            <input type="email" id="newsletter-email" required placeholder="Masukkan alamat email Anda..." class="px-5 py-3.5 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400 flex-1">
-                            <button type="submit" class="bg-brand-500 hover:bg-brand-400 text-slate-950 font-bold px-6 py-3.5 rounded-2xl transition-colors shadow-lg">
+                            <input type="email" id="newsletter-email" required placeholder="Masukkan alamat email Anda..." class="px-5 py-3.5 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-200 flex-1">
+                            <button type="submit" class="bg-brand-300 hover:bg-brand-200 text-slate-950 font-bold px-6 py-3.5 rounded-2xl transition-colors shadow-lg">
                                 Dapatkan Promo
                             </button>
                         </form>
                     </div>
 
                     <div class="lg:col-span-4 flex flex-col items-center justify-center text-center space-y-4 border-t lg:border-t-0 lg:border-l border-white/10 pt-6 lg:pt-0 lg:pl-8">
-                        <p class="text-xs font-semibold text-brand-200 uppercase tracking-wider">Unduh Aplikasi Mobile</p>
+                        <p class="text-xs font-semibold text-brand-100 uppercase tracking-wider">Unduh Aplikasi Mobile</p>
                         <div class="flex flex-row lg:flex-col gap-3 w-full max-w-[200px]">
                             <button onclick="showAppToast('Google Play')" class="w-full bg-slate-950 border border-white/20 hover:bg-slate-900 text-white p-3 rounded-xl flex items-center justify-center gap-3 text-left">
                                 <i class="fa-brands fa-google-play text-xl text-emerald-400"></i>
@@ -977,19 +928,19 @@
                 <!-- Col 1: Brand Info -->
                 <div class="lg:col-span-2 space-y-4">
                     <a href="#" class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-2xl bg-brand-600 flex items-center justify-center text-white font-bold text-lg">
+                        <div class="w-10 h-10 rounded-2xl bg-brand-300 flex items-center justify-center text-white font-bold text-lg">
                             <i class="fa-solid fa-leaf"></i>
                         </div>
-                        <span class="font-heading font-extrabold text-2xl text-white tracking-tight">Dari<span class="text-brand-500">Tani</span></span>
+                        <span class="font-heading font-extrabold text-2xl text-white tracking-tight">Dari<span class="text-brand-300">Tani</span></span>
                     </a>
                     <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
                         DariTani adalah pionir ekosistem pertanian digital terpadu di Indonesia. Menghubungkan petani lokal dengan konsumen secara transparan, adil, dan didukung teknologi Smart Farming IoT.
                     </p>
                     <div class="flex items-center gap-3 pt-2">
-                        <a href="#" class="w-9 h-9 rounded-full bg-slate-900 hover:bg-brand-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="w-9 h-9 rounded-full bg-slate-900 hover:bg-brand-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="#" class="w-9 h-9 rounded-full bg-slate-900 hover:bg-brand-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-tiktok"></i></a>
-                        <a href="#" class="w-9 h-9 rounded-full bg-slate-900 hover:bg-brand-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-slate-900 hover:bg-brand-300 text-slate-300 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-slate-900 hover:bg-brand-300 text-slate-300 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-slate-900 hover:bg-brand-300 text-slate-300 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-slate-900 hover:bg-brand-300 text-slate-300 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-youtube"></i></a>
                     </div>
                 </div>
 
@@ -997,11 +948,11 @@
                 <div class="space-y-3">
                     <h4 class="font-heading font-bold text-sm text-white uppercase tracking-wider">Navigasi</h4>
                     <ul class="space-y-2 text-xs">
-                        <li><a href="#beranda" class="hover:text-brand-400 transition-colors">Beranda Utama</a></li>
-                        <li><a href="#tentang" class="hover:text-brand-400 transition-colors">Tentang DariTani</a></li>
-                        <li><a href="#fitur" class="hover:text-brand-400 transition-colors">Ekosistem & Fitur</a></li>
-                        <li><a href="#katalog" class="hover:text-brand-400 transition-colors">Katalog Sayur & Buah</a></li>
-                        <li><a href="#smart-tech" class="hover:text-brand-400 transition-colors">Smart Agriculture IoT</a></li>
+                        <li><a href="#beranda" class="hover:text-brand-200 transition-colors">Beranda Utama</a></li>
+                        <li><a href="#tentang" class="hover:text-brand-200 transition-colors">Tentang DariTani</a></li>
+                        <li><a href="#fitur" class="hover:text-brand-200 transition-colors">Ekosistem & Fitur</a></li>
+                        <li><a href="#katalog" class="hover:text-brand-200 transition-colors">Katalog Sayur & Buah</a></li>
+                        <li><a href="#smart-tech" class="hover:text-brand-200 transition-colors">Smart Agriculture IoT</a></li>
                     </ul>
                 </div>
 
@@ -1009,10 +960,10 @@
                 <div class="space-y-3">
                     <h4 class="font-heading font-bold text-sm text-white uppercase tracking-wider">Layanan Kemitraan</h4>
                     <ul class="space-y-2 text-xs">
-                        <li><a href="{{ route('register') }}" class="hover:text-brand-400 transition-colors">Pendaftaran Mitra Petani</a></li>
-                        <li><a href="#kemitraan" class="hover:text-brand-400 transition-colors">Pasokan Restoran & Horeca</a></li>
-                        <li><a href="#kemitraan" class="hover:text-brand-400 transition-colors">Investasi Alat Pertanian</a></li>
-                        <li><a href="{{ route('login') }}" class="hover:text-brand-400 transition-colors">Portal Login Petani</a></li>
+                        <li><a href="{{ route('register') }}" class="hover:text-brand-200 transition-colors">Pendaftaran Mitra Petani</a></li>
+                        <li><a href="#kemitraan" class="hover:text-brand-200 transition-colors">Pasokan Restoran & Horeca</a></li>
+                        <li><a href="#kemitraan" class="hover:text-brand-200 transition-colors">Investasi Alat Pertanian</a></li>
+                        <li><a href="{{ route('login') }}" class="hover:text-brand-200 transition-colors">Portal Login Petani</a></li>
                     </ul>
                 </div>
 
@@ -1021,15 +972,15 @@
                     <h4 class="font-heading font-bold text-sm text-white uppercase tracking-wider">Kontak & Operasional</h4>
                     <ul class="space-y-2.5 text-xs">
                         <li class="flex items-start gap-2">
-                            <i class="fa-solid fa-location-dot text-brand-500 mt-0.5"></i>
+                            <i class="fa-solid fa-location-dot text-brand-300 mt-0.5"></i>
                             <span>Gedung Agrotech Tower Lt. 5, Jl. Ir. H. Juanda No. 120, Bandung</span>
                         </li>
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-phone text-brand-500"></i>
+                            <i class="fa-solid fa-phone text-brand-300"></i>
                             <span>(022) 8765-4321</span>
                         </li>
                         <li class="flex items-center gap-2">
-                            <i class="fa-solid fa-envelope text-brand-500"></i>
+                            <i class="fa-solid fa-envelope text-brand-300"></i>
                             <span>support@daritani.co.id</span>
                         </li>
                     </ul>
@@ -1055,7 +1006,7 @@
             </button>
 
             <div class="flex items-center gap-3 mb-4">
-                <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center text-lg">
+                <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-300 flex items-center justify-center text-lg">
                     <i class="fa-solid fa-basket-shopping"></i>
                 </div>
                 <div>
@@ -1065,26 +1016,26 @@
             </div>
 
             <form onsubmit="submitOrder(event)" class="space-y-4">
-                <div class="p-4 rounded-2xl bg-brand-50 border border-brand-200">
-                    <p class="text-xs text-brand-800 font-semibold" id="modal-product-name">Produk: Tomat Red Ruby Organik</p>
+                <div class="p-4 rounded-2xl bg-brand-100 border border-brand-100">
+                    <p class="text-xs text-brand-400 font-semibold" id="modal-product-name">Produk: Tomat Red Ruby Organik</p>
                     <p class="text-xs text-slate-500" id="modal-product-farm">Lokasi: Kebun Ciwidey, Bandung</p>
-                    <p class="text-sm font-extrabold text-brand-900 mt-1" id="modal-product-price">Rp 18.500 / kg</p>
+                    <p class="text-sm font-extrabold text-brand-500 mt-1" id="modal-product-price">Rp 18.500 / kg</p>
                 </div>
 
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Lengkap</label>
-                    <input type="text" required placeholder="Contoh: Budi Santoso" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500">
+                    <input type="text" required placeholder="Contoh: Budi Santoso" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-300">
                 </div>
 
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">Nomor WhatsApp</label>
-                    <input type="tel" required placeholder="0812xxxxxxx" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500">
+                    <input type="tel" required placeholder="0812xxxxxxx" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-300">
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Jumlah Pesanan (kg/pack)</label>
-                        <input type="number" id="order-qty" value="2" min="1" oninput="calculateTotal()" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500">
+                        <input type="number" id="order-qty" value="2" min="1" oninput="calculateTotal()" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-300">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Total Biaya (Estimasi)</label>
@@ -1094,10 +1045,10 @@
 
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">Alamat Pengiriman</label>
-                    <textarea required rows="2" placeholder="Jalan, No. Rumah, Kecamatan, Kota..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500"></textarea>
+                    <textarea required rows="2" placeholder="Jalan, No. Rumah, Kecamatan, Kota..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-300"></textarea>
                 </div>
 
-                <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 rounded-2xl shadow-lg shadow-brand-600/30 transition-all flex items-center justify-center gap-2">
+                <button type="submit" class="w-full bg-brand-300 hover:bg-brand-400 text-white font-bold py-3.5 rounded-2xl shadow-lg shadow-brand-300/30 transition-all flex items-center justify-center gap-2">
                     <i class="fa-brands fa-whatsapp text-lg"></i>
                     <span>Kirim Pesanan via WhatsApp</span>
                 </button>
@@ -1113,7 +1064,7 @@
             </button>
             <div class="aspect-video w-full rounded-2xl overflow-hidden bg-slate-900 flex items-center justify-center text-white">
                 <div class="text-center p-6 space-y-3">
-                    <i class="fa-solid fa-circle-play text-5xl text-brand-500 animate-pulse"></i>
+                    <i class="fa-solid fa-circle-play text-5xl text-brand-300 animate-pulse"></i>
                     <h3 class="font-heading font-bold text-xl text-white">Dokumenter Smart Farming DariTani</h3>
                     <p class="text-xs text-slate-400 max-w-md mx-auto">Menyaksikan bagaimana sensor IoT dan distribusi dingin membantu puluhan ribu petani lokal di Bandung & Malang.</p>
                 </div>
@@ -1122,8 +1073,8 @@
     </div>
 
     <!-- TOAST NOTIFICATION CONTAINER -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 hidden glass-card p-4 rounded-2xl shadow-2xl border-l-4 border-brand-500 max-w-sm items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center text-lg shrink-0">
+    <div id="toast" class="fixed bottom-6 right-6 z-50 hidden glass-card p-4 rounded-2xl shadow-2xl border-l-4 border-brand-300 max-w-sm items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-300 flex items-center justify-center text-lg shrink-0">
             <i class="fa-solid fa-check"></i>
         </div>
         <div>
@@ -1153,11 +1104,11 @@
         function filterCatalog(category, btnElement) {
             const buttons = document.querySelectorAll('.category-btn');
             buttons.forEach(b => {
-                b.classList.remove('bg-brand-600', 'text-white', 'shadow-md');
+                b.classList.remove('bg-brand-300', 'text-white', 'shadow-md');
                 b.classList.add('bg-white', 'text-slate-700', 'border');
             });
             btnElement.classList.remove('bg-white', 'text-slate-700', 'border');
-            btnElement.classList.add('bg-brand-600', 'text-white', 'shadow-md');
+            btnElement.classList.add('bg-brand-300', 'text-white', 'shadow-md');
 
             const items = document.querySelectorAll('.product-item');
             items.forEach(item => {
