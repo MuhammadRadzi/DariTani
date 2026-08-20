@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\RedirectResponse;
+use App\Models\Category;
+use App\Models\Farm;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class HomeController extends Controller
 {
-    public function index(): RedirectResponse|View
+    public function index(): View
     {
-        if (Auth::check()) {
-            return redirect('/user');
-        }
-        return view('landing');
+        $farms = Farm::with('farmer.user')->get();
+        $categories = Category::all();
+
+        $authUser = Auth::user();
+        $customer = $authUser ? $authUser->customer : null;
+        $bookmarkedFarmIds = $customer ? $customer->bookmarks()->pluck('id_farm')->toArray() : [];
+
+        return view('user.index', compact('farms', 'categories', 'bookmarkedFarmIds'));
     }
 }

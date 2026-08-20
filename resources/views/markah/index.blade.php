@@ -19,7 +19,7 @@
                   onsubmit="return confirm('Hapus semua markah?')">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="text-sm text-[#8AC936] font-medium">
+                <button type="submit" class="text-sm text-[#56ec4b] font-medium">
                     Hapus Semua
                 </button>
             </form>
@@ -34,13 +34,18 @@
 
     @if ($bookmarks->isEmpty())
         {{-- Markah kosong --}}
-        <div class="flex flex-col items-center justify-center py-20 text-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-gray-300 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-            </svg>
-            <p class="text-sm text-gray-500">Belum ada kebun yang kamu markah.</p>
-            <a href="{{ route('user.index') }}" class="mt-4 text-sm text-[#6EA12B] font-medium underline">
-                Jelajahi kebun
+        <div class="flex flex-col items-center justify-center py-12 text-center min-h-[65vh]">
+            <div class="relative w-72 h-52 mx-auto flex items-center justify-center mb-6">
+                <img src="{{ asset('images/empty-cart-bg.png') }}" alt="" class="absolute inset-0 w-full h-full object-contain">
+                <img src="{{ asset('images/empty-markah-icon.png') }}" alt="Markah Kosong" class="relative w-28 h-28 object-contain z-10">
+            </div>
+
+            <h2 class="text-xl font-bold text-black mb-1">Yah Markah mu Kosong</h2>
+            <p class="text-sm text-gray-700 mb-6">Yuk jelajahi kebun sekarang!</p>
+
+            <a href="{{ route('user.index') }}"
+               class="inline-flex items-center justify-center px-8 py-3 bg-[#26e118] hover:bg-[#1fc713] active:scale-95 transition-all text-white font-bold text-base rounded-full shadow-sm">
+                Jelajahi Kebun
             </a>
         </div>
     @else
@@ -85,7 +90,7 @@
                             });
                         "
                         :class="removing ? 'scale-90' : 'scale-100'"
-                        class="absolute top-3 right-3 bg-[#8AC936] rounded-full p-2 transition-transform duration-200"
+                        class="absolute top-3 right-3 bg-[#56ec4b] rounded-full p-2 transition-transform duration-200"
                         aria-label="Hapus dari markah"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">

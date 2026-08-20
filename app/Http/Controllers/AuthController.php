@@ -39,7 +39,7 @@ class AuthController extends Controller
         Auth::login($user);
         $request->session()->regenerate();
 
-        return redirect('/user');
+        return redirect()->route('user.index');
     }
 
     public function showRegister(): View
@@ -71,7 +71,7 @@ class AuthController extends Controller
         Auth::login($user);
         $request->session()->regenerate();
 
-        return redirect('/user');
+        return redirect()->route('user.index');
     }
 
     public function logout(Request $request): RedirectResponse
