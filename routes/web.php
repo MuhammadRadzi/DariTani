@@ -31,11 +31,11 @@ Route::middleware('guest')->group(function () {
 | Customer routes (butuh login)
 |--------------------------------------------------------------------------
 | Prioritas SA: Halaman Login & Halaman User jadi dulu sebelum halaman lain.
-|
 */
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+    // Halaman User -- prioritas kedua sesuai saran SA
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
     Route::get('/user/edit', [UserController::class, 'edit'])->name('user.edit');
     Route::put('/user', [UserController::class, 'update'])->name('user.update');

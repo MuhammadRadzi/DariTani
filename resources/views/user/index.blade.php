@@ -99,7 +99,7 @@
                         type="button"
                         @click="toggle()"
                         :class="[loading ? 'opacity-50' : '', pop ? 'scale-125' : 'scale-100']"
-                        class="bg-[#8AC936] rounded-full p-2 transition-transform duration-200 ease-out"
+                        class="bg-brand-200 rounded-full p-2 transition-transform duration-200 ease-out"
                         aria-label="Toggle markah"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white transition-transform duration-200"
