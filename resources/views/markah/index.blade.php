@@ -19,7 +19,7 @@
                   onsubmit="return confirm('Hapus semua markah?')">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="text-sm text-[#56ec4b] font-medium">
+                <button type="submit" class="text-sm text-brand-200 font-medium">
                     Hapus Semua
                 </button>
             </form>
@@ -44,7 +44,7 @@
             <p class="text-sm text-gray-700 mb-6">Yuk jelajahi kebun sekarang!</p>
 
             <a href="{{ route('user.index') }}"
-               class="inline-flex items-center justify-center px-8 py-3 bg-[#26e118] hover:bg-[#1fc713] active:scale-95 transition-all text-white font-bold text-base rounded-full shadow-sm">
+               class="inline-flex items-center justify-center px-8 py-3 bg-brand-300 hover:bg-brand-400 active:scale-95 transition-all text-white font-bold text-base rounded-full shadow-sm">
                 Jelajahi Kebun
             </a>
         </div>
@@ -90,7 +90,7 @@
                             });
                         "
                         :class="removing ? 'scale-90' : 'scale-100'"
-                        class="absolute top-3 right-3 bg-[#56ec4b] rounded-full p-2 transition-transform duration-200"
+                        class="absolute top-3 right-3 bg-brand-200 rounded-full p-2 transition-transform duration-200"
                         aria-label="Hapus dari markah"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">

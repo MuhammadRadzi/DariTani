@@ -49,7 +49,7 @@
                     x-show="toast.link"
                     :href="toast.link"
                     x-text="toast.linkText"
-                    class="text-[#26e118] font-medium underline shrink-0"
+                    class="text-brand-300 font-medium underline shrink-0"
                 ></a>
             </div>
         </template>
@@ -101,19 +101,19 @@
 
         {{-- Bottom nav --}}
         <div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-[#f3f3f3] shadow-[0_-2px_6px_rgba(0,0,0,0.1)] flex items-center justify-around px-6 py-2">
-            <a href="{{ route('user.index') }}" class="flex flex-col items-center gap-1 {{ request()->routeIs('user.index') ? 'text-[#56ec4b]' : 'text-[#595959]' }}">
+            <a href="{{ route('user.index') }}" class="flex flex-col items-center gap-1 {{ request()->routeIs('user.index') ? 'text-brand-200' : 'text-[#595959]' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                 </svg>
                 <span class="text-[9px]">Beranda</span>
             </a>
-            <a href="{{ route('keranjang.index') }}" class="flex flex-col items-center gap-1 {{ request()->routeIs('keranjang.*') ? 'text-[#56ec4b]' : 'text-[#595959]' }}">
+            <a href="{{ route('keranjang.index') }}" class="flex flex-col items-center gap-1 {{ request()->routeIs('keranjang.*') ? 'text-brand-200' : 'text-[#595959]' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
                 <span class="text-[9px]">Keranjang</span>
             </a>
-            <a href="{{ route('markah.index') }}" class="flex flex-col items-center gap-1 {{ request()->routeIs('markah.*') ? 'text-[#56ec4b]' : 'text-[#595959]' }}">
+            <a href="{{ route('markah.index') }}" class="flex flex-col items-center gap-1 {{ request()->routeIs('markah.*') ? 'text-brand-200' : 'text-[#595959]' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
                 </svg>

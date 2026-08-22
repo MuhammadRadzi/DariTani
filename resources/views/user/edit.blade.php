@@ -53,7 +53,7 @@
                 id="name_user"
                 value="{{ old('name_user', $user->name_user) }}"
                 required
-                class="w-full border border-[#878787] rounded-lg px-3 py-3 text-sm text-black focus:outline-none focus:ring-2 focus:ring-[#26e118] focus:border-transparent"
+                class="w-full border border-[#878787] rounded-lg px-3 py-3 text-sm text-black focus:outline-none focus:ring-2 focus:ring-brand-300 focus:border-transparent"
             >
         </div>
 
@@ -79,7 +79,7 @@
                 id="phone"
                 value="{{ old('phone', $customer->phone) }}"
                 placeholder="08xxxxxxxxxx"
-                class="w-full border border-[#878787] rounded-lg px-3 py-3 text-sm text-black placeholder-[#969696] focus:outline-none focus:ring-2 focus:ring-[#26e118] focus:border-transparent"
+                class="w-full border border-[#878787] rounded-lg px-3 py-3 text-sm text-black placeholder-[#969696] focus:outline-none focus:ring-2 focus:ring-brand-300 focus:border-transparent"
             >
         </div>
 
@@ -91,13 +91,13 @@
                 id="address"
                 rows="3"
                 placeholder="Nama jalan, nomor rumah, kelurahan, kecamatan, kota"
-                class="w-full border border-[#878787] rounded-lg px-3 py-3 text-sm text-black placeholder-[#969696] focus:outline-none focus:ring-2 focus:ring-[#26e118] focus:border-transparent resize-none"
+                class="w-full border border-[#878787] rounded-lg px-3 py-3 text-sm text-black placeholder-[#969696] focus:outline-none focus:ring-2 focus:ring-brand-300 focus:border-transparent resize-none"
             >{{ old('address', $customer->address) }}</textarea>
         </div>
 
         <button
             type="submit"
-            class="bg-[#26e118] hover:bg-[#1fc713] transition-colors w-full h-[47px] rounded-lg text-white text-base font-medium mt-2"
+            class="bg-brand-300 hover:bg-brand-400 transition-colors w-full h-[47px] rounded-lg text-white text-base font-medium mt-2"
         >
             Simpan Perubahan
         </button>

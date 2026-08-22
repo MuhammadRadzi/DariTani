@@ -6,7 +6,7 @@
 
     {{-- Banner Selamat Datang --}}
     <div class="relative h-[171px] rounded-lg overflow-hidden mb-4"
-         style="background: radial-gradient(circle at 50% 50%, #56ec4b, #3ad62f, #1ec112);">
+         style="background: radial-gradient(circle at 50% 50%, #A2ED40, #8AC936, #6EA12B);">
         <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
             <p class="font-bold text-2xl" style="text-shadow: -1px 3px 0 rgba(0,0,0,0.25);">Selamat Datang</p>
             <p class="text-sm mt-1" style="text-shadow: -1px 2px 0 rgba(0,0,0,0.25);">
@@ -20,7 +20,7 @@
         @foreach ($categories as $category)
             <a href="#" class="flex flex-col items-center gap-2">
                 <div class="w-14 h-14 rounded-full flex items-center justify-center"
-                     style="background: linear-gradient(228deg, #56ec4b 5%, #94ff8c 165%);">
+                     style="background: linear-gradient(228deg, #8AC936 5%, #A2ED40 165%);">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m9-9H3" />
                     </svg>
@@ -99,7 +99,7 @@
                         type="button"
                         @click="toggle()"
                         :class="[loading ? 'opacity-50' : '', pop ? 'scale-125' : 'scale-100']"
-                        class="bg-[#56ec4b] rounded-full p-2 transition-transform duration-200 ease-out"
+                        class="bg-brand-200 rounded-full p-2 transition-transform duration-200 ease-out"
                         aria-label="Toggle markah"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white transition-transform duration-200"
