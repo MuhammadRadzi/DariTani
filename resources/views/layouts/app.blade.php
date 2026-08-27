@@ -68,7 +68,7 @@
                 <input type="text" placeholder="Cari produk atau kebun..." class="flex-1 ml-2 text-sm outline-none">
             </div>
 
-            <div class="relative shrink-0" x-data="{ open: false }">
+            <div class="relative shrink-0" x-data="{ open: false, confirmLogout: false }">
                 <button type="button" @click.stop="open = !open" aria-label="Menu">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
@@ -90,6 +90,49 @@
                     <a href="{{ route('user.edit') }}" class="block px-4 py-2 text-sm text-black hover:bg-gray-50">
                         Edit Profil
                     </a>
+                    <button
+                        type="button"
+                        @click="open = false; confirmLogout = true"
+                        class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-50"
+                    >
+                        Keluar
+                    </button>
+                </div>
+
+                {{-- Dialog konfirmasi logout --}}
+                <div
+                    x-show="confirmLogout"
+                    x-transition:enter="transition ease-out duration-150"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    x-transition:leave="transition ease-in duration-100"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0"
+                    class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40 px-6"
+                    style="display: none;"
+                >
+                    <div
+                        @click.outside="confirmLogout = false"
+                        class="w-full max-w-xs bg-white rounded-2xl shadow-lg p-5 text-center"
+                    >
+                        <p class="text-sm font-semibold text-black mb-1">Yakin mau keluar?</p>
+                        <p class="text-xs text-gray-500 mb-4">Kamu perlu login lagi untuk melanjutkan belanja.</p>
+                        <div class="flex gap-2">
+                            <button
+                                type="button"
+                                @click="confirmLogout = false"
+                                class="flex-1 py-2 text-sm font-medium rounded-xl border border-gray-200 text-black"
+                            >
+                                Batal
+                            </button>
+                            <form method="POST" action="{{ route('logout') }}" class="flex-1">
+                                @csrf
+                                <button type="submit" class="w-full py-2 text-sm font-medium rounded-xl bg-red-600 text-white">
+                                    Ya, Keluar
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
