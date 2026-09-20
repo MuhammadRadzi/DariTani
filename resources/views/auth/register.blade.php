@@ -7,7 +7,7 @@
 
     {{-- Logo --}}
     <div class="mb-7">
-        <img src="{{ asset('images/logo-daritani.png') }}" alt="DariTani" class="w-36 h-auto">
+        <x-logo class="w-50 h-auto shrink-0 text-white"/>
     </div>
 
     {{-- Card form --}}

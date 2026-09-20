@@ -79,16 +79,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <!-- Brand Logo -->
             <a href="#" class="flex items-center gap-3 group">
-                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-brand-400 via-brand-400 to-brand-300 flex items-center justify-center text-white shadow-lg shadow-brand-400/30 group-hover:scale-105 transition-transform">
-                    <i class="fa-solid fa-leaf text-xl"></i>
-                </div>
-                <div class="flex flex-col">
-                    <span class="font-heading font-extrabold text-2xl text-slate-900 tracking-tight leading-none flex items-center gap-1">
-                        Dari<span class="text-brand-400">Tani</span>
-                        <span class="inline-block w-2 h-2 rounded-full bg-brand-300 animate-ping"></span>
-                    </span>
-                    <span class="text-[10px] font-semibold text-slate-500 tracking-wider uppercase mt-0.5">Katalog Hasil Tani Malino</span>
-                </div>
+                <x-logo variant="full" class="h-9 w-auto text-brand-500 group-hover:scale-105 transition-transform" />
             </a>
 
             <!-- Desktop Nav Links -->

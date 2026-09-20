@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'DariTani.co.id')</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
 </head>
 <body class="font-sans antialiased bg-white"
       x-data="{
@@ -59,7 +63,7 @@
 
         {{-- Navbar --}}
         <div class="sticky top-0 z-10 bg-white flex items-center gap-4 px-4 py-3">
-            <img src="{{ asset('images/logo-daritani.png') }}" alt="DariTani" class="w-10 h-auto shrink-0">
+            <x-logo class="w-10 h-auto shrink-0 text-brand-500" />
 
             <div class="flex-1 flex items-center border border-[#1d1b20] rounded-lg px-3 py-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[#1d1b20]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
