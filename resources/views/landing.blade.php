@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DariTani.co.id — Katalog Hasil Tani Malino untuk Pelaku Usaha Makassar</title>
-    <meta name="description" content="DariTani.co.id menghubungkan petani hortikultura Malino, Kabupaten Gowa langsung dengan pelaku usaha Horeka dan pedagang di Makassar melalui katalog digital dan pemesanan langsung via WhatsApp — tanpa perantara, gratis untuk petani.">
+    <meta name="description" content="DariTani.co.id mempertemukan petani hortikultura Malino, Kabupaten Gowa langsung dengan pelaku usaha Horeka dan pedagang di Makassar melalui katalog digital & informasi kontak langsung — tanpa perantara, gratis untuk petani.">
     <meta name="keywords" content="DariTani, DariTani.co.id, petani Malino, sayur Malino, kentang Malino, katalog hasil tani, Horeka Makassar, pedagang sayur Makassar">
     
     <!-- Font Awesome / CDN Icons -->
@@ -71,7 +71,7 @@
     <!-- Top Announcement Bar -->
     <div class="bg-brand-500 text-white text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
         <i class="fa-solid fa-leaf text-brand-300"></i>
-        <span>Menghubungkan petani Malino, Kabupaten Gowa langsung dengan pelaku usaha Horeka & pedagang di Makassar — tanpa tengkulak, gratis untuk petani.</span>
+        <span>Katalog Digital Petani Malino, Kabupaten Gowa — Terhubung langsung dengan Horeka & Pedagang Makassar tanpa tengkulak, gratis untuk petani.</span>
     </div>
 
     <!-- Main Navigation Bar -->
@@ -106,8 +106,8 @@
                     </a>
                 <?php endif; ?>
                 <a href="#katalog" class="text-sm font-semibold bg-gradient-to-r from-brand-400 to-brand-300 text-white px-5 py-2.5 rounded-xl shadow-lg shadow-brand-400/25 hover:shadow-brand-400/40 hover:-translate-y-0.5 transition-all flex items-center gap-2">
-                    <i class="fa-solid fa-basket-shopping text-xs"></i>
-                    <span>Lihat Katalog</span>
+                    <i class="fa-solid fa-book-open text-xs"></i>
+                    <span>Lihat Katalog Petani</span>
                 </a>
             </div>
 
@@ -132,7 +132,7 @@
                 <?php else: ?>
                     <a href="{{ route('login') }}" class="text-center font-semibold text-slate-800 bg-slate-100 py-3 rounded-xl">Masuk ke Akun</a>
                 <?php endif; ?>
-                <a href="#katalog" class="text-center font-semibold text-white bg-brand-400 py-3 rounded-xl shadow-md">Lihat Katalog Sekarang</a>
+                <a href="#katalog" class="text-center font-semibold text-white bg-brand-400 py-3 rounded-xl shadow-md">Jelajahi Katalog Petani</a>
             </div>
         </div>
     </header>
@@ -162,20 +162,20 @@
 
                     <!-- Paragraph -->
                     <p class="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                        DariTani.co.id adalah katalog digital yang mempertemukan petani hortikultura di Malino, Kabupaten Gowa langsung dengan pelaku usaha Horeka, pedagang, dan penjual sayur di Makassar — memotong rantai tengkulak yang panjang, tanpa dipungut biaya dari petani.
+                        DariTani.co.id adalah katalog digital yang mempertemukan petani hortikultura di Malino, Kabupaten Gowa langsung dengan pelaku usaha Horeka, pedagang, dan penjual sayur di Makassar — menampilkan informasi komoditas, musim panen, serta akses kontak langsung tanpa perantara tengkulak dan gratis untuk petani.
                     </p>
 
                     <!-- CTAs -->
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                         <a href="#katalog" class="w-full sm:w-auto text-center font-bold text-white bg-gradient-to-r from-brand-400 via-brand-300 to-emerald-600 px-8 py-4 rounded-2xl shadow-xl shadow-brand-400/30 hover:shadow-brand-400/50 hover:scale-[1.02] transition-all flex items-center justify-center gap-3 group">
-                            <span>Jelajahi Katalog Produk</span>
+                            <span>Lihat Katalog Petani</span>
                             <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                         </a>
                         <button onclick="openVideoModal()" class="w-full sm:w-auto text-center font-semibold text-slate-700 bg-white border border-slate-200 hover:border-brand-200 px-7 py-4 rounded-2xl shadow-sm hover:bg-brand-100/50 transition-all flex items-center justify-center gap-3">
                             <div class="w-8 h-8 rounded-full bg-brand-100 text-brand-400 flex items-center justify-center text-xs">
                                 <i class="fa-solid fa-play ml-0.5"></i>
                             </div>
-                            <span>Lihat Cara Kerja</span>
+                            <span>Lihat Cara Kerja Katalog</span>
                         </button>
                     </div>
 
@@ -245,7 +245,7 @@
                                 </div>
                                 <div>
                                     <p class="text-[10px] text-slate-300">Kontak</p>
-                                    <p class="font-bold text-sm text-emerald-400">WhatsApp</p>
+                                    <p class="font-bold text-sm text-emerald-400">Direct WA</p>
                                 </div>
                             </div>
                         </div>
@@ -295,8 +295,8 @@
                     <div class="text-xs sm:text-sm text-brand-200">Untuk Petani, Selamanya</div>
                 </div>
                 <div class="p-4">
-                    <div class="text-amber-400 text-3xl font-extrabold font-heading mb-1">WhatsApp</div>
-                    <div class="text-xs sm:text-sm text-brand-200">Pemesanan Langsung ke Petani</div>
+                    <div class="text-amber-400 text-3xl font-extrabold font-heading mb-1">Direct Contact</div>
+                    <div class="text-xs sm:text-sm text-brand-200">Kontak Langsung ke Petani</div>
                 </div>
             </div>
         </div>
@@ -346,21 +346,21 @@
                         Petani di kawasan Malino, Kabupaten Gowa seringkali dihadapkan pada tengkulak dan rantai distribusi yang panjang. Akibatnya, harga jual di tingkat petani tertekan, sementara pembeli sulit mendapat pasokan segar dengan harga yang kompetitif.
                     </p>
                     <p class="text-slate-600 leading-relaxed">
-                        <strong>DariTani.co.id hadir sebagai katalog digital</strong> yang mempertemukan petani Malino secara langsung dengan pelaku usaha Horeka dan pedagang di Makassar. Setelah memilih produk di katalog, pembeli akan diarahkan langsung ke WhatsApp petani terkait untuk menyepakati pesanan — tanpa perantara, dan tanpa biaya untuk petani.
+                        <strong>DariTani.co.id hadir sebagai katalog digital</strong> yang mempertemukan petani Malino secara langsung dengan pelaku usaha Horeka dan pedagang di Makassar. Setelah melihat katalog dan profil komoditas, pelaku usaha HOREKA dapat langsung menghubungi petani via WhatsApp atau telepon untuk berdiskusi dan bernegosiasi — tanpa perantara platform, dan tanpa dipungut biaya dari petani.
                     </p>
                     <div class="grid grid-cols-2 gap-4 pt-2">
                         <div class="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-200">
-                            <i class="fa-solid fa-route text-brand-400 text-xl mt-1"></i>
+                            <i class="fa-solid fa-address-book text-brand-400 text-xl mt-1"></i>
                             <div>
-                                <h4 class="font-bold text-sm text-slate-900">Langsung ke Petani</h4>
-                                <p class="text-xs text-slate-500">Tanpa perantara tengkulak yang memotong harga.</p>
+                                <h4 class="font-bold text-sm text-slate-900">Kontak Direct Petani</h4>
+                                <p class="text-xs text-slate-500">Hubungi langsung petani tanpa perantara tengkulak.</p>
                             </div>
                         </div>
                         <div class="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-200">
                             <i class="fa-solid fa-calendar-days text-brand-400 text-xl mt-1"></i>
                             <div>
                                 <h4 class="font-bold text-sm text-slate-900">Info Musiman Panen</h4>
-                                <p class="text-xs text-slate-500">Ketahui jadwal panen sebelum memesan.</p>
+                                <p class="text-xs text-slate-500">Ketahui jadwal & prediksi panen secara langsung.</p>
                             </div>
                         </div>
                     </div>
@@ -412,9 +412,9 @@
                     <div class="w-14 h-14 rounded-2xl bg-emerald-600 text-white flex items-center justify-center text-2xl mb-6 shadow-md shadow-emerald-600/30 group-hover:scale-110 transition-transform">
                         <i class="fa-brands fa-whatsapp"></i>
                     </div>
-                    <h3 class="font-heading font-bold text-xl text-slate-900 mb-3">Pesan Langsung via WhatsApp</h3>
+                    <h3 class="font-heading font-bold text-xl text-slate-900 mb-3">Kontak Direct via WhatsApp</h3>
                     <p class="text-slate-600 text-sm leading-relaxed">
-                        Pilih produk, klik "Pesan Sekarang", sistem otomatis mengarahkan Anda ke WhatsApp petani terkait.
+                        Pilih produk atau profil petani, klik "Hubungi Petani", Anda langsung terhubung ke nomor WhatsApp petani untuk berdiskusi & bernegosiasi.
                     </p>
                 </div>
 
@@ -463,13 +463,13 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
                 <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-500 text-brand-200 border border-brand-400 text-xs font-bold uppercase tracking-wider">
-                    🌱 Cara Kerja DariTani.co.id
+                    🌱 Cara Kerja Katalog DariTani
                 </div>
                 <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-white leading-tight">
-                    Empat Langkah Sederhana Menuju Petani Malino
+                    Empat Langkah Mudah Terhubung dengan Petani Malino
                 </h2>
                 <p class="text-brand-200/90 text-base leading-relaxed">
-                    Tanpa akun rumit, tanpa checkout berlapis — cukup pilih produk dan Anda langsung terhubung dengan petani lewat WhatsApp.
+                    Tanpa sistem checkout atau keranjang belanja — murni direktori katalog untuk mempertemukan pembeli HOREKA langsung dengan petani mitra Malino.
                 </p>
             </div>
 
@@ -481,17 +481,17 @@
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
                     <h3 class="font-bold text-base text-white mb-2 relative z-10">Jelajahi Katalog</h3>
-                    <p class="text-xs text-brand-200/90 leading-relaxed relative z-10">Lihat daftar produk segar dari petani Malino lengkap dengan harga dan informasi kebun.</p>
+                    <p class="text-xs text-brand-200/90 leading-relaxed relative z-10">Lihat profil komoditas segar petani Malino, lokasi kebun, dan perkiraan jadwal panen.</p>
                 </div>
 
                 <!-- Step 2 -->
                 <div class="glass-dark rounded-3xl p-6 border border-white/15 relative">
                     <span class="absolute -top-4 -left-2 font-heading font-extrabold text-5xl text-white/10">2</span>
                     <div class="w-12 h-12 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-xl mb-4 relative z-10">
-                        <i class="fa-solid fa-basket-shopping"></i>
+                        <i class="fa-solid fa-address-card"></i>
                     </div>
-                    <h3 class="font-bold text-base text-white mb-2 relative z-10">Klik "Pesan Sekarang"</h3>
-                    <p class="text-xs text-brand-200/90 leading-relaxed relative z-10">Tentukan produk dan catatan pesanan (jumlah, kebutuhan khusus) yang Anda inginkan.</p>
+                    <h3 class="font-bold text-base text-white mb-2 relative z-10">Pilih Komoditas</h3>
+                    <p class="text-xs text-brand-200/90 leading-relaxed relative z-10">Klik "Hubungi Petani" pada komoditas yang Anda butuhkan untuk melihat opsi kontak.</p>
                 </div>
 
                 <!-- Step 3 -->
@@ -500,8 +500,8 @@
                     <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center text-xl mb-4 relative z-10">
                         <i class="fa-brands fa-whatsapp"></i>
                     </div>
-                    <h3 class="font-bold text-base text-white mb-2 relative z-10">Diarahkan ke WhatsApp</h3>
-                    <p class="text-xs text-brand-200/90 leading-relaxed relative z-10">Sistem otomatis membuka WhatsApp dengan catatan pesanan Anda, langsung ke nomor petani terkait.</p>
+                    <h3 class="font-bold text-base text-white mb-2 relative z-10">Terhubung via WhatsApp</h3>
+                    <p class="text-xs text-brand-200/90 leading-relaxed relative z-10">Buka percakapan langsung ke WhatsApp petani mitra dengan pesan inkuiri otomatis.</p>
                 </div>
 
                 <!-- Step 4 -->
@@ -510,8 +510,8 @@
                     <div class="w-12 h-12 rounded-2xl bg-indigo-600 text-white flex items-center justify-center text-xl mb-4 relative z-10">
                         <i class="fa-solid fa-handshake"></i>
                     </div>
-                    <h3 class="font-bold text-base text-white mb-2 relative z-10">Sepakati Langsung</h3>
-                    <p class="text-xs text-brand-200/90 leading-relaxed relative z-10">Diskusikan detail, harga akhir, dan pengiriman langsung dengan petani — cepat dan tanpa perantara.</p>
+                    <h3 class="font-bold text-base text-white mb-2 relative z-10">Negosiasi Direct</h3>
+                    <p class="text-xs text-brand-200/90 leading-relaxed relative z-10">Diskusikan kuantitas, kesepakatan harga adil, dan mekanisme pengiriman langsung dengan petani.</p>
                 </div>
             </div>
         </div>
@@ -525,10 +525,10 @@
                     Katalog Hasil Tani Malino
                 </div>
                 <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900">
-                    Produk Pilihan Langsung dari Petani Malino
+                    Katalog Komoditas Hasil Panen Malino
                 </h2>
                 <p class="text-slate-600 text-base">
-                    Pilih produk yang Anda butuhkan, lalu klik "Pesan" untuk terhubung langsung dengan petani terkait via WhatsApp.
+                    Jelajahi hasil tani Malino, lihat estimasi harga & lokasi kebun, lalu hubungi petani mitra langsung via WhatsApp.
                 </p>
             </div>
 
@@ -566,11 +566,11 @@
                     </div>
                     <div class="px-6 pb-6 pt-2 border-t border-slate-100 flex items-center justify-between">
                         <div>
-                            <span class="text-xs text-slate-400 block">Harga per 1 kg</span>
+                            <span class="text-xs text-slate-400 block">Estimasi Harga per 1 kg</span>
                             <span class="font-heading font-extrabold text-xl text-slate-900">Rp 12.000</span>
                         </div>
-                        <button onclick="openOrderModal('Kentang Malino', '12000', 'Malino, Kab. Gowa', '6281234567890')" class="bg-brand-400 hover:bg-brand-400 text-white p-3 rounded-2xl shadow-md shadow-brand-400/20 transition-all">
-                            <i class="fa-solid fa-plus"></i> Pesan
+                        <button onclick="openContactModal('Kentang Malino', '12000', 'Malino, Kab. Gowa', 'Pak Dengu (Kelompok Tani Malino)', '6281234567890')" class="bg-brand-400 hover:bg-brand-500 text-white px-4 py-2.5 rounded-2xl shadow-md shadow-brand-400/20 transition-all text-xs font-bold flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-sm"></i> Hubungi Petani
                         </button>
                     </div>
                 </div>
@@ -593,11 +593,11 @@
                     </div>
                     <div class="px-6 pb-6 pt-2 border-t border-slate-100 flex items-center justify-between">
                         <div>
-                            <span class="text-xs text-slate-400 block">Harga per 1 kg</span>
+                            <span class="text-xs text-slate-400 block">Estimasi Harga per 1 kg</span>
                             <span class="font-heading font-extrabold text-xl text-slate-900">Rp 8.000</span>
                         </div>
-                        <button onclick="openOrderModal('Kubis Malino', '8000', 'Malino, Kab. Gowa', '6281234567890')" class="bg-brand-400 hover:bg-brand-400 text-white p-3 rounded-2xl shadow-md shadow-brand-400/20 transition-all">
-                            <i class="fa-solid fa-plus"></i> Pesan
+                        <button onclick="openContactModal('Kubis Malino', '8000', 'Malino, Kab. Gowa', 'Pak Syamsuddin (Petani Hortikultura)', '6281234567890')" class="bg-brand-400 hover:bg-brand-500 text-white px-4 py-2.5 rounded-2xl shadow-md shadow-brand-400/20 transition-all text-xs font-bold flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-sm"></i> Hubungi Petani
                         </button>
                     </div>
                 </div>
@@ -620,11 +620,11 @@
                     </div>
                     <div class="px-6 pb-6 pt-2 border-t border-slate-100 flex items-center justify-between">
                         <div>
-                            <span class="text-xs text-slate-400 block">Harga per 1 kg</span>
+                            <span class="text-xs text-slate-400 block">Estimasi Harga per 1 kg</span>
                             <span class="font-heading font-extrabold text-xl text-slate-900">Rp 7.000</span>
                         </div>
-                        <button onclick="openOrderModal('Sawi Malino', '7000', 'Malino, Kab. Gowa', '6281234567890')" class="bg-brand-400 hover:bg-brand-400 text-white p-3 rounded-2xl shadow-md shadow-brand-400/20 transition-all">
-                            <i class="fa-solid fa-plus"></i> Pesan
+                        <button onclick="openContactModal('Sawi Malino', '7000', 'Malino, Kab. Gowa', 'Bu Rahma (Mitra Petani Malino)', '6281234567890')" class="bg-brand-400 hover:bg-brand-500 text-white px-4 py-2.5 rounded-2xl shadow-md shadow-brand-400/20 transition-all text-xs font-bold flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-sm"></i> Hubungi Petani
                         </button>
                     </div>
                 </div>
@@ -647,11 +647,11 @@
                     </div>
                     <div class="px-6 pb-6 pt-2 border-t border-slate-100 flex items-center justify-between">
                         <div>
-                            <span class="text-xs text-slate-400 block">Harga per 1 kg</span>
+                            <span class="text-xs text-slate-400 block">Estimasi Harga per 1 kg</span>
                             <span class="font-heading font-extrabold text-xl text-slate-900">Rp 15.000</span>
                         </div>
-                        <button onclick="openOrderModal('Tomat Malino', '15000', 'Malino, Kab. Gowa', '6281234567890')" class="bg-brand-400 hover:bg-brand-400 text-white p-3 rounded-2xl shadow-md shadow-brand-400/20 transition-all">
-                            <i class="fa-solid fa-plus"></i> Pesan
+                        <button onclick="openContactModal('Tomat Malino', '15000', 'Malino, Kab. Gowa', 'Pak Rustam (Petani Dataran Tinggi)', '6281234567890')" class="bg-brand-400 hover:bg-brand-500 text-white px-4 py-2.5 rounded-2xl shadow-md shadow-brand-400/20 transition-all text-xs font-bold flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-sm"></i> Hubungi Petani
                         </button>
                     </div>
                 </div>
@@ -674,11 +674,11 @@
                     </div>
                     <div class="px-6 pb-6 pt-2 border-t border-slate-100 flex items-center justify-between">
                         <div>
-                            <span class="text-xs text-slate-400 block">Harga per 1 kg</span>
+                            <span class="text-xs text-slate-400 block">Estimasi Harga per 1 kg</span>
                             <span class="font-heading font-extrabold text-xl text-slate-900">Rp 10.000</span>
                         </div>
-                        <button onclick="openOrderModal('Wortel Malino', '10000', 'Malino, Kab. Gowa', '6281234567890')" class="bg-brand-400 hover:bg-brand-400 text-white p-3 rounded-2xl shadow-md shadow-brand-400/20 transition-all">
-                            <i class="fa-solid fa-plus"></i> Pesan
+                        <button onclick="openContactModal('Wortel Malino', '10000', 'Malino, Kab. Gowa', 'Pak Daeng Baji (Kelompok Tani Sayur)', '6281234567890')" class="bg-brand-400 hover:bg-brand-500 text-white px-4 py-2.5 rounded-2xl shadow-md shadow-brand-400/20 transition-all text-xs font-bold flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-sm"></i> Hubungi Petani
                         </button>
                     </div>
                 </div>
@@ -686,7 +686,7 @@
 
             <div class="text-center mt-12">
                 <a href="#" class="inline-flex items-center gap-2 font-bold text-brand-400 bg-white border border-brand-200 hover:bg-brand-100 px-8 py-3.5 rounded-2xl shadow-sm transition-all">
-                    <span>Lihat Semua Produk</span>
+                    <span>Lihat Semua Katalog Komoditas</span>
                     <i class="fa-solid fa-arrow-right text-xs"></i>
                 </a>
             </div>
@@ -706,7 +706,7 @@
                         Bergabung Jadi Mitra Petani DariTani.co.id
                     </h2>
                     <p class="text-slate-600 leading-relaxed">
-                        Kami menghubungkan petani Malino langsung dengan pelaku usaha Horeka dan pedagang di Makassar melalui katalog digital. Setiap petani mitra dapat menampilkan produknya tanpa dipungut biaya, dan menerima pesanan langsung melalui WhatsApp.
+                        Kami menghubungkan petani Malino langsung dengan pelaku usaha Horeka dan pedagang di Makassar melalui katalog digital. Setiap petani mitra dapat menampilkan profil kebun & komoditasnya secara gratis, serta menerima pertanyaan/inkuiri pasokan langsung melalui WhatsApp.
                     </p>
 
                     <!-- Benefit Box -->
@@ -741,8 +741,8 @@
                         <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl mb-4">
                             <i class="fa-brands fa-whatsapp"></i>
                         </div>
-                        <h3 class="font-bold text-base text-slate-900 mb-2">Kontak Langsung ke Pembeli</h3>
-                        <p class="text-xs text-slate-500 leading-relaxed">Pesanan masuk langsung ke WhatsApp Anda, tanpa perantara.</p>
+                        <h3 class="font-bold text-base text-slate-900 mb-2">Kontak Direct HOREKA</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed">Calon pembeli HOREKA menghubungi Anda langsung via WhatsApp tanpa perantara.</p>
                     </div>
 
                     <div class="p-6 rounded-3xl bg-slate-50 border border-slate-200">
@@ -758,7 +758,7 @@
                             <i class="fa-solid fa-calendar-days"></i>
                         </div>
                         <h3 class="font-bold text-base text-slate-900 mb-2">Info Musiman Terpublikasi</h3>
-                        <p class="text-xs text-slate-500 leading-relaxed">Bantu pembeli merencanakan pesanan lewat info musim panen Anda.</p>
+                        <p class="text-xs text-slate-500 leading-relaxed">Bantu pelaku usaha merencanakan pasokan lewat info dan jadwal panen Anda.</p>
                     </div>
                 </div>
             </div>
@@ -775,51 +775,51 @@
                 <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900">
                     Pertanyaan Yang Sering Diajukan
                 </h2>
-                <p class="text-slate-600 text-sm">Temukan jawaban atas pertanyaan populer seputar cara pemesanan dan kemitraan di DariTani.co.id.</p>
+                <p class="text-slate-600 text-sm">Temukan jawaban atas pertanyaan populer seputar penggunaan katalog dan kemitraan di DariTani.co.id.</p>
             </div>
 
             <div class="space-y-4" id="faq-accordion">
                 <!-- FAQ Item 1 -->
                 <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
                     <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-slate-900 flex justify-between items-center gap-4 hover:text-brand-400 transition-colors">
-                        <span>Bagaimana cara memesan produk di DariTani.co.id?</span>
+                        <span>Bagaimana cara menghubungi petani di DariTani.co.id?</span>
                         <i class="fa-solid fa-chevron-down text-sm text-slate-400 transition-transform duration-300"></i>
                     </button>
                     <div class="faq-content hidden px-5 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
-                        Pilih produk yang Anda inginkan di halaman Katalog, lalu klik tombol "Pesan Sekarang". Sistem akan otomatis mengarahkan Anda ke WhatsApp petani terkait, lengkap dengan catatan produk yang Anda pilih.
+                        Pilih produk atau profil komoditas yang Anda butuhkan di halaman Katalog, lalu klik tombol "Hubungi Petani". Anda akan langsung terhubung ke nomor WhatsApp petani mitra untuk menanyakan ketersediaan stok, kesepakatan harga, dan sampel produk.
                     </div>
                 </div>
 
                 <!-- FAQ Item 2 -->
                 <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
                     <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-slate-900 flex justify-between items-center gap-4 hover:text-brand-400 transition-colors">
-                        <span>Apakah DariTani.co.id yang mengurus pengiriman produk?</span>
+                        <span>Apakah DariTani.co.id memfasilitasi transaksi pembayaran atau pengiriman?</span>
                         <i class="fa-solid fa-chevron-down text-sm text-slate-400 transition-transform duration-300"></i>
                     </button>
                     <div class="faq-content hidden px-5 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
-                        Tidak. DariTani.co.id berperan sebagai katalog dan penghubung kontak. Proses pengiriman dan kesepakatan lebih lanjut diatur langsung antara Anda dan petani melalui WhatsApp.
+                        Tidak. DariTani.co.id murni berfungsi sebagai katalog digital dan direktori penghubung kontak. Kami tidak memiliki fitur keranjang belanja, checkout, atau sistem pembayaran di dalam website. Seluruh kesepakatan harga, pembayaran, dan pengiriman terjadi secara langsung antara pembeli HOREKA dan petani.
                     </div>
                 </div>
 
                 <!-- FAQ Item 3 -->
                 <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
                     <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-slate-900 flex justify-between items-center gap-4 hover:text-brand-400 transition-colors">
-                        <span>Apakah ada biaya untuk petani yang ingin bergabung?</span>
+                        <span>Apakah ada biaya untuk petani yang mendaftar?</span>
                         <i class="fa-solid fa-chevron-down text-sm text-slate-400 transition-transform duration-300"></i>
                     </button>
                     <div class="faq-content hidden px-5 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
-                        Tidak ada. Petani dapat mendaftar dan menampilkan produknya di katalog tanpa dipungut biaya sama sekali.
+                        Sama sekali tidak ada. Petani Malino dapat menampilkan profil kebun dan komoditas hasil panennya di katalog secara gratis tanpa biaya pendaftaran maupun potongan transaksi.
                     </div>
                 </div>
 
                 <!-- FAQ Item 4 -->
                 <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
                     <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-slate-900 flex justify-between items-center gap-4 hover:text-brand-400 transition-colors">
-                        <span>Apakah bisa memesan pasokan rutin untuk Restoran atau Hotel?</span>
+                        <span>Apakah pelaku HOREKA bisa bernegosiasi pasokan rutin?</span>
                         <i class="fa-solid fa-chevron-down text-sm text-slate-400 transition-transform duration-300"></i>
                     </button>
                     <div class="faq-content hidden px-5 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
-                        Bisa. Anda dapat menghubungi petani mitra langsung melalui WhatsApp untuk mendiskusikan kebutuhan pasokan rutin sesuai kesepakatan bersama.
+                        Sangat bisa. Pelaku usaha Hotel, Restoran, dan Cafe di Makassar dapat berdiskusi secara langsung dengan petani mitra melalui WhatsApp/telepon untuk menyepakati kontrak pasokan rutin, standar kualitas, dan jadwal pengiriman.
                     </div>
                 </div>
             </div>
@@ -845,7 +845,7 @@
 
                     <div class="flex flex-col sm:flex-row gap-3 shrink-0">
                         <a href="#katalog" class="text-center font-bold text-brand-500 bg-white hover:bg-brand-100 px-7 py-3.5 rounded-2xl shadow-lg transition-all">
-                            Lihat Katalog Produk
+                            Lihat Katalog Petani
                         </a>
                         <a href="#" class="text-center font-bold text-white bg-brand-400 hover:bg-brand-300 px-7 py-3.5 rounded-2xl shadow-lg transition-all">
                             Daftar Jadi Mitra Petani
@@ -926,10 +926,10 @@
         </div>
     </footer>
 
-    <!-- ORDER / CONTACT MODAL POPUP -->
-    <div id="order-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <!-- CONTACT PETANI MODAL POPUP -->
+    <div id="contact-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative animate-in fade-in zoom-in duration-200">
-            <button onclick="closeOrderModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center">
+            <button onclick="closeContactModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
@@ -938,33 +938,34 @@
                     <i class="fa-brands fa-whatsapp"></i>
                 </div>
                 <div>
-                    <h3 class="font-heading font-bold text-lg text-slate-900">Pesan via WhatsApp</h3>
-                    <p class="text-xs text-slate-500">Anda akan diarahkan langsung ke WhatsApp petani</p>
+                    <h3 class="font-heading font-bold text-lg text-slate-900">Hubungi Petani Mitra</h3>
+                    <p class="text-xs text-slate-500">Terhubung langsung ke WhatsApp petani tanpa perantara</p>
                 </div>
             </div>
 
-            <form onsubmit="submitOrder(event)" class="space-y-4">
+            <form onsubmit="submitContact(event)" class="space-y-4">
                 <div class="p-4 rounded-2xl bg-brand-100 border border-brand-200">
-                    <p class="text-xs text-brand-500 font-semibold" id="modal-product-name">Produk: Kentang Malino</p>
-                    <p class="text-xs text-slate-500" id="modal-product-farm">Lokasi: Malino, Kab. Gowa</p>
-                    <p class="text-sm font-extrabold text-brand-500 mt-1" id="modal-product-price">Rp 12.000 / kg</p>
+                    <p class="text-xs text-brand-500 font-semibold" id="modal-product-name">Komoditas: Kentang Malino</p>
+                    <p class="text-xs text-slate-600 font-medium mt-0.5" id="modal-farmer-name">Petani: Pak Dengu (Kelompok Tani Malino)</p>
+                    <p class="text-xs text-slate-500" id="modal-product-farm">Lokasi Kebun: Malino, Kab. Gowa</p>
+                    <p class="text-sm font-extrabold text-brand-500 mt-1" id="modal-product-price">Rp 12.000 / kg (Estimasi)</p>
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Lengkap</label>
-                    <input type="text" id="order-name" required placeholder="Contoh: Budi Santoso" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-300">
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Nama / Nama Usaha HOREKA</label>
+                    <input type="text" id="contact-name" required placeholder="Contoh: Budi (Restoran Melati Makassar)" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-300">
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">Catatan Pesanan (jumlah, kebutuhan khusus)</label>
-                    <textarea id="order-note" required rows="3" placeholder="Contoh: 10 kg, untuk kebutuhan mingguan restoran" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-300"></textarea>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Pesan / Pertanyaan Pasokan</label>
+                    <textarea id="contact-note" required rows="3" placeholder="Contoh: Halo Pak, saya ingin menanyakan ketersediaan stok 50 kg untuk kebutuhan rutin mingguan restoran kami." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-300"></textarea>
                 </div>
 
-                <p class="text-[11px] text-slate-400 leading-relaxed">Harga dan detail pesanan akan dikonfirmasi langsung bersama petani melalui WhatsApp.</p>
+                <p class="text-[11px] text-slate-400 leading-relaxed">DariTani.co.id hanya menghubungkan kontak. Kesepakatan harga, pengiriman, dan transaksi dilakukan langsung bersama petani.</p>
 
-                <button type="submit" class="w-full bg-brand-400 hover:bg-brand-400 text-white font-bold py-3.5 rounded-2xl shadow-lg shadow-brand-400/30 transition-all flex items-center justify-center gap-2">
+                <button type="submit" class="w-full bg-brand-400 hover:bg-brand-500 text-white font-bold py-3.5 rounded-2xl shadow-lg shadow-brand-400/30 transition-all flex items-center justify-center gap-2">
                     <i class="fa-brands fa-whatsapp text-lg"></i>
-                    <span>Lanjut ke WhatsApp Petani</span>
+                    <span>Hubungi via WhatsApp</span>
                 </button>
             </form>
         </div>
@@ -1002,6 +1003,7 @@
         let currentProductName = '';
         let currentProductPrice = 0;
         let currentProductFarm = '';
+        let currentFarmerName = '';
         let currentFarmerPhone = '';
 
         // Mobile drawer navigation toggle
@@ -1045,43 +1047,42 @@
             }
         }
 
-        // Order Modal Functions
-        // NOTE: currentFarmerPhone is a placeholder number for this demo page.
-        // When connected to the backend, replace it with each farmer's real
-        // WhatsApp number pulled from the database (per product/petani).
-        function openOrderModal(name, price, farm, phone) {
+        // Contact Petani Modal Functions
+        function openContactModal(name, price, farm, farmerName, phone) {
             currentProductName = name;
             currentProductPrice = parseInt(price);
             currentProductFarm = farm;
+            currentFarmerName = farmerName;
             currentFarmerPhone = phone;
 
-            document.getElementById('modal-product-name').innerText = 'Produk: ' + name;
-            document.getElementById('modal-product-farm').innerText = 'Lokasi: ' + farm;
-            document.getElementById('modal-product-price').innerText = 'Rp ' + currentProductPrice.toLocaleString('id-ID') + ' / kg';
-            document.getElementById('order-name').value = '';
-            document.getElementById('order-note').value = '';
-            document.getElementById('order-modal').classList.remove('hidden');
+            document.getElementById('modal-product-name').innerText = 'Komoditas: ' + name;
+            document.getElementById('modal-farmer-name').innerText = 'Petani: ' + farmerName;
+            document.getElementById('modal-product-farm').innerText = 'Lokasi Kebun: ' + farm;
+            document.getElementById('modal-product-price').innerText = 'Rp ' + currentProductPrice.toLocaleString('id-ID') + ' / kg (Estimasi)';
+            document.getElementById('contact-name').value = '';
+            document.getElementById('contact-note').value = '';
+            document.getElementById('contact-modal').classList.remove('hidden');
         }
 
-        function closeOrderModal() {
-            document.getElementById('order-modal').classList.add('hidden');
+        function closeContactModal() {
+            document.getElementById('contact-modal').classList.add('hidden');
         }
 
-        // Builds a WhatsApp deep link pre-filled with the order note and
-        // redirects the buyer straight to the farmer's WhatsApp number.
-        function submitOrder(e) {
+        // Builds a WhatsApp deep link pre-filled with inquiry note and
+        // connects the buyer straight to the farmer's WhatsApp number.
+        function submitContact(e) {
             e.preventDefault();
-            const name = document.getElementById('order-name').value;
-            const note = document.getElementById('order-note').value;
+            const name = document.getElementById('contact-name').value;
+            const note = document.getElementById('contact-note').value;
 
-            const message = 'Halo, saya ' + name + ' dari DariTani.co.id.\n' +
-                'Saya ingin memesan: ' + currentProductName + ' (' + currentProductFarm + ')\n' +
-                'Catatan pesanan: ' + note;
+            const message = 'Halo ' + currentFarmerName + ', saya ' + name + ' melihat profil komoditas Anda di katalog DariTani.co.id.\n\n' +
+                'Komoditas: ' + currentProductName + ' (' + currentProductFarm + ')\n' +
+                'Pesan / Inkuiri: ' + note;
 
             const waUrl = 'https://wa.me/' + currentFarmerPhone + '?text=' + encodeURIComponent(message);
 
-            closeOrderModal();
-            showToast('Mengarahkan ke WhatsApp...', 'Anda akan terhubung langsung dengan petani.');
+            closeContactModal();
+            showToast('Mengarahkan ke WhatsApp...', 'Anda akan terhubung langsung dengan petani mitra.');
             window.open(waUrl, '_blank');
         }
 
@@ -1108,6 +1109,5 @@
             }, 4000);
         }
     </script>
-</body>
 </body>
 </html>
