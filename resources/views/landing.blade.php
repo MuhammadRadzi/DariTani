@@ -862,11 +862,8 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
                 <!-- Col 1: Brand Info -->
                 <div class="lg:col-span-2 space-y-4">
-                    <a href="#" class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-2xl bg-brand-400 flex items-center justify-center text-white font-bold text-lg">
-                            <i class="fa-solid fa-leaf"></i>
-                        </div>
-                        <span class="font-heading font-extrabold text-2xl text-white tracking-tight">Dari<span class="text-brand-300">Tani</span></span>
+                    <a href="#" class="flex items-center gap-3 group">
+                        <x-logo variant="full" class="h-9 w-auto text-brand-100 group-hover:scale-105 transition-transform" />
                     </a>
                     <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
                         DariTani.co.id menghubungkan petani hortikultura Malino, Kabupaten Gowa langsung dengan pelaku usaha Horeka dan pedagang di Makassar — tanpa perantara, gratis untuk petani.
