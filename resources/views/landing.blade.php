@@ -6,12 +6,12 @@
     <title>DariTani.co.id — Katalog Hasil Tani Malino untuk Pelaku Usaha Makassar</title>
     <meta name="description" content="DariTani.co.id mempertemukan petani hortikultura Malino, Kabupaten Gowa langsung dengan pelaku usaha Horeka dan pedagang di Makassar melalui katalog digital & informasi kontak langsung — tanpa perantara, gratis untuk petani.">
     <meta name="keywords" content="DariTani, DariTani.co.id, petani Malino, sayur Malino, kentang Malino, katalog hasil tani, Horeka Makassar, pedagang sayur Makassar">
-    
+
     <!-- Font Awesome / CDN Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    
+
     <style>
         .glass-nav {
             background: rgba(255, 255, 255, 0.85);
