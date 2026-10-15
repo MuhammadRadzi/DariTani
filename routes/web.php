@@ -7,6 +7,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\BookmarkController;
+use App\Http\Controllers\KebunSayaController;
+use App\Http\Controllers\PesananMasukController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -71,3 +75,16 @@ Route::middleware('auth')->group(function () {
 //     Route::resource('kebun', FarmController::class);
 //     Route::resource('produk', FarmerProductController::class);
 // });
+
+Route::middleware('auth')->prefix('kebun-saya')->name('kebun-saya.')->group(function () {
+    Route::get('/', [KebunSayaController::class, 'index'])->name('index');
+    Route::put('/{farm}', [KebunSayaController::class, 'updateKebun'])->name('update');
+    Route::post('/{farm}/produk', [KebunSayaController::class, 'storeProduk'])->name('produk.store');
+    Route::put('/produk/{product}', [KebunSayaController::class, 'updateProduk'])->name('produk.update');
+    Route::delete('/produk/{product}', [KebunSayaController::class, 'destroyProduk'])->name('produk.destroy');
+});
+
+Route::middleware('auth')->prefix('pesanan-masuk')->name('pesanan-masuk.')->group(function () {
+    Route::get('/', [PesananMasukController::class, 'index'])->name('index');
+    Route::patch('/{order}/status', [PesananMasukController::class, 'updateStatus'])->name('status');
+});

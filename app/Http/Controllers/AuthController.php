@@ -24,10 +24,10 @@ class AuthController extends Controller
             'password' => ['required'],
         ]);
 
-        // Login hanya untuk role customer -- sesuai keputusan tim,
-        // halaman ini bukan untuk petani/admin.
+        // Login hanya untuk role petani -- sesuai keputusan tim,
+        // meskipun di kode terbaru ini kita juga menambahkan role customer supaya bisa login (test)
         $user = User::where('email_user', $credentials['email_user'])
-            ->where('role', 'customer')
+            ->whereIn('role', ['customer', 'farmer'])
             ->first();
 
         if (! $user || ! Hash::check($credentials['password'], $user->password_hash)) {
@@ -36,10 +36,12 @@ class AuthController extends Controller
                 ->onlyInput('email_user');
         }
 
+        Customer::firstOrCreate(['id_user' => $user->id_user]);
+
         Auth::login($user);
         $request->session()->regenerate();
 
-        return redirect()->route('user.index');
+        return redirect()->route($user->role === 'farmer' ? 'kebun-saya.index' : 'user.index');
     }
 
     public function showRegister(): View
@@ -71,7 +73,7 @@ class AuthController extends Controller
         Auth::login($user);
         $request->session()->regenerate();
 
-        return redirect()->route('user.index');
+        return redirect()->route($user->role === 'farmer' ? 'kebun-saya.index' : 'user.index');
     }
 
     public function logout(Request $request): RedirectResponse
