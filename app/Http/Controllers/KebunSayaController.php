@@ -52,7 +52,21 @@ class KebunSayaController extends Controller
             'name_farm' => ['sometimes', 'required', 'string', 'max:100'],
             'location'  => ['sometimes', 'required', 'string', 'max:255'],
 			'description_farm' => ['sometimes', 'nullable', 'string', 'max:1000'],
+            'photo_farm' => ['nullable', 'image', 'max:4096'],
+        ], [
+            'photo_farm.image' => 'File harus berupa gambar (JPG, PNG, dll).',
+            'photo_farm.max'   => 'Ukuran foto maksimal 4 MB.',
+            'photo_farm.uploaded' => 'Foto gagal diunggah. Coba foto dengan ukuran lebih kecil.',
         ]);
+
+        if ($request->hasFile('photo_farm')) {
+            if ($farm->photo_farm) {
+                Storage::disk('public')->delete($farm->photo_farm);
+            }
+            $data['photo_farm'] = $request->file('photo_farm')->store('farms', 'public');
+        } else {
+            unset($data['photo_farm']);
+        }
 
         $farm->update($data);
 

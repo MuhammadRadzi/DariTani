@@ -42,13 +42,26 @@
         @endif
 
         {{-- Banner kebun --}}
-        <div class="relative h-[204px] rounded-2xl overflow-hidden mb-5">
+        <div class="relative h-40 rounded-2xl overflow-hidden mb-5">
             @if ($farm->photo_farm)
                 <img src="{{ asset('storage/' . $farm->photo_farm) }}" alt="{{ $farm->name_farm }}"
                      class="absolute inset-0 w-full h-full object-cover">
             @else
                 <div class="absolute inset-0 bg-gradient-to-br from-brand-200 to-brand-300"></div>
             @endif
+
+            <form x-ref="fotoForm" method="POST" action="{{ route('kebun-saya.update', $farm) }}" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <label class="absolute bottom-3 right-3 flex items-center gap-2 bg-black/50 hover:bg-black/60 text-white text-xs font-medium rounded-full px-3 py-2 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0z" />
+                    </svg>
+                    Ganti foto
+                    <input type="file" name="photo_farm" accept="image/*" class="hidden" @change="$refs.fotoForm.submit()">
+                </label>
+            </form>
         </div>
 
         {{-- Nama kebun --}}
@@ -60,6 +73,26 @@
                 </svg>
             </button>
         </div>
+
+        {{-- Deskripsi kebun --}}
+		<form method="POST" action="{{ route('kebun-saya.update', $farm) }}" class="mb-4" x-data="{ dirty: false }">
+		    @csrf
+		    @method('PUT')
+		    <textarea
+		        name="description_farm"
+		        rows="4"
+		        maxlength="500"
+		        placeholder="Tulis deskripsi kebun kamu..."
+		        @input="dirty = true"
+		        class="w-full border border-[#878787] rounded-lg px-3 py-2 text-sm text-black placeholder-[#969696] focus:outline-none focus:ring-2 focus:ring-brand-300 focus:border-transparent resize-none"
+		    >{{ old('description_farm', $farm->description_farm) }}</textarea>
+		
+		    <button type="submit" x-show="dirty" x-transition
+		            class="mt-2 px-4 py-1.5 text-sm font-medium rounded-lg border-2 border-brand-300 text-brand-300 hover:bg-brand-100/20"
+		            style="display: none;">
+		        Simpan deskripsi
+		    </button>
+		</form>
 
         {{-- Lokasi --}}
         <div class="flex items-center justify-between gap-3 mb-6">
@@ -101,13 +134,17 @@
                     ];
                 @endphp
 
-                <div class="flex items-start gap-3 pb-4 border-b border-gray-100">
+                <div class="flex items-start gap-3 p-3 bg-white rounded-2xl border border-gray-100 shadow-sm">
                     <div class="relative w-[110px] h-[110px] shrink-0 rounded-lg overflow-hidden">
                         @if ($product->product_image)
                             <img src="{{ asset('storage/' . $product->product_image) }}" alt="{{ $product->product_name }}"
                                  class="absolute inset-0 w-full h-full object-cover">
                         @else
-                            <div class="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200"></div>
+                            +<div class="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5z" />
+                                </svg>
+                            </div>
                         @endif
                     </div>
 
@@ -131,13 +168,13 @@
                         </div>
                     </div>
 
-                    <div class="flex flex-col gap-2 shrink-0">
+                    <div class="flex flex-col gap-2 shrink-0 w-17">
                         <button type="button" @click="openUbah(@js($payload))"
-                                class="px-3 py-1 text-xs font-medium rounded border border-brand-300 text-brand-300">
+                                class="py-1.5 text-xs font-medium rounded-lg border border-brand-300 text-brand-300">
                             Ubah
                         </button>
                         <button type="button" @click="openHapus('{{ route('kebun-saya.produk.destroy', $product) }}')"
-                                class="px-3 py-1 text-xs font-medium rounded border border-red-600 text-red-600">
+                                class="py-1.5 text-xs font-medium rounded-lg border border-red-600 text-red-600">
                             Hapus
                         </button>
                     </div>
@@ -161,25 +198,7 @@
             </div>
         </div>
 
-		{{-- Deskripsi kebun --}}
-		<form method="POST" action="{{ route('kebun-saya.update', $farm) }}" class="mb-4" x-data="{ dirty: false }">
-		    @csrf
-		    @method('PUT')
-		    <textarea
-		        name="description_farm"
-		        rows="4"
-		        maxlength="500"
-		        placeholder="Tulis deskripsi kebun kamu..."
-		        @input="dirty = true"
-		        class="w-full border border-[#878787] rounded-lg px-3 py-2 text-sm text-black placeholder-[#969696] focus:outline-none focus:ring-2 focus:ring-brand-300 focus:border-transparent resize-none"
-		    >{{ old('description_farm', $farm->description_farm) }}</textarea>
-		
-		    <button type="submit" x-show="dirty" x-transition
-		            class="mt-2 px-4 py-1.5 text-sm font-medium rounded-lg border-2 border-brand-300 text-brand-300 hover:bg-brand-100/20"
-		            style="display: none;">
-		        Simpan deskripsi
-		    </button>
-		</form>
+
 
         {{-- Modal: ganti lokasi --}}
         <div x-show="modal === 'lokasi'" x-transition.opacity class="fixed inset-0 z-9999 flex items-center justify-center bg-black/40 px-6" style="display: none;">
