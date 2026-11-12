@@ -15,6 +15,12 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'role' => \App\Http\Middleware\EnsureRole::class,
         ]);
+
+        // Pengguna yang sudah login lalu membuka /login atau /register
+        // diarahkan sesuai rolenya.
+        $middleware->redirectUsersTo(fn () => auth()->user()?->role === 'farmer'
+            ? route('kebun-saya.index')
+            : route('user.index'));
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
