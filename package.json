@@ -14,7 +14,6 @@
         "vite": "^5.4.11"
     },
     "dependencies": {
-        "@tailwindcss/oxide-win32-x64-msvc": "^4.3.3",
         "alpinejs": "^3.16.2"
     }
 }
