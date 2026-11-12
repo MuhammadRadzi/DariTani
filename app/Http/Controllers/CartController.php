@@ -16,6 +16,20 @@ use Illuminate\View\View;
 
 class CartController extends Controller
 {
+    // Item keranjang hanya boleh diubah/dihapus oleh pemilik keranjangnya.
+    private function authorizeCartItem(CartItem $cartItem): void
+    {
+        $customer = Auth::user()->customer;
+
+        abort_unless(
+            $customer
+                && Cart::where('id_customer', $customer->id_customer)
+                ->where('id_cart', $cartItem->id_cart)
+                ->exists(),
+            403
+        );
+    }
+
     public function index(): View
     {
         $customer = Auth::user()->customer;
@@ -25,7 +39,7 @@ class CartController extends Controller
 
         // Kelompokkan item per kebun (farm), sesuai desain "Daeng Baso' / Puang Kirk"
         // dan aturan checkout yang cuma boleh 1 kebun per transaksi.
-        $groupedByFarm = $cart->items->groupBy(fn ($item) => $item->product->farm->id_farm);
+        $groupedByFarm = $cart->items->groupBy(fn($item) => $item->product->farm->id_farm);
 
         return view('keranjang.index', [
             'cart' => $cart,
@@ -62,6 +76,8 @@ class CartController extends Controller
 
     public function update(Request $request, CartItem $cartItem)
     {
+        $this->authorizeCartItem($cartItem);
+
         $validated = $request->validate([
             'qty' => ['required', 'numeric', 'min:1'],
         ]);
@@ -77,6 +93,8 @@ class CartController extends Controller
 
     public function destroy(CartItem $cartItem): RedirectResponse
     {
+        $this->authorizeCartItem($cartItem);
+        
         $cartItem->delete();
 
         return back()->with('success', 'Produk dihapus dari keranjang.');
@@ -106,7 +124,7 @@ class CartController extends Controller
         // walau tombolnya sudah per-grup, jangan percaya input dari client mentah-mentah.
         $items = CartItem::with('product.farm.farmer.user')
             ->where('id_cart', $cart->id_cart)
-            ->whereHas('product', fn ($q) => $q->where('id_farm', $validated['id_farm']))
+            ->whereHas('product', fn($q) => $q->where('id_farm', $validated['id_farm']))
             ->get();
 
         if ($items->isEmpty()) {
@@ -120,7 +138,7 @@ class CartController extends Controller
             return back()->with('error', 'Petani belum mengatur nomor WhatsApp. Checkout tidak dapat dilanjutkan.');
         }
 
-        $totalAmount = $items->sum(fn ($item) => $item->qty * $item->product->price_per_kg);
+        $totalAmount = $items->sum(fn($item) => $item->qty * $item->product->price_per_kg);
 
         $order = DB::transaction(function () use ($items, $customer, $totalAmount, $farmer) {
             // Hitung nomor pesanan berikutnya khusus untuk farmer ini,
@@ -128,8 +146,8 @@ class CartController extends Controller
             // farmer lain. lockForUpdate() mencegah dua checkout
             // bersamaan pada farmer yang sama mendapat nomor sama.
             $lastOrderNumber = Order::whereHas('items.product.farm', function ($q) use ($farmer) {
-                    $q->where('id_farmer', $farmer->id_farmer);
-                })
+                $q->where('id_farmer', $farmer->id_farmer);
+            })
                 ->lockForUpdate()
                 ->max('order_number');
 
