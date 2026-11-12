@@ -24,8 +24,6 @@ class AuthController extends Controller
             'password' => ['required'],
         ]);
 
-        // Login hanya untuk role petani -- sesuai keputusan tim,
-        // meskipun di kode terbaru ini kita juga menambahkan role customer supaya bisa login (test)
         $user = User::where('email_user', $credentials['email_user'])
             ->whereIn('role', ['customer', 'farmer'])
             ->first();

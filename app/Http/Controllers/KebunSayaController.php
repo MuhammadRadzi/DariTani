@@ -40,8 +40,9 @@ class KebunSayaController extends Controller
 
         $farm->load('products.category');
         $categories = Category::all();
+        $farms = $farmer->farms()->orderBy('id_farm')->get(['id_farm', 'name_farm']);
 
-        return view('kebun-saya.index', compact('farm', 'categories'));
+        return view('kebun-saya.index', compact('farm', 'farms', 'categories'));
     }
 
     public function updateKebun(Request $request, Farm $farm)
