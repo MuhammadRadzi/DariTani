@@ -17,6 +17,7 @@ class Farm extends Model
         'name_farm',
         'location',
         'photo_farm',
+        'description_farm',
     ];
 
     public function farmer(): BelongsTo

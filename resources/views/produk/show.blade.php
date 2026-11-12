@@ -18,10 +18,11 @@
     <div class="mb-6">
         <h1 class="text-2xl font-medium text-black mb-3">{{ $farm->name_farm }}</h1>
 
-        <p class="text-sm text-[#585454] leading-relaxed mb-3">
-            {{ $farm->farmer->farm_name ? $farm->farmer->farm_name . '. ' : '' }}
-            Kebun ini dikelola langsung oleh {{ $farm->farmer->user->name_user ?? 'petani' }}.
-        </p>
+        @php
+            $deskripsi = $farm->description_farm
+                ?: trim(($farm->farmer->farm_name ? $farm->farmer->farm_name . '. ' : '') . 'Kebun ini dikelola langsung oleh ' . ($farm->farmer->user->name_user ?? 'petani') . '.');
+        @endphp
+        <p class="text-sm text-[#585454] leading-relaxed whitespace-pre-line mb-3">{{ $deskripsi }}</p>
 
         <p class="text-base text-black mb-5">
             <span class="text-[#4e4e4e]">Lokasi:</span>

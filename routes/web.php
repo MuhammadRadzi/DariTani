@@ -7,14 +7,18 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\BookmarkController;
+use App\Http\Controllers\KebunSayaController;
+use App\Http\Controllers\PesananMasukController;
+use App\Http\Controllers\ProfilPetaniController;
+
+
 
 /*
 |--------------------------------------------------------------------------
 | Public routes (belum login)
 |--------------------------------------------------------------------------
-| Halaman login ini KHUSUS untuk customer, sesuai catatan desain Figma
-| dan konfirmasi SA. Petani punya jalur akses terpisah (lewat menu
-| hamburger di navbar) yang belum final desainnya -- menyusul.
+| Halaman login dipakai bersama oleh customer dan petani. Setelah login,
+| petani diarahkan ke /kebun-saya dan customer ke /user (lihat AuthController).
 */
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -32,8 +36,9 @@ Route::middleware('guest')->group(function () {
 |--------------------------------------------------------------------------
 | Prioritas SA: Halaman Login & Halaman User jadi dulu sebelum halaman lain.
 */
-Route::middleware('auth')->group(function () {
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
+
+Route::middleware(['auth', 'role:customer'])->group(function () {  
 
     // Halaman User -- prioritas kedua sesuai saran SA
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
@@ -61,13 +66,23 @@ Route::middleware('auth')->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| Farmer routes (menyusul -- placeholder)
+| Farmer routes (butuh login sebagai petani)
 |--------------------------------------------------------------------------
-| Prefix /petani belum final. Diaktifkan setelah alur akses petani
-| dari menu hamburger sudah disepakati desainnya.
 */
-// Route::prefix('petani')->name('petani.')->middleware(['auth', 'role:farmer'])->group(function () {
-//     Route::get('/dashboard', [FarmerDashboardController::class, 'index'])->name('dashboard');
-//     Route::resource('kebun', FarmController::class);
-//     Route::resource('produk', FarmerProductController::class);
-// });
+Route::middleware(['auth', 'role:farmer'])->group(function () {
+    Route::prefix('kebun-saya')->name('kebun-saya.')->group(function () {
+        Route::get('/', [KebunSayaController::class, 'index'])->name('index');
+        Route::put('/{farm}', [KebunSayaController::class, 'updateKebun'])->name('update');
+        Route::post('/{farm}/produk', [KebunSayaController::class, 'storeProduk'])->name('produk.store');
+        Route::put('/produk/{product}', [KebunSayaController::class, 'updateProduk'])->name('produk.update');
+        Route::delete('/produk/{product}', [KebunSayaController::class, 'destroyProduk'])->name('produk.destroy');
+    });
+
+    Route::prefix('pesanan-masuk')->name('pesanan-masuk.')->group(function () {
+        Route::get('/', [PesananMasukController::class, 'index'])->name('index');
+        Route::patch('/{order}/status', [PesananMasukController::class, 'updateStatus'])->name('status');
+    });
+
+    Route::get('/profil-petani', [ProfilPetaniController::class, 'edit'])->name('profil-petani.edit');
+    Route::put('/profil-petani', [ProfilPetaniController::class, 'update'])->name('profil-petani.update');
+});
