@@ -9,6 +9,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\KebunSayaController;
 use App\Http\Controllers\PesananMasukController;
+use App\Http\Controllers\PesananSayaController;
 use App\Http\Controllers\ProfilPetaniController;
 
 
@@ -56,6 +57,10 @@ Route::middleware(['auth', 'role:customer'])->group(function () {
 
     // Checkout -- validasi "1 kebun per transaksi" ditangani di controller
     Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
+
+    // Halaman Riwayat Pesanan Pembeli (Pesanan Saya)
+    Route::get('/pesanan', [PesananSayaController::class, 'index'])->name('pesanan.index');
+    Route::patch('/pesanan/{order}/batal', [PesananSayaController::class, 'cancel'])->name('pesanan.cancel');
 
     // Halaman Markah Petani (bookmark) -- untuk kebun (farm), bukan produk
     Route::get('/markah', [BookmarkController::class, 'index'])->name('markah.index');

@@ -91,6 +91,9 @@
                     class="absolute right-0 top-full mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-100 py-1"
                     style="display: none; z-index: 9999;"
                 >
+                    <a href="{{ route('pesanan.index') }}" class="block px-4 py-2 text-sm text-black hover:bg-gray-50">
+                        Pesanan Saya
+                    </a>
                     <a href="{{ route('user.edit') }}" class="block px-4 py-2 text-sm text-black hover:bg-gray-50">
                         Edit Profil
                     </a>
@@ -159,6 +162,12 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
                 <span class="text-[9px]">Keranjang</span>
+            </a>
+            <a href="{{ route('pesanan.index') }}" class="flex flex-col items-center gap-1 {{ request()->routeIs('pesanan.*') ? 'text-brand-200' : 'text-[#595959]' }}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                </svg>
+                <span class="text-[9px]">Pesanan</span>
             </a>
             <a href="{{ route('markah.index') }}" class="flex flex-col items-center gap-1 {{ request()->routeIs('markah.*') ? 'text-brand-200' : 'text-[#595959]' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
