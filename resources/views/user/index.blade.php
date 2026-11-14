@@ -69,13 +69,17 @@
                                 ? '{{ route('markah.destroy', $farm) }}'
                                 : '{{ route('markah.store', $farm) }}';
                             try {
-                                await fetch(url, {
+                                const res = await fetch(url, {
                                     method: this.bookmarked ? 'DELETE' : 'POST',
                                     headers: {
                                         'Accept': 'application/json',
                                         'X-CSRF-TOKEN': '{{ csrf_token() }}',
                                     },
                                 });
+                                if (!res.ok) {
+                                    $dispatch('toast', { message: await pesanGagal(res, 'Gagal memperbarui markah') });
+                                    return;
+                                }
                                 this.bookmarked = !this.bookmarked;
                                 if (this.bookmarked) {
                                     $dispatch('toast', {
