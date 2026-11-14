@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,6 +31,25 @@ class CartController extends Controller
         );
     }
 
+    // Galat yang sama untuk fetch (JSON 422) dan form biasa (redirect + flash).
+    private function tolak(Request $request, string $pesan)
+    {
+        if ($request->wantsJson()) {
+            return response()->json(['message' => $pesan], 422);
+        }
+
+        return back()->with('error', $pesan);
+    }
+
+    private function pesanStok(Product $product): string
+    {
+        $max = $product->maxOrderQty();
+
+        return $max > 0
+            ? "Stok {$product->product_name} tersisa {$max} Kg."
+            : "{$product->product_name} sedang tidak tersedia.";
+    }
+
     public function index(): View
     {
         $customer = Auth::user()->customer;
@@ -47,7 +67,7 @@ class CartController extends Controller
         ]);
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request): RedirectResponse|JsonResponse
     {
         $validated = $request->validate([
             'id_product' => ['required', 'exists:product,id_product'],
@@ -56,10 +76,18 @@ class CartController extends Controller
 
         $customer = Auth::user()->customer;
         $cart = Cart::firstOrCreate(['id_customer' => $customer->id_customer]);
+        $product = Product::findOrFail($validated['id_product']);
 
         $existingItem = CartItem::where('id_cart', $cart->id_cart)
             ->where('id_product', $validated['id_product'])
             ->first();
+
+        // Total di keranjang (yang sudah ada + yang baru) tidak boleh melebihi stok.
+        $qtyBaru = ($existingItem->qty ?? 0) + ($validated['qty'] ?? 1);
+
+        if ($qtyBaru > $product->maxOrderQty()) {
+            return $this->tolak($request, $this->pesanStok($product));
+        }
 
         if ($existingItem) {
             $existingItem->increment('qty', $validated['qty'] ?? 1);
@@ -69,6 +97,10 @@ class CartController extends Controller
                 'id_product' => $validated['id_product'],
                 'qty' => $validated['qty'] ?? 1,
             ]);
+        }
+
+        if ($request->wantsJson()) {
+            return response()->json(['success' => true]);
         }
 
         return back()->with('success', 'Produk ditambahkan ke keranjang.');
@@ -81,6 +113,12 @@ class CartController extends Controller
         $validated = $request->validate([
             'qty' => ['required', 'integer', 'min:1'],
         ]);
+
+        $product = $cartItem->product;
+
+        if ($validated['qty'] > $product->maxOrderQty() && $validated['qty'] > (float) $cartItem->qty) {
+            return $this->tolak($request, $this->pesanStok($product));
+        }
 
         $cartItem->update(['qty' => $validated['qty']]);
 
@@ -141,6 +179,22 @@ class CartController extends Controller
         $totalAmount = $items->sum(fn($item) => $item->qty * $item->product->price_per_kg);
 
         $order = DB::transaction(function () use ($items, $customer, $totalAmount, $farmer) {
+            // Kunci baris produk lalu pastikan stok masih cukup. Stok bisa berubah
+            // sejak barang masuk keranjang. Kalau tidak cukup, kembalikan pesan
+            // (string) sebelum ada data yang ditulis.
+            $produk = Product::whereIn('id_product', $items->pluck('id_product'))
+                ->lockForUpdate()
+                ->get()
+                ->keyBy('id_product');
+
+            foreach ($items as $item) {
+                $p = $produk[$item->id_product];
+
+                if ($item->qty > $p->maxOrderQty()) {
+                    return $this->pesanStok($p);
+                }
+            }
+
             // Hitung nomor pesanan berikutnya khusus untuk farmer ini,
             // supaya urutannya tidak lompat-lompat akibat checkout dari
             // farmer lain. lockForUpdate() mencegah dua checkout
@@ -174,8 +228,18 @@ class CartController extends Controller
             // Item dari kebun lain (jika ada) tetap tersimpan.
             CartItem::whereIn('id_cart_item', $items->pluck('id_cart_item'))->delete();
 
+            // Kurangi stok di transaksi yang sama dengan pembuatan pesanan.
+            foreach ($items as $item) {
+                $produk[$item->id_product]->decrement('stock_qty', $item->qty);
+            }
+
             return $order;
         });
+
+        // Closure mengembalikan string kalau stok tidak cukup (tidak ada yang tersimpan).
+        if (is_string($order)) {
+            return back()->with('error', $order);
+        }
 
         $pesan = $this->formatPesanStruk($order, $items, $farm, $customer);
         $waUrl = 'https://wa.me/' . $farmer->whatsapp_number . '?text=' . urlencode($pesan);

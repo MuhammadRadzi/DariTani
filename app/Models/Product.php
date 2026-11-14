@@ -34,6 +34,12 @@ class Product extends Model
         'harvest_date' => 'date',
     ];
 
+    // Jumlah (kg, bilangan bulat) maksimum yang boleh dipesan saat ini.
+    public function maxOrderQty(): int
+    {
+        return $this->is_available ? (int) floor((float) $this->stock_qty) : 0;
+    }
+
     public function farm(): BelongsTo
     {
         return $this->belongsTo(Farm::class, 'id_farm', 'id_farm');
