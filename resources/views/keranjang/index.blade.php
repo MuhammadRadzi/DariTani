@@ -108,11 +108,12 @@
                                     async ubah(delta) {
                                         const baru = Math.max(1, this.qty + delta);
                                         if (baru === this.qty) return;
+                                        const lama = this.qty;
                                         this.qty = baru;
                                         setQty({{ $item->id_cart_item }}, baru);
                                         this.loading = true;
                                         try {
-                                            await fetch('{{ route('keranjang.update', $item) }}', {
+                                            const res = await fetch('{{ route('keranjang.update', $item) }}', {
                                                 method: 'POST',
                                                 headers: {
                                                     'Content-Type': 'application/json',
@@ -121,6 +122,13 @@
                                                     'X-HTTP-Method-Override': 'PATCH',
                                                 },
                                                 body: JSON.stringify({ qty: this.qty }),
+                                            });
+                                            if (!res.ok) throw new Error(await pesanGagal(res, 'Gagal mengubah jumlah'));
+                                        } catch (e) {
+                                            this.qty = lama;
+                                            setQty({{ $item->id_cart_item }}, lama);
+                                            $dispatch('toast', {
+                                                message: e instanceof TypeError ? 'Gagal mengubah jumlah' : e.message,
                                             });
                                         } finally {
                                             this.loading = false;
@@ -142,7 +150,8 @@
                                 type="button"
                                 @click="
                                     if ($el.dataset.removing) return;
-                                    $el.dataset.removing = '1';
+                                    const btn = $el;
+                                    btn.dataset.removing = '1';
                                     const card = $el.closest('[data-cart-item]');
                                     fetch('{{ route('keranjang.destroy', $item) }}', {
                                         method: 'DELETE',
@@ -150,13 +159,21 @@
                                             'Accept': 'application/json',
                                             'X-CSRF-TOKEN': '{{ csrf_token() }}',
                                         },
-                                    }).then(() => {
+                                    }).then(async (res) => {
+                                        if (!res.ok) {
+                                            delete btn.dataset.removing;
+                                            $dispatch('toast', { message: await pesanGagal(res, 'Gagal menghapus produk') });
+                                            return;
+                                        }
                                         $dispatch('toast', { message: 'Produk dihapus dari keranjang.' });
                                         items = items.filter(i => i.id !== {{ $item->id_cart_item }});
                                         card.style.transition = 'opacity 250ms, transform 250ms';
                                         card.style.opacity = '0';
                                         card.style.transform = 'scale(0.97)';
                                         setTimeout(() => card.remove(), 250);
+                                    }).catch(() => {
+                                        delete btn.dataset.removing;
+                                        $dispatch('toast', { message: 'Gagal menghapus produk' });
                                     });
                                 "
                                 aria-label="Hapus"

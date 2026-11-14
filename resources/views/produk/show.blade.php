@@ -58,7 +58,7 @@
                                 if (this.loading) return;
                                 this.loading = true;
                                 try {
-                                    await fetch('{{ route('keranjang.store') }}', {
+                                    const res = await fetch('{{ route('keranjang.store') }}', {
                                         method: 'POST',
                                         headers: {
                                             'Content-Type': 'application/json',
@@ -67,6 +67,10 @@
                                         },
                                         body: JSON.stringify({ id_product: {{ $product->id_product }} }),
                                     });
+                                    if (!res.ok) {
+                                        $dispatch('toast', { message: await pesanGagal(res, 'Gagal menambahkan produk') });
+                                        return;
+                                    }
                                     this.added = true;
                                     $dispatch('toast', {
                                         message: 'Telah ditambahkan di keranjang.',
