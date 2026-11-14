@@ -6,6 +6,7 @@ use App\Models\Order;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
 class PesananMasukController extends Controller
@@ -64,7 +65,17 @@ class PesananMasukController extends Controller
         if ($data['status'] === 'cancelled') {
             $update['cancelled_at'] = now();
         }
-        $order->update($update);
+
+        DB::transaction(function () use ($order, $update) {
+            $order->update($update);
+
+            // Stok dikurangi saat checkout, jadi dikembalikan kalau pesanan dibatalkan.
+            if ($update['status'] === 'cancelled') {
+                foreach ($order->items()->with('product')->get() as $item) {
+                    $item->product->increment('stock_qty', $item->qty);
+                }
+            }
+        });
 
         return back()->with('success', 'Status pesanan #' . $order->order_number . ' diperbarui.');
     }

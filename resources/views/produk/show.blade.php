@@ -48,6 +48,7 @@
                         <div class="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200"></div>
                     @endif
 
+                    @if ($product->maxOrderQty() > 0)
                     {{-- Tombol tambah ke keranjang, dengan animasi feedback --}}
                     <div
                         x-data="{
@@ -101,6 +102,11 @@
                             </template>
                         </button>
                     </div>
+                    @else
+                        <span class="absolute top-2 right-2 bg-gray-700/80 text-white text-xs font-medium px-3 py-1 rounded-full">
+                            Habis
+                        </span>
+                    @endif
                 </div>
 
                 {{-- Info produk --}}
