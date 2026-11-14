@@ -51,7 +51,7 @@ class CartController extends Controller
     {
         $validated = $request->validate([
             'id_product' => ['required', 'exists:product,id_product'],
-            'qty' => ['nullable', 'numeric', 'min:0.1'],
+            'qty' => ['nullable', 'integer', 'min:1'],
         ]);
 
         $customer = Auth::user()->customer;
@@ -79,7 +79,7 @@ class CartController extends Controller
         $this->authorizeCartItem($cartItem);
 
         $validated = $request->validate([
-            'qty' => ['required', 'numeric', 'min:1'],
+            'qty' => ['required', 'integer', 'min:1'],
         ]);
 
         $cartItem->update(['qty' => $validated['qty']]);
@@ -200,7 +200,7 @@ class CartController extends Controller
         foreach ($items as $item) {
             $subtotal = $item->qty * $item->product->price_per_kg;
             $baris[] = $item->product->product_name;
-            $baris[] = (int) $item->qty . ' Kg x Rp' . number_format($item->product->price_per_kg, 0, ',', '.')
+            $baris[] = (float) $item->qty . ' Kg x Rp' . number_format($item->product->price_per_kg, 0, ',', '.')
                 . ' = Rp' . number_format($subtotal, 0, ',', '.');
         }
 
