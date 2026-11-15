@@ -15,24 +15,52 @@
         </div>
     </div>
 
-    {{-- Kategori produk (pengganti widget statistik) --}}
+    {{-- Kategori produk --}}
     <div class="grid grid-cols-4 gap-3 mb-5">
+        {{-- Semua --}}
+        <a href="{{ route('user.index', $q ? ['q' => $q] : []) }}"
+           class="flex flex-col items-center gap-2">
+            <div class="w-14 h-14 rounded-full flex items-center justify-center {{ !$kategori ? 'ring-2 ring-offset-2 ring-brand-500' : '' }}"
+                 style="background: linear-gradient(228deg, #8AC936 5%, #A2ED40 165%);">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                </svg>
+            </div>
+            <span class="text-[10px] text-center leading-tight {{ !$kategori ? 'font-semibold text-brand-600' : 'text-[#343434]' }}">Semua</span>
+        </a>
+
         @foreach ($categories as $category)
-            <a href="#" class="flex flex-col items-center gap-2">
-                <div class="w-14 h-14 rounded-full flex items-center justify-center"
+            @php $isActive = (string) $kategori === (string) $category->id_category; @endphp
+            <a href="{{ route('user.index', array_filter(['q' => $q, 'kategori' => $isActive ? '' : $category->id_category])) }}"
+               class="flex flex-col items-center gap-2">
+                <div class="w-14 h-14 rounded-full flex items-center justify-center {{ $isActive ? 'ring-2 ring-offset-2 ring-brand-500' : '' }}"
                      style="background: linear-gradient(228deg, #8AC936 5%, #A2ED40 165%);">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m9-9H3" />
                     </svg>
                 </div>
-                <span class="text-[10px] text-center text-[#343434] leading-tight">{{ $category->name_category }}</span>
+                <span class="text-[10px] text-center leading-tight {{ $isActive ? 'font-semibold text-brand-600' : 'text-[#343434]' }}">{{ $category->name_category }}</span>
             </a>
         @endforeach
     </div>
 
-    {{-- List kebun --}}
-    <h2 class="text-xl font-medium text-black mb-3">Produk DariTani</h2>
+    {{-- Judul & info filter aktif --}}
+    <div class="flex items-center justify-between mb-3">
+        <h2 class="text-xl font-medium text-black">Produk DariTani</h2>
+        @if ($q || $kategori)
+            <a href="{{ route('user.index') }}" class="text-xs text-brand-600 underline">Reset filter</a>
+        @endif
+    </div>
 
+    @if ($q || $kategori)
+        <p class="text-xs text-gray-500 mb-3">
+            @if ($q)Mencari: <span class="font-medium text-black">"{{ $q }}"</span>@endif
+            @if ($q && $kategori) · @endif
+            @if ($kategori)Kategori: <span class="font-medium text-black">{{ $categories->firstWhere('id_category', $kategori)?->name_category ?? $kategori }}</span>@endif
+        </p>
+    @endif
+
+    {{-- List kebun --}}
     <div class="flex flex-col gap-4 pb-4">
         @forelse ($farms as $farm)
             @php $isBookmarked = in_array($farm->id_farm, $bookmarkedFarmIds); @endphp
@@ -124,7 +152,21 @@
                 </a>
             </div>
         @empty
-            <p class="text-sm text-gray-500 text-center py-10">Belum ada kebun yang terdaftar.</p>
+            <div class="text-center py-12">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-14 h-14 mx-auto text-gray-300 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+                </svg>
+                <p class="text-sm text-gray-500">
+                    @if ($q || $kategori)
+                        Tidak ada kebun yang cocok dengan filter ini.
+                    @else
+                        Belum ada kebun yang terdaftar.
+                    @endif
+                </p>
+                @if ($q || $kategori)
+                    <a href="{{ route('user.index') }}" class="mt-3 inline-block text-xs text-brand-600 underline">Tampilkan semua kebun</a>
+                @endif
+            </div>
         @endforelse
     </div>
 

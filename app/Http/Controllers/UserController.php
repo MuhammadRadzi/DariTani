@@ -12,9 +12,25 @@ use Illuminate\View\View;
 
 class UserController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        $farms = Farm::with('farmer.user')->get();
+        $q         = $request->query('q', '');
+        $kategori  = $request->query('kategori', '');
+
+        $farms = Farm::with(['farmer.user', 'products'])
+            ->when($q, function ($query) use ($q) {
+                $query->where(function ($sub) use ($q) {
+                    $sub->where('name_farm', 'like', "%{$q}%")
+                        ->orWhere('location', 'like', "%{$q}%")
+                        ->orWhereHas('products', fn($p) => $p->where('product_name', 'like', "%{$q}%"))
+                        ->orWhereHas('farmer.user', fn($u) => $u->where('name_user', 'like', "%{$q}%"));
+                });
+            })
+            ->when($kategori, function ($query) use ($kategori) {
+                $query->whereHas('products', fn($p) => $p->where('id_category', $kategori));
+            })
+            ->get();
+
         $categories = Category::all();
 
         /** @var User $authUser */
@@ -22,7 +38,7 @@ class UserController extends Controller
         $customer = $authUser->customer;
         $bookmarkedFarmIds = $customer->bookmarks()->pluck('id_farm')->toArray();
 
-        return view('user.index', compact('farms', 'categories', 'bookmarkedFarmIds'));
+        return view('user.index', compact('farms', 'categories', 'bookmarkedFarmIds', 'q', 'kategori'));
     }
 
     public function edit(): View
