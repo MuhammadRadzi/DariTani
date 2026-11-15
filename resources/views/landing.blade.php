@@ -95,16 +95,23 @@
 
             <!-- Right Action Buttons -->
             <div class="hidden md:flex items-center gap-4">
-                <?php if (isset($user)): ?>
-                    <a href="{{ route('user.index') }}" class="text-sm font-semibold text-white bg-brand-400 hover:bg-brand-500 px-5 py-2.5 rounded-xl shadow-md transition-all flex items-center gap-2">
-                        <i class="fa-solid fa-user text-xs"></i>
-                        <span>Dashboard Saya</span>
-                    </a>
-                <?php else: ?>
+                @auth
+                    @if (Auth::user()->role === 'farmer')
+                        <a href="{{ route('kebun-saya.index') }}" class="text-sm font-semibold text-white bg-brand-400 hover:bg-brand-500 px-5 py-2.5 rounded-xl shadow-md transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-tractor text-xs"></i>
+                            <span>Kebun Saya</span>
+                        </a>
+                    @else
+                        <a href="{{ route('user.index') }}" class="text-sm font-semibold text-white bg-brand-400 hover:bg-brand-500 px-5 py-2.5 rounded-xl shadow-md transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-user text-xs"></i>
+                            <span>Dashboard Saya</span>
+                        </a>
+                    @endif
+                @else
                     <a href="{{ route('login') }}" class="text-sm font-semibold text-slate-700 hover:text-brand-400 px-4 py-2 rounded-xl transition-colors">
                         Masuk
                     </a>
-                <?php endif; ?>
+                @endauth
                 <a href="#katalog" class="text-sm font-semibold bg-gradient-to-r from-brand-400 to-brand-300 text-white px-5 py-2.5 rounded-xl shadow-lg shadow-brand-400/25 hover:shadow-brand-400/40 hover:-translate-y-0.5 transition-all flex items-center gap-2">
                     <i class="fa-solid fa-book-open text-xs"></i>
                     <span>Lihat Katalog Petani</span>
@@ -127,11 +134,15 @@
             <a href="#kemitraan" class="block text-slate-700 text-base" onclick="toggleMobileMenu()">Kemitraan Petani</a>
             <a href="#faq" class="block text-slate-700 text-base" onclick="toggleMobileMenu()">FAQ</a>
             <div class="pt-4 border-t border-slate-200 flex flex-col gap-3">
-                <?php if (isset($user)): ?>
-                    <a href="{{ route('user.index') }}" class="text-center font-semibold text-white bg-brand-400 py-3 rounded-xl shadow-md">Dashboard Saya</a>
-                <?php else: ?>
+                @auth
+                    @if (Auth::user()->role === 'farmer')
+                        <a href="{{ route('kebun-saya.index') }}" class="text-center font-semibold text-white bg-brand-400 py-3 rounded-xl shadow-md">Kebun Saya</a>
+                    @else
+                        <a href="{{ route('user.index') }}" class="text-center font-semibold text-white bg-brand-400 py-3 rounded-xl shadow-md">Dashboard Saya</a>
+                    @endif
+                @else
                     <a href="{{ route('login') }}" class="text-center font-semibold text-slate-800 bg-slate-100 py-3 rounded-xl">Masuk ke Akun</a>
-                <?php endif; ?>
+                @endauth
                 <a href="#katalog" class="text-center font-semibold text-white bg-brand-400 py-3 rounded-xl shadow-md">Jelajahi Katalog Petani</a>
             </div>
         </div>
@@ -537,156 +548,87 @@
                 <button onclick="filterCatalog('all', this)" class="category-btn active px-5 py-2.5 rounded-2xl font-semibold text-sm bg-brand-400 text-white shadow-md shadow-brand-400/20 transition-all">
                     🌱 Semua Produk
                 </button>
-                <button onclick="filterCatalog('sayur', this)" class="category-btn px-5 py-2.5 rounded-2xl font-semibold text-sm bg-white text-slate-700 border border-slate-200 hover:bg-brand-100 transition-all">
-                    🥬 Sayuran
-                </button>
-                <button onclick="filterCatalog('umbi', this)" class="category-btn px-5 py-2.5 rounded-2xl font-semibold text-sm bg-white text-slate-700 border border-slate-200 hover:bg-brand-100 transition-all">
-                    🥔 Umbi-umbian
-                </button>
+                @foreach ($categories as $cat)
+                    <button onclick="filterCatalog('cat-{{ $cat->id_category }}', this)" class="category-btn px-5 py-2.5 rounded-2xl font-semibold text-sm bg-white text-slate-700 border border-slate-200 hover:bg-brand-100 transition-all">
+                        {{ $cat->name_category }}
+                    </button>
+                @endforeach
             </div>
 
             <!-- Product Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="product-grid">
-                <div class="product-item umbi bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col justify-between">
-                    <div>
-                        <div class="relative h-52 bg-slate-100 overflow-hidden group">
-                            <svg viewBox="0 0 300 300" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#fef3c7"/><ellipse cx="150" cy="165" rx="95" ry="70" fill="#c98f4f"/><ellipse cx="150" cy="150" rx="95" ry="70" fill="#dba86b"/><circle cx="120" cy="140" r="6" fill="#8a5a2b"/><circle cx="175" cy="130" r="5" fill="#8a5a2b"/><circle cx="160" cy="175" r="5" fill="#8a5a2b"/><circle cx="115" cy="175" r="4" fill="#8a5a2b"/></svg>
-                            <span class="absolute top-4 left-4 bg-brand-400 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow">Umbi-umbian</span>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center gap-2 text-xs text-slate-500 mb-2">
-                                <i class="fa-solid fa-location-dot text-brand-400"></i>
-                                <span>Malino, Kab. Gowa</span>
-                                <span class="mx-1">•</span>
-                                <span class="text-emerald-700 font-semibold">Komoditas Unggulan</span>
-                            </div>
-                            <h3 class="font-heading font-bold text-lg text-slate-900 mb-1">Kentang Malino</h3>
-                            <p class="text-xs text-slate-500 mb-4 line-clamp-2">Kentang segar hasil panen petani Malino, kualitas unggul untuk kebutuhan dapur restoran maupun rumah tangga.</p>
-                        </div>
-                    </div>
-                    <div class="px-6 pb-6 pt-2 border-t border-slate-100 flex items-center justify-between">
+                @forelse ($products as $product)
+                    @php
+                        $farm = $product->farm;
+                        $farmer = $farm?->farmer;
+                        $farmerName = $farmer?->farm_name ?? $farmer?->user?->name_user ?? 'Petani Mitra';
+                        $farmLocation = $farm?->location ?? 'Malino, Kab. Gowa';
+                        $farmDisplayName = $farm?->name_farm ? $farm->name_farm . ' (' . $farmLocation . ')' : $farmLocation;
+                        $waDigits = preg_replace('/\D+/', '', $farmer?->whatsapp_number ?? '');
+                        if (str_starts_with($waDigits, '0')) {
+                            $waDigits = '62' . substr($waDigits, 1);
+                        }
+                    @endphp
+                    <div class="product-item cat-{{ $product->id_category }} bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col justify-between">
                         <div>
-                            <span class="text-xs text-slate-400 block">Estimasi Harga per 1 kg</span>
-                            <span class="font-heading font-extrabold text-xl text-slate-900">Rp 12.000</span>
-                        </div>
-                        <button onclick="openContactModal('Kentang Malino', '12000', 'Malino, Kab. Gowa', 'Pak Dengu (Kelompok Tani Malino)', '6281234567890')" class="bg-brand-400 hover:bg-brand-500 text-white px-4 py-2.5 rounded-2xl shadow-md shadow-brand-400/20 transition-all text-xs font-bold flex items-center gap-2">
-                            <i class="fa-brands fa-whatsapp text-sm"></i> Hubungi Petani
-                        </button>
-                    </div>
-                </div>
-                <div class="product-item sayur bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col justify-between">
-                    <div>
-                        <div class="relative h-52 bg-slate-100 overflow-hidden group">
-                            <svg viewBox="0 0 300 300" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#dcfce7"/><circle cx="150" cy="160" r="95" fill="#166534"/><circle cx="150" cy="160" r="78" fill="#22c55e"/><circle cx="150" cy="160" r="58" fill="#4ade80"/><circle cx="150" cy="160" r="34" fill="#86efac"/><path d="M150 102 q30 30 0 58 M150 102 q-30 30 0 58" stroke="#15803d" stroke-width="3" fill="none" opacity="0.5"/></svg>
-                            <span class="absolute top-4 left-4 bg-emerald-600 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow">Sayuran</span>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center gap-2 text-xs text-slate-500 mb-2">
-                                <i class="fa-solid fa-location-dot text-brand-400"></i>
-                                <span>Malino, Kab. Gowa</span>
-                                <span class="mx-1">•</span>
-                                <span class="text-emerald-700 font-semibold">Panen Berkala</span>
+                            <div class="relative h-52 bg-slate-100 overflow-hidden group">
+                                @if ($product->product_image)
+                                    <img src="{{ asset('storage/' . $product->product_image) }}"
+                                         alt="{{ $product->product_name }}"
+                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                @else
+                                    <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-brand-100/40 via-emerald-50 to-slate-100 text-brand-400">
+                                        <i class="fa-solid fa-seedling text-5xl opacity-60 group-hover:scale-110 transition-transform duration-500"></i>
+                                    </div>
+                                @endif
+                                <span class="absolute top-4 left-4 bg-brand-400 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow">
+                                    {{ $product->category?->name_category ?? 'Komoditas' }}
+                                </span>
+                                @if ($product->stock_qty > 0)
+                                    <span class="absolute top-4 right-4 bg-white/90 backdrop-blur-xs text-slate-700 text-[10px] font-semibold px-2.5 py-1 rounded-full shadow-xs">
+                                        Stok: {{ (int) $product->stock_qty }} kg
+                                    </span>
+                                @endif
                             </div>
-                            <h3 class="font-heading font-bold text-lg text-slate-900 mb-1">Kubis Malino</h3>
-                            <p class="text-xs text-slate-500 mb-4 line-clamp-2">Kubis segar langsung dari kebun Malino, renyah dan cocok untuk berbagai olahan dapur Horeka.</p>
-                        </div>
-                    </div>
-                    <div class="px-6 pb-6 pt-2 border-t border-slate-100 flex items-center justify-between">
-                        <div>
-                            <span class="text-xs text-slate-400 block">Estimasi Harga per 1 kg</span>
-                            <span class="font-heading font-extrabold text-xl text-slate-900">Rp 8.000</span>
-                        </div>
-                        <button onclick="openContactModal('Kubis Malino', '8000', 'Malino, Kab. Gowa', 'Pak Syamsuddin (Petani Hortikultura)', '6281234567890')" class="bg-brand-400 hover:bg-brand-500 text-white px-4 py-2.5 rounded-2xl shadow-md shadow-brand-400/20 transition-all text-xs font-bold flex items-center gap-2">
-                            <i class="fa-brands fa-whatsapp text-sm"></i> Hubungi Petani
-                        </button>
-                    </div>
-                </div>
-                <div class="product-item sayur bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col justify-between">
-                    <div>
-                        <div class="relative h-52 bg-slate-100 overflow-hidden group">
-                            <svg viewBox="0 0 300 300" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#ecfccb"/><path d="M150 230 Q150 120 90 70 Q140 130 150 230 Z" fill="#4ade80"/><path d="M150 230 Q150 110 150 60 Q160 130 150 230 Z" fill="#22c55e"/><path d="M150 230 Q150 120 210 70 Q160 130 150 230 Z" fill="#4ade80"/><path d="M150 230 Q120 150 70 120 Q125 155 150 230 Z" fill="#86efac"/><path d="M150 230 Q180 150 230 120 Q175 155 150 230 Z" fill="#86efac"/><ellipse cx="150" cy="240" rx="18" ry="10" fill="#65a30d"/></svg>
-                            <span class="absolute top-4 left-4 bg-emerald-600 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow">Sayuran</span>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center gap-2 text-xs text-slate-500 mb-2">
-                                <i class="fa-solid fa-location-dot text-brand-400"></i>
-                                <span>Malino, Kab. Gowa</span>
-                                <span class="mx-1">•</span>
-                                <span class="text-emerald-700 font-semibold">Panen Berkala</span>
+                            <div class="p-6">
+                                <div class="flex items-center gap-2 text-xs text-slate-500 mb-2">
+                                    <i class="fa-solid fa-location-dot text-brand-400"></i>
+                                    <span>{{ $farmLocation }}</span>
+                                    <span class="mx-1">•</span>
+                                    <span class="text-emerald-700 font-semibold truncate">{{ $farm?->name_farm ?? 'Kebun Mitra' }}</span>
+                                </div>
+                                <h3 class="font-heading font-bold text-lg text-slate-900 mb-1">{{ $product->product_name }}</h3>
+                                <p class="text-xs text-slate-500 mb-4 line-clamp-2">
+                                    {{ $product->description ?? 'Hasil tani segar berkualitas langsung dari kebun petani mitra di Malino.' }}
+                                </p>
                             </div>
-                            <h3 class="font-heading font-bold text-lg text-slate-900 mb-1">Sawi Malino</h3>
-                            <p class="text-xs text-slate-500 mb-4 line-clamp-2">Sawi hijau segar hasil panen petani Malino, cocok untuk kebutuhan restoran maupun rumah tangga.</p>
                         </div>
-                    </div>
-                    <div class="px-6 pb-6 pt-2 border-t border-slate-100 flex items-center justify-between">
-                        <div>
-                            <span class="text-xs text-slate-400 block">Estimasi Harga per 1 kg</span>
-                            <span class="font-heading font-extrabold text-xl text-slate-900">Rp 7.000</span>
-                        </div>
-                        <button onclick="openContactModal('Sawi Malino', '7000', 'Malino, Kab. Gowa', 'Bu Rahma (Mitra Petani Malino)', '6281234567890')" class="bg-brand-400 hover:bg-brand-500 text-white px-4 py-2.5 rounded-2xl shadow-md shadow-brand-400/20 transition-all text-xs font-bold flex items-center gap-2">
-                            <i class="fa-brands fa-whatsapp text-sm"></i> Hubungi Petani
-                        </button>
-                    </div>
-                </div>
-                <div class="product-item sayur bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col justify-between">
-                    <div>
-                        <div class="relative h-52 bg-slate-100 overflow-hidden group">
-                            <svg viewBox="0 0 300 300" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#fee2e2"/><circle cx="150" cy="170" r="80" fill="#dc2626"/><circle cx="150" cy="165" r="80" fill="#ef4444"/><ellipse cx="125" cy="140" rx="18" ry="12" fill="#f87171" opacity="0.7"/><path d="M150 90 l8 20 l22 2 l-17 15 l6 21 l-19 -12 l-19 12 l6 -21 l-17 -15 l22 -2 Z" fill="#16a34a"/><rect x="145" y="70" width="10" height="24" rx="4" fill="#15803d"/></svg>
-                            <span class="absolute top-4 left-4 bg-rose-600 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow">Sayuran</span>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center gap-2 text-xs text-slate-500 mb-2">
-                                <i class="fa-solid fa-location-dot text-brand-400"></i>
-                                <span>Malino, Kab. Gowa</span>
-                                <span class="mx-1">•</span>
-                                <span class="text-emerald-700 font-semibold">Dataran Tinggi</span>
+                        <div class="px-6 pb-6 pt-2 border-t border-slate-100 flex items-center justify-between gap-3">
+                            <div>
+                                <span class="text-xs text-slate-400 block">Estimasi Harga per 1 kg</span>
+                                <span class="font-heading font-extrabold text-xl text-slate-900">
+                                    Rp {{ number_format($product->price_per_kg, 0, ',', '.') }}
+                                </span>
                             </div>
-                            <h3 class="font-heading font-bold text-lg text-slate-900 mb-1">Tomat Malino</h3>
-                            <p class="text-xs text-slate-500 mb-4 line-clamp-2">Tomat segar berkualitas dari dataran tinggi Malino, cocok untuk kebutuhan dapur Horeka dan pedagang.</p>
+                            <button type="button"
+                                    onclick="openContactModal({{ json_encode($product->product_name) }}, {{ (int) $product->price_per_kg }}, {{ json_encode($farmDisplayName) }}, {{ json_encode($farmerName) }}, {{ json_encode($waDigits) }})"
+                                    class="bg-brand-400 hover:bg-brand-500 text-white px-4 py-2.5 rounded-2xl shadow-md shadow-brand-400/20 transition-all text-xs font-bold flex items-center gap-2 shrink-0">
+                                <i class="fa-brands fa-whatsapp text-sm"></i> Hubungi Petani
+                            </button>
                         </div>
                     </div>
-                    <div class="px-6 pb-6 pt-2 border-t border-slate-100 flex items-center justify-between">
-                        <div>
-                            <span class="text-xs text-slate-400 block">Estimasi Harga per 1 kg</span>
-                            <span class="font-heading font-extrabold text-xl text-slate-900">Rp 15.000</span>
-                        </div>
-                        <button onclick="openContactModal('Tomat Malino', '15000', 'Malino, Kab. Gowa', 'Pak Rustam (Petani Dataran Tinggi)', '6281234567890')" class="bg-brand-400 hover:bg-brand-500 text-white px-4 py-2.5 rounded-2xl shadow-md shadow-brand-400/20 transition-all text-xs font-bold flex items-center gap-2">
-                            <i class="fa-brands fa-whatsapp text-sm"></i> Hubungi Petani
-                        </button>
+                @empty
+                    <div class="col-span-full py-16 text-center bg-white rounded-3xl border border-dashed border-slate-200 p-8">
+                        <i class="fa-solid fa-leaf text-4xl text-slate-300 mb-3 block"></i>
+                        <p class="font-heading font-bold text-slate-700 text-base mb-1">Belum ada komoditas hasil panen</p>
+                        <p class="text-xs text-slate-500">Komoditas segar dari petani mitra akan segera ditampilkan di sini.</p>
                     </div>
-                </div>
-                <div class="product-item umbi bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col justify-between">
-                    <div>
-                        <div class="relative h-52 bg-slate-100 overflow-hidden group">
-                            <svg viewBox="0 0 300 300" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="300" fill="#ffedd5"/><path d="M150 260 L110 110 Q150 90 190 110 Z" fill="#f97316"/><path d="M150 260 L128 110 Q150 100 172 110 Z" fill="#fb923c"/><path d="M150 115 q-6 -30 -26 -42 q10 26 20 44 Z" fill="#22c55e"/><path d="M150 115 q0 -34 0 -50 q8 28 6 50 Z" fill="#16a34a"/><path d="M150 115 q6 -30 26 -42 q-10 26 -20 44 Z" fill="#22c55e"/><path d="M130 160 h40 M126 190 h48 M134 220 h32" stroke="#c2410c" stroke-width="3" opacity="0.4"/></svg>
-                            <span class="absolute top-4 left-4 bg-amber-500 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow">Umbi-umbian</span>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center gap-2 text-xs text-slate-500 mb-2">
-                                <i class="fa-solid fa-location-dot text-brand-400"></i>
-                                <span>Malino, Kab. Gowa</span>
-                                <span class="mx-1">•</span>
-                                <span class="text-emerald-700 font-semibold">Komoditas Unggulan</span>
-                            </div>
-                            <h3 class="font-heading font-bold text-lg text-slate-900 mb-1">Wortel Malino</h3>
-                            <p class="text-xs text-slate-500 mb-4 line-clamp-2">Wortel segar dari kebun Malino dengan warna cerah dan tekstur renyah, siap kirim ke Makassar.</p>
-                        </div>
-                    </div>
-                    <div class="px-6 pb-6 pt-2 border-t border-slate-100 flex items-center justify-between">
-                        <div>
-                            <span class="text-xs text-slate-400 block">Estimasi Harga per 1 kg</span>
-                            <span class="font-heading font-extrabold text-xl text-slate-900">Rp 10.000</span>
-                        </div>
-                        <button onclick="openContactModal('Wortel Malino', '10000', 'Malino, Kab. Gowa', 'Pak Daeng Baji (Kelompok Tani Sayur)', '6281234567890')" class="bg-brand-400 hover:bg-brand-500 text-white px-4 py-2.5 rounded-2xl shadow-md shadow-brand-400/20 transition-all text-xs font-bold flex items-center gap-2">
-                            <i class="fa-brands fa-whatsapp text-sm"></i> Hubungi Petani
-                        </button>
-                    </div>
-                </div>
+                @endforelse
             </div>
 
             <div class="text-center mt-12">
-                <a href="#" class="inline-flex items-center gap-2 font-bold text-brand-400 bg-white border border-brand-200 hover:bg-brand-100 px-8 py-3.5 rounded-2xl shadow-sm transition-all">
-                    <span>Lihat Semua Katalog Komoditas</span>
+                <a href="{{ route('login') }}" class="inline-flex items-center gap-2 font-bold text-brand-400 bg-white border border-brand-200 hover:bg-brand-100 px-8 py-3.5 rounded-2xl shadow-sm transition-all">
+                    <span>Masuk untuk Belanja & Pesan Langsung</span>
                     <i class="fa-solid fa-arrow-right text-xs"></i>
                 </a>
             </div>
@@ -720,7 +662,7 @@
                     </div>
 
                     <div class="pt-2">
-                        <a href="#" class="inline-flex items-center gap-3 font-bold text-white bg-slate-900 hover:bg-slate-800 px-7 py-3.5 rounded-2xl shadow-lg transition-all">
+                        <a href="{{ route('register') }}" class="inline-flex items-center gap-3 font-bold text-white bg-slate-900 hover:bg-slate-800 px-7 py-3.5 rounded-2xl shadow-lg transition-all">
                             <i class="fa-solid fa-handshake"></i>
                             <span>Daftar Jadi Mitra Petani</span>
                         </a>
@@ -847,7 +789,7 @@
                         <a href="#katalog" class="text-center font-bold text-brand-500 bg-white hover:bg-brand-100 px-7 py-3.5 rounded-2xl shadow-lg transition-all">
                             Lihat Katalog Petani
                         </a>
-                        <a href="#" class="text-center font-bold text-white bg-brand-400 hover:bg-brand-300 px-7 py-3.5 rounded-2xl shadow-lg transition-all">
+                        <a href="{{ route('register') }}" class="text-center font-bold text-white bg-brand-400 hover:bg-brand-300 px-7 py-3.5 rounded-2xl shadow-lg transition-all">
                             Daftar Jadi Mitra Petani
                         </a>
                     </div>
@@ -891,9 +833,9 @@
                 <div class="space-y-3">
                     <h4 class="font-heading font-bold text-sm text-white uppercase tracking-wider">Layanan Kemitraan</h4>
                     <ul class="space-y-2 text-xs">
-                        <li><a href="#" class="hover:text-brand-300 transition-colors">Pendaftaran Mitra Petani</a></li>
+                        <li><a href="{{ route('register') }}" class="hover:text-brand-300 transition-colors">Pendaftaran Mitra Petani</a></li>
                         <li><a href="#kemitraan" class="hover:text-brand-300 transition-colors">Pasokan Rutin Horeka</a></li>
-                        <li><a href="#" class="hover:text-brand-300 transition-colors">Portal Login Petani</a></li>
+                        <li><a href="{{ route('login') }}" class="hover:text-brand-300 transition-colors">Portal Login Petani</a></li>
                     </ul>
                 </div>
 
