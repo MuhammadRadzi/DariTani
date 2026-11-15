@@ -65,12 +65,14 @@
         <div class="sticky top-0 z-10 bg-white flex items-center gap-4 px-4 py-3">
             <x-logo class="w-10 h-auto shrink-0 text-brand-500" />
 
-            <div class="flex-1 flex items-center border border-[#1d1b20] rounded-lg px-3 py-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[#1d1b20]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
-                </svg>
-                <input type="text" placeholder="Cari produk atau kebun..." class="flex-1 ml-2 text-sm outline-none">
-            </div>
+            <form action="{{ route('user.index') }}" method="GET" class="flex-1 flex items-center border border-[#1d1b20] rounded-lg px-3 py-2">
+                <button type="submit" aria-label="Cari" class="shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[#1d1b20]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+                    </svg>
+                </button>
+                <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari produk atau kebun..." class="flex-1 ml-2 text-sm outline-none" autocomplete="off">
+            </form>
 
             <div class="relative shrink-0" x-data="{ open: false, confirmLogout: false }">
                 <button type="button" @click.stop="open = !open" aria-label="Menu">
